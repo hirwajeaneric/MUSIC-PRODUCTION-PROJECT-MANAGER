@@ -20,7 +20,7 @@ const generalStyles = {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    background: '#9aa5b7',
+    background: '#d6e8ee',
     border: '1px solid white',
     borderRadius: '5px'
 }
@@ -112,7 +112,7 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: '50%',
-    bgcolor: '#0c1427',
+    bgcolor: '#02457a',
     boxShadow: 24,
     pt: 4,
     px: 4,

@@ -13,7 +13,7 @@ import { Helmet } from "react-helmet-async";
 const Signin = () => {
   const [ cookies, setCookie, removeCookie ] = useCookies(null);
   const { setOpen, setResponseMessage } = useContext(GeneralContext);
-    
+  const [ visible, setVisible ] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -48,7 +48,7 @@ const Signin = () => {
       </Helmet>
       <AuthenticationFormContainer style={{ position: 'relative', boxShadow: 'rgba(0, 0, 0, 0.05) 0 6px 24px, rgba(0, 0, 0, 0.08) 0 5px 12px 1px' }}>
 
-        <VerticallyFlexSpaceBetweenContainer className="left" style={{ position: 'absolute', left: '0', top: '0', bottom: '0', background: "#0c1427", height: '100%', gap: '50px' }}>
+        <VerticallyFlexSpaceBetweenContainer className="left" style={{ position: 'absolute', left: '0', top: '0', bottom: '0', background: "#02457a", height: '100%', gap: '50px' }}>
           <VerticallyFlexGapContainer style={{ gap: '30px', textAlign:'center', color:'white' }}>
             <h1 style={{ fontWeight: '900' }}>Soundss Pro</h1>
             <p style={{ lineHeight:'2rem', color: '#cce6ff' }}>Quality project organization,  management and tracking,  all done in one place. Achieved by the use of Soundss Pro. </p>
@@ -83,7 +83,7 @@ const Signin = () => {
             <label style={{ color: 'black' }} htmlFor="password">Password</label>
             <input 
               style={{ color: 'black', border: '1.5px solid black' }}
-              type="password"
+              type={visible ? "text" : "password"}
               id="password" 
               placeholder="Password" 
               {...register("password", {required: true})} 
@@ -93,6 +93,10 @@ const Signin = () => {
               <p role="alert">Password is required</p>
             )}
           </FormElement>
+          <div style={{ display: 'flex', flexDirection: 'row', gap: '20px', alignItems: 'center' }}>
+            <p>Show password</p>
+            <input type='checkbox' name='visible' value={visible} onChange={() => setVisible(!visible)} />
+          </div>
           <Link style={{ color: 'blue' }} to={'/auth/forgot-password'}>Forgot Password?</Link>
           <FormElement>
             {isProcessing 

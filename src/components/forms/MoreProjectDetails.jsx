@@ -86,27 +86,27 @@ const MoreProjectDetails = ({data}) => {
   }
 
   return (
-    <VerticallyFlexGapContainer style={{ gap: '20px', background: '#0c1427' }}>
+    <VerticallyFlexGapContainer style={{ gap: '20px', background: '#02457a' }}>
       <HorizontallyFlexSpaceBetweenContainer style={{ alignItems:'flex-start', paddingBottom:'10px', borderBottom:'1px solid #a3c2c2' }}>
         <h2 style={{ width: '70%', color: 'white' }}>{project.name}</h2>
         <Button variant='contained' size='small' color='error' onClick={deleteResource}>Delete</Button>
       </HorizontallyFlexSpaceBetweenContainer>
-      <VerticallyFlexGapForm onSubmit={updateResouce} style={{ gap: '20px', color: 'gray', fontSize:'90%' }}>
+      <VerticallyFlexGapForm onSubmit={updateResouce} style={{ gap: '20px', color: 'white', fontSize:'90%' }}>
         <HorizontallyFlexSpaceBetweenContainer style={{ fontSize: '100%', color: 'white', textAlign: 'left', alignItems: 'flex-start' }}>
           <VerticallyFlexGapContainer style={{ alignItems: 'flex-start', gap: '10px' }}>
-            <p>Create on: <span style={{ color: 'gray', textAlign: 'left' }}>{new Date(project.creationDate).toLocaleString()}</span></p>
-            <p>Start date: <span style={{ color: 'gray', textAlign: 'left' }}>{new Date(project.startDate).toLocaleString()}</span></p>
-            <p>Status: <span style={{ color: 'gray', textAlign: 'left' }}>{project.status}</span></p>
+            <p>Create on: <span style={{ color: 'white', textAlign: 'left' }}>{new Date(project.creationDate).toLocaleString()}</span></p>
+            <p>Start date: <span style={{ color: 'white', textAlign: 'left' }}>{new Date(project.startDate).toLocaleString()}</span></p>
+            <p>Status: <span style={{ color: 'white', textAlign: 'left' }}>{project.status}</span></p>
           </VerticallyFlexGapContainer>
           <VerticallyFlexGapContainer style={{ alignItems: 'flex-start', gap: '10px' }}>
-            {/* <p>Manager: <span style={{ color: 'gray', textAlign: 'left' }}>{project.ownerName}</span></p> */}
-            <p>Progress: <span style={{ color: 'gray', textAlign: 'left' }}>{`${project.progress.toFixed(1)} %`}</span></p>
-            <p>Project type: <span style={{ color: 'gray', textAlign: 'left' }}>{project.projectType}</span></p>
+            {/* <p>Manager: <span style={{ color: 'white', textAlign: 'left' }}>{project.ownerName}</span></p> */}
+            <p>Progress: <span style={{ color: 'white', textAlign: 'left' }}>{`${project.progress.toFixed(1)} %`}</span></p>
+            <p>Project type: <span style={{ color: 'white', textAlign: 'left' }}>{project.projectType}</span></p>
           </VerticallyFlexGapContainer>
         </HorizontallyFlexSpaceBetweenContainer>
         <HorizontallyFlexSpaceBetweenContainer style={{ fontSize: '100%', color: 'white', textAlign: 'left', paddingBottom:'20px', borderBottom:'1px solid #a3c2c2' }}>
-          <Button variant='text' type='button' size='small' color='primary' onClick={() => { window.location.replace(`/${project.code}/resources`) }}>Add/View Resources</Button>
-          <Button variant='text' type='button' size='small' color='secondary' onClick={() => { window.location.replace(`/${project.code}/milestones`) }}>Add/View Milestones</Button>
+          <Button variant='contained' type='button' size='small' color='info' onClick={() => { window.location.replace(`/${project.code}/resources`) }}>Add/View Resources</Button>
+          <Button variant='contained' type='button' size='small' color='secondary' onClick={() => { window.location.replace(`/${project.code}/milestones`) }}>Add/View Milestones</Button>
         </HorizontallyFlexSpaceBetweenContainer>
         <HorizontallyFlexGapContainer style={{ gap: '20px' }}>
           <FormElement>
@@ -127,7 +127,7 @@ const MoreProjectDetails = ({data}) => {
             <label htmlFor="projectType">Project type</label>
             <input type="text" disabled name="projectType" id="projectType" onChange={handleChange} value={project.projectType} />
           </FormElement>
-          <FormElement style={{ color: 'gray' }}>
+          <FormElement style={{ color: 'white' }}>
               <label htmlFor="projectType">Change project type</label>
               <select name='projectType' id='projectType'>
                   <option value="">Select type</option>
@@ -142,7 +142,7 @@ const MoreProjectDetails = ({data}) => {
             <label htmlFor="country">Country</label>
             <input type="text" name="country" id="country" onChange={handleChange} value={project.country} />
           </FormElement>
-          <FormElement style={{ color: 'gray' }}>
+          <FormElement style={{ color: 'white' }}>
               <label htmlFor="country">Country *</label>
               <select name='country' id='country'>
                   <option value="">Choose country</option>
@@ -179,7 +179,7 @@ const MoreProjectDetails = ({data}) => {
         <FormElement style={{ flexDirection: 'row', gap: '30%' }}>
           {isProcessing 
           ? <Button disabled variant="contained" color="primary" size="small">PROCESSING...</Button> 
-          : <Button variant="contained" color="primary" size="small" type="submit">Confirm Updates</Button>
+          : <Button variant="contained" color="success" size="small" type="submit">Confirm Updates</Button>
           }
           <Button variant="contained" color="secondary" size="small" type="button" onClick={() => {window.location.reload()}}>Cancel</Button>
         </FormElement>

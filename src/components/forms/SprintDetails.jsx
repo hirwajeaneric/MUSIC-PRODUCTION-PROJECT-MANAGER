@@ -278,14 +278,14 @@ const SprintDetails = (props) => {
 
   if (loading) {
     return (
-      <p>Loading...</p>
+      <p style={{ color: 'white' }}>Loading...</p>
     );
   }
 
   
   
   return (
-    <VerticallyFlexGapContainer style={{ gap: '10px', position: 'relative', background: '#0c1427', color: 'white' }}>
+    <VerticallyFlexGapContainer style={{ gap: '10px', position: 'relative', background: '#02457a', color: 'white' }}>
       
       <HorizontallyFlexSpaceBetweenContainer style={{ borderBottom: '1px solid #94b8b8', paddingBottom: '10px' }}>
         <p>
@@ -299,10 +299,10 @@ const SprintDetails = (props) => {
       </HorizontallyFlexSpaceBetweenContainer>
       
 
-      <VerticallyFlexGapContainer style={{ gap: '20px', color: 'gray', fontSize:'90%', position: 'relative' }}>
+      <VerticallyFlexGapContainer style={{ gap: '20px', color: '#97cadb', fontSize:'90%', position: 'relative' }}>
         
         <HorizontallyFlexGapContainer style={{ gap: '20px' }}>
-          <Label style={{ color: '#0342a3' }}/> 
+          <Label style={{ color: '#018abe' }}/> 
           <StatusButtonGroup type='sprint' data={sprint} />
         </HorizontallyFlexGapContainer>
         
@@ -370,7 +370,7 @@ const SprintDetails = (props) => {
               ?  
               // FORM TO UPDATE ASSIGNED MATERIALS 
               <HorizontallyFlexGapForm onSubmit={updateMaterialStatus} style={{ gap: '20px', width: '100%' }}>
-                <FormElement style={{ color: 'gray' }}>
+                <FormElement style={{ color: '#97cadb' }}>
                   <label htmlFor='name' style={{ color: 'black' }}>Name</label>
                   <input 
                     style={{ padding: '8px 12px' }}
@@ -382,7 +382,7 @@ const SprintDetails = (props) => {
                     onChange={handleMaterialUpdates}
                   />
                 </FormElement>
-                <FormElement style={{ color: 'gray' }}>
+                <FormElement style={{ color: '#97cadb' }}>
                   <label htmlFor='quantity' style={{ color: 'black' }}>Quantity</label>
                   <input 
                     style={{ padding: '8px 12px' }}
@@ -394,7 +394,7 @@ const SprintDetails = (props) => {
                     onChange={handleMaterialUpdates}
                   />
                 </FormElement>
-                <FormElement style={{ color: 'gray' }}>
+                <FormElement style={{ color: '#97cadb' }}>
                   <label htmlFor='used' style={{ color: 'black'}}>Used quantity</label>
                   <input 
                     style={{ padding: '8px 12px' }}
@@ -415,7 +415,7 @@ const SprintDetails = (props) => {
               :
               // FORM TO ASSIGN MATERIAL 
               <HorizontallyFlexGapForm onSubmit={handleSubmit(onSubmit)} style={{ gap: '20px', width: '100%' }}>
-                <FormElement style={{ color: 'gray' }}>
+                <FormElement style={{ color: '#97cadb' }}>
                   <select
                     style={{ padding: '8px 12px' }} 
                     {...register("name", { required: true })}
@@ -434,7 +434,7 @@ const SprintDetails = (props) => {
                     <p role="alert">Required</p>
                   )}
                 </FormElement>
-                <FormElement style={{ color: 'gray' }}>
+                <FormElement style={{ color: '#97cadb' }}>
                   <input 
                     style={{ padding: '8px 12px' }}
                     type="number" 
@@ -472,7 +472,7 @@ const SprintDetails = (props) => {
           {/* COMMENTS  *************************************************************************************************************************** */}
           {/* List of comment */}
           <VerticallyFlexGapContainer style={{ padding: '20px 0' }}>
-            <h4 style={{ padding: '5px', color: 'white', background:'#0c1427', borderRadius:'5px' }}>Comments</h4>
+            <h4 style={{ padding: '5px', color: 'white', background:'#02457a', borderRadius:'5px' }}>Comments</h4>
             <VerticallyFlexGapContainer style={{ gap: '10px', padding: '20px 0' }}>
               {isLoading 
               ?
@@ -490,9 +490,9 @@ const SprintDetails = (props) => {
           </VerticallyFlexGapContainer>
 
           {/* Comment form  */}
-          <HorizontallyFlexGapForm onSubmit={addComment} style={{ background:'#0c1427', padding:'10px', position: 'sticky', left: '0%', right: '0%', borderTop: '1px solid gray', borderBottom: '1px solid gray', }}>
+          <HorizontallyFlexGapForm onSubmit={addComment} style={{ background:'#02457a', padding:'10px', position: 'sticky', left: '0%', right: '0%', borderTop: '1px solid #97cadb', borderBottom: '1px solid #97cadb', }}>
             <FormElement>
-              <input style={{ border: 'none', padding: '5px', background: '#0c1427' }} name='message' value={comment.message || ''} placeholder='Add comment...' onChange={handleComment} />
+              <input style={{ border: 'none', padding: '5px', background: '#02457a' }} name='message' value={comment.message || ''} placeholder='Add comment...' onChange={handleComment} />
             </FormElement>
             {isProcessingComment 
               ? <Button disabled variant="contained" color="primary" size="medium">...</Button> 

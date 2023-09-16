@@ -288,7 +288,7 @@ export const FormElement = styled.div`
 
     label {
         font-size: 90%;
-        color: #9aa5b7;
+        color: #d6e8ee;
     }
 
     p {
@@ -299,20 +299,20 @@ export const FormElement = styled.div`
     textarea {
         font-size: 110%;
         font-family: 'Trebuchet MS', Arial, sans-serif;
-        border: 1px solid #9aa5b7;
+        border: 1px solid #d6e8ee;
         border-radius: 3px;
         background: transparent;
-        color: #9aa5b7;
+        color: #d6e8ee;
     }
 
     input, textarea, select, option {
         width: 100%;
         padding: 12px 12px;
-        border: 1px solid #9aa5b7;
+        border: 1px solid #d6e8ee;
         border-radius: 3px;
         font-size: 100%;
         background: transparent;
-        color: #9aa5b7;
+        color: #d6e8ee;
     }
 
     button {
@@ -329,7 +329,7 @@ export const FormElement = styled.div`
 
         svg {
             font-size: 200%;
-            color: #0342a3;
+            color: #018abe;
         }
 
         div {

@@ -91,11 +91,11 @@ const ResourcesDetails = ({data}) => {
       <HorizontallyFlexSpaceBetweenContainer style={{ alignItems: 'flex-start' }}>
         <div className='left' style={{ flexDirection: 'column', gap: '10px' }}>
           <h2>Resource Info</h2>
-          <p style={{ color: 'gray' }}>Entry date: <strong>{resource.entryDate}</strong></p>
+          <p style={{ color: '#97cadb' }}>Entry date: <strong>{resource.entryDate}</strong></p>
         </div>
         <Button variant='contained' size='small' color='error' onClick={deleteResource}>Delete</Button>
       </HorizontallyFlexSpaceBetweenContainer>
-      <VerticallyFlexGapForm onSubmit={updateResouce} style={{ gap: '20px', color: 'gray', fontSize:'90%' }}>
+      <VerticallyFlexGapForm onSubmit={updateResouce} style={{ gap: '20px', color: '#97cadb', fontSize:'90%' }}>
         <HorizontallyFlexSpaceBetweenContainer style={{ color: 'black', alignItems: 'flex-start' }}>
           <div className='left' style={{ flexDirection: 'column', gap: '10px' }}>
             <p>Quantity: <strong>{resource.quantity}</strong></p>

@@ -8,45 +8,14 @@ import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { useCookies } from "react-cookie";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { getSimpleCapitalizedChars } from "../utils/HelperFunctions";
-import VisibilityIcon from '@mui/icons-material/Visibility';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import { useContext, useState } from "react";
-import axios from "axios";
-import { GeneralContext } from "../App";
-import { getAllProjects } from "../redux/features/projectSlice";
-const serverUrl = import.meta.env.VITE_REACT_APP_SERVERURL;
 
 const Home = () => {
   const navigate = useNavigate();
   const [ cookies ] = useCookies(null);
   const user = cookies.UserData;
-  const [isProcessing, setIsProcessing] = useState(false);
-  const { setOpen, setResponseMessage } = useContext(GeneralContext);
-  const dispatch = useDispatch();
-
-  const deleteProject = (projectId) => {
-    setIsProcessing(true);
-    axios.delete(serverUrl+'/api/v1/mppms/project/delete?id='+projectId)
-    .then(response => {
-      setTimeout(() => {
-        if (response.status === 200) {
-          setIsProcessing(false);
-          setResponseMessage({ message: response.data.message, severity: 'success' });
-          setOpen(true);
-          dispatch(getAllProjects({id: user.id, email: user.email}));
-        }
-      }, 3000)
-    })
-    .catch(error => {
-      if (error.response && error.response.status >= 400 && error.response.status <= 500) {
-        setIsProcessing(false);
-        setResponseMessage({ message: error.response.data.msg, severity:'error'})
-        setOpen(true);
-      }
-    })
-  }
 
   const { isLoading, listOfProducersProjects, listOfManagerProjects } = useSelector(state => state.project);
 
@@ -58,15 +27,15 @@ const Home = () => {
       </Helmet>
 
       {/* First dashboard section  */}
-      <VerticallyFlexGapContainer style={{ gap: '40px', backgroundColor: '#0c1427', padding: '20px', borderRadius: '5px', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)' }}>
+      <VerticallyFlexGapContainer style={{ gap: '40px', backgroundColor: '#02457a', padding: '20px', borderRadius: '5px', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)' }}>
         <HorizontallyFlexSpaceBetweenContainer>
           <div className="left49width" style={{ flexDirection: 'column'}}>
-            <HeaderOne style={{ color: '#9aa5b7' }}>{`Welcome ${user.fullName}`}</HeaderOne>
+            <HeaderOne style={{ color: '#d6e8ee' }}>{`Welcome ${user.fullName}`}</HeaderOne>
             {user.role === 'Producer' && <p style={{ color: '#b1cdcd'}}>Here are some quick steps to get you started</p>}
             {user.role === 'Manager' && <p style={{ color: '#476b6b'}}>Get overview of your projects</p>}
           </div>
           {user.role === 'Producer' && <div className="right49width" style={{ justifyContent: "flex-end" }}>
-            <Button variant="outlined" color='primary' startIcon={<AddIcon />} onClick={() => navigate('projects')}>Create Project</Button>
+            <Button variant="contained" color='info' startIcon={<AddIcon />} onClick={() => navigate('projects')}>Create Project</Button>
           </div>}
         </HorizontallyFlexSpaceBetweenContainer>
         {user.role === 'Producer' && <HorizontallyFlexSpaceBetweenContainer>
@@ -106,15 +75,15 @@ const Home = () => {
       </VerticallyFlexGapContainer>
 
       {/* Second dashboard section  */}
-      <VerticallyFlexGapContainer style={{ gap: '20px', backgroundColor: '#0c1427', padding: '20px', borderRadius: '5px', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)' }}>
+      <VerticallyFlexGapContainer style={{ gap: '20px', backgroundColor: '#02457a', padding: '20px', borderRadius: '5px', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)' }}>
         
         <HorizontallyFlexSpaceBetweenContainer style={{ borderBottom: '1px solid #b3d9ff', paddingBottom: '15px'}}>
-          <p style={{ fontWeight: '600', color: '#9aa5b7' }}>Projects</p>
+          <p style={{ fontWeight: '600', color: '#d6e8ee' }}>Projects</p>
         </HorizontallyFlexSpaceBetweenContainer>
 
         <VerticallyFlexGapContainer style={{ gap: '10px' }}>
           {isLoading ? 
-          <p style={{ color: 'gray' }}>Loading...</p> :
+          <p style={{ color: '#97cadb' }}>Loading...</p> :
           <>
             {(listOfProducersProjects.length === 0 && listOfManagerProjects.length === 0) && <p style={{ color: '#b1cdcd' }}>No available projects yet</p>}
             {listOfManagerProjects && listOfManagerProjects.map((project, index) => (
@@ -131,7 +100,7 @@ const Home = () => {
                       </Tooltip>
                     </HorizontallyFlexGapContainer>
                   </HorizontallyFlexSpaceBetweenContainer>
-                  <p style={{ fontSize: '90%', color: 'gray' }}>{project.description}</p>
+                  <p style={{ fontSize: '90%', color: '#97cadb' }}>{project.description}</p>
                   <ProjectProgressBar>
                     <div style={{ width: `${project.progress.toFixed(1)}%`}}>
                         {project.progress !== 0 && <p>{`${project.progress.toFixed(1)}%`}</p>}
@@ -156,7 +125,7 @@ const Home = () => {
                       </Tooltip>
                     </HorizontallyFlexGapContainer>
                   </HorizontallyFlexSpaceBetweenContainer>
-                  <p style={{ fontSize: '90%', color: 'gray' }}>{project.description}</p>
+                  <p style={{ fontSize: '90%', color: '#97cadb' }}>{project.description}</p>
                   <ProjectProgressBar>
                     <div style={{ width: `${project.progress.toFixed(1)}%`}}>
                         {project.progress !== 0 && <p>{`${project.progress.toFixed(1)}%`}</p>}

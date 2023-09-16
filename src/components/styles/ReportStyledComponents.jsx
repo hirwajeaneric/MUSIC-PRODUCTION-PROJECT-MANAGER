@@ -38,7 +38,7 @@ export const ReportHeader = styled.div`
     justify-content: space-between;
     align-items: flex-start;
     gap: 20px;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid #97cadb;
 
     img {
         width: 15%;
@@ -101,7 +101,7 @@ export const ReportBody = styled.div`
         margin-bottom: 10px;
         width: 100%;
         padding-top: 20px;
-        border-top: 1px solid gray;
+        border-top: 1px solid #97cadb;
     }
 
 `;
@@ -134,7 +134,7 @@ export const ReportDateAndGenerator = styled.div`
     align-items: center;
     font-size: 85%;
     padding-bottom: 20px;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid #97cadb;
 `;
 
 export const ReportContent = styled.div`
@@ -167,7 +167,7 @@ export const TableList = styled.table`
             th {
                 padding: 8px;
                 text-align: left;
-                border-bottom: 1px solid gray;
+                border-bottom: 1px solid #97cadb;
             }
         }
     }
@@ -177,7 +177,7 @@ export const TableList = styled.table`
             td {
                 padding: 8px;
                 text-align: left;
-                border-bottom: 1px solid gray;
+                border-bottom: 1px solid #97cadb;
             }
         }
     }

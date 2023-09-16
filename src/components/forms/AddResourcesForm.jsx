@@ -49,14 +49,14 @@ export default function AddResourcesForm({projectId}) {
     };
 
     return (
-        <VerticallyFlexGapForm onSubmit={handleSubmit(onSubmit)} style={{ gap: '20px', background: '#0c1427', color: 'white', padding: '20px', borderRadius: '5px', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)' }}>
+        <VerticallyFlexGapForm onSubmit={handleSubmit(onSubmit)} style={{ gap: '20px', background: '#02457a', color: 'white', padding: '20px', borderRadius: '5px', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)' }}>
             <HorizontallyFlexSpaceBetweenContainer>
                 <p style={{ width: '100%', fontWeight: '600', textAlign:'left' }}>Add</p>
             </HorizontallyFlexSpaceBetweenContainer>
             {openForm && 
             <VerticallyFlexGapContainer style={{ gap: '15px' }}>
                 <HorizontallyFlexGapContainer style={{ gap: '20px' }}>
-                    <FormElement style={{ color: 'gray' }}>
+                    <FormElement style={{ color: '#97cadb' }}>
                         <label htmlFor="name">Name *</label>
                         <input 
                             type="text" 
@@ -70,7 +70,7 @@ export default function AddResourcesForm({projectId}) {
                         <p role="alert">Required</p>
                         )}
                     </FormElement>
-                    <FormElement style={{ color: 'gray' }}>
+                    <FormElement style={{ color: '#97cadb' }}>
                         <label htmlFor="type">Type *</label>
                         <input 
                             type="text" 
@@ -86,7 +86,7 @@ export default function AddResourcesForm({projectId}) {
                     </FormElement>
                 </HorizontallyFlexGapContainer>
                 
-                <FormElement style={{ color: 'gray' }}>
+                <FormElement style={{ color: '#97cadb' }}>
                     <label htmlFor="description">Description</label>
                     <textarea 
                         rows={3}
@@ -100,7 +100,7 @@ export default function AddResourcesForm({projectId}) {
                 </FormElement>
 
                 <HorizontallyFlexGapContainer style={{ gap: '20px' }}>
-                    <FormElement style={{ color: 'gray' }}>
+                    <FormElement style={{ color: '#97cadb' }}>
                         <label htmlFor="quantity">Quantity *</label>
                         <input 
                             type="number" 
@@ -114,7 +114,7 @@ export default function AddResourcesForm({projectId}) {
                             <p role="alert">The quantity must be provided</p>
                         )}
                     </FormElement>
-                    <FormElement style={{ color: 'gray' }}>
+                    <FormElement style={{ color: '#97cadb' }}>
                         <label htmlFor="measurementUnit">Measurement unit *</label>
                         <select 
                             {...register("measurementUnit", { required: true })}
@@ -132,7 +132,7 @@ export default function AddResourcesForm({projectId}) {
                 </HorizontallyFlexGapContainer>
                 
                 <HorizontallyFlexGapContainer style={{ gap: '20px' }}>
-                    <FormElement style={{ color: 'gray' }}>
+                    <FormElement style={{ color: '#97cadb' }}>
                         <label htmlFor="unitPrice">Unit price *</label>
                         <input 
                             type="number" 
@@ -142,7 +142,7 @@ export default function AddResourcesForm({projectId}) {
                             {required: false})} 
                         />
                     </FormElement>
-                    <FormElement style={{ color: 'gray' }}>
+                    <FormElement style={{ color: '#97cadb' }}>
                         <label htmlFor="currency">Currency *</label>
                         <select 
                             {...register("currency", { required: true })}
@@ -157,7 +157,7 @@ export default function AddResourcesForm({projectId}) {
                         <p role="alert">Choose currency</p>
                         )}
                     </FormElement>
-                    {/* <FormElement style={{ color: 'gray' }}>
+                    {/* <FormElement style={{ color: '#97cadb' }}>
                         <label htmlFor="picture">Picture</label>
                         <input 
                             type="file" 

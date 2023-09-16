@@ -41,12 +41,12 @@ const ProjectMaterials = () => {
         <meta name="description" content={`A list of all resources associated to this project and a form to add more.`} /> 
       </Helmet>
 
-      <VerticallyFlexGapContainer style={{ gap: '20px', background: '#0c1427', color: 'white', padding: '20px', borderRadius: '5px', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)' }}>
+      <VerticallyFlexGapContainer style={{ gap: '20px', background: '#02457a', color: 'white', padding: '20px', borderRadius: '5px', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)' }}>
         {loadingProject ? <p style={{ width: '100%', textAlign: 'left' }}>Loading...</p> :
           <HorizontallyFlexSpaceBetweenContainer>
             <HeaderTwo style={{ width: '100%', textAlign: 'left' }}>{project.name}</HeaderTwo>
             <HorizontallyFlexGapContainer style={{ gap: '20px', justifyContent: 'flex-end' }}>
-              <p style={{ color: 'white' }}>Code: <span style={{ color: 'gray' }}>{project.code}</span></p>
+              <p style={{ color: 'white' }}>Code: <span style={{ color: '#97cadb' }}>{project.code}</span></p>
               <Button 
                 variant='contained' 
                 size='small' 
@@ -65,12 +65,12 @@ const ProjectMaterials = () => {
 
       <HorizontallyFlexGapContainer style={{ gap: '20px', alignItems:'flex-start'}}>
         {/* List of resources  */}
-        <VerticallyFlexGapContainer style={{ justifyContent:'flex-start', background: '#0c1427', color: 'white', padding: '20px', borderRadius: '5px', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)' }}>
+        <VerticallyFlexGapContainer style={{ justifyContent:'flex-start', background: '#02457a', color: 'white', padding: '20px', borderRadius: '5px', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)' }}>
           <p style={{ fontWeight: '600', width: '100%', textAlign:'left' }}>Resources</p>
           {loadingProject ? <p style={{ width: '100%', textAlign: 'left' }}>Loading...</p> :
             <>
               {listOfProjectResources.length !== 0 && <ResourcesTable data={listOfProjectResources}/>}
-              {listOfProjectResources.length === 0 && <p style={{ color: 'gray', marginTop: '20px' }}>No resources available</p>}
+              {listOfProjectResources.length === 0 && <p style={{ color: '#97cadb', marginTop: '20px' }}>No resources available</p>}
             </>
           }
         </VerticallyFlexGapContainer>

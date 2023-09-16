@@ -85,12 +85,12 @@ const MileStones = () => {
                 <meta name="description" content={`A list of all issuess associated to this project and a form to add more.`} /> 
             </Helmet>
 
-            <VerticallyFlexGapContainer style={{ gap: '20px', backgroundColor: '#132239', color: 'white', padding: '20px', borderRadius: '5px', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)' }}>
+            <VerticallyFlexGapContainer style={{ gap: '20px', backgroundColor: '#02457a', color: 'white', padding: '20px', borderRadius: '5px', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)' }}>
                 {loadingProject ? <p style={{ width: '100%', textAlign: 'left' }}>Loading...</p> :
                 <HorizontallyFlexSpaceBetweenContainer>
                     <HeaderTwo style={{ width: '100%', textAlign: 'left' }}>{`${project.name} major Phases`}</HeaderTwo>
                     <HorizontallyFlexGapContainer style={{ gap: '20px', justifyContent: 'flex-end' }}>
-                        <p style={{ color: 'white' }}>Code: <span style={{ color: 'gray' }}>{project.code}</span></p>
+                        <p style={{ color: 'white' }}>Code: <span style={{ color: '#97cadb' }}>{project.code}</span></p>
                         <Button variant='contained' size='small' color='info' onClick={displayProjectInfo}>Edit/View Project</Button>
                     </HorizontallyFlexGapContainer>
                 </HorizontallyFlexSpaceBetweenContainer>
@@ -99,13 +99,13 @@ const MileStones = () => {
 
             <HorizontallyFlexGapContainer style={{ gap: '20px', alignItems:'flex-start'}}>
                 {/* Todos  */}
-                <VerticallyFlexSpaceBetweenForm onSubmit={addIssue} style={{ possition: 'relative', backgroundColor: '#0c1427', borderRadius: '5px', border: "1px solid rgba(0,0,0,0.2)", width: '32%', minHeight:'70vh', height:'70vh'}}>
-                    <HorizontallyFlexGapContainer style={{ background: "#132239", color: 'white', alignItems: 'center', gap: '10px', padding: '10px 20px', borderBottom: "1px solid rgba(0,0,0,0.2)" }}>
+                <VerticallyFlexSpaceBetweenForm onSubmit={addIssue} style={{ possition: 'relative', backgroundColor: '#02457a', borderRadius: '5px', border: "1px solid rgba(0,0,0,0.2)", width: '32%', minHeight:'70vh', height:'70vh'}}>
+                    <HorizontallyFlexGapContainer style={{ background: "#018abe", color: 'white', alignItems: 'center', gap: '10px', padding: '10px 20px', borderBottom: "1px solid rgba(0,0,0,0.2)" }}>
                         <h3 style={{ fontWeight:'400' }}>To-Do</h3>
                         <p style={{ color: 'white', background: 'black', padding: '2px 3px', fontSize:'90%', borderRadius: '5px'}}>{numberOfTodoIssues}</p>
                     </HorizontallyFlexGapContainer>
                     <VerticallyFlexGapContainer style={{ padding: '7px', gap: '7px', minHeight: '70%', overflowY:'auto', justifyContent:'flex-start', alignItems:'flex-start' }}>
-                        {numberOfTodoIssues === 0 && <p style={{ width: '100%',textAlign: 'center', color:'GrayText' }}>No tasks.<br/>Add new items here.</p>}
+                        {numberOfTodoIssues === 0 && <p style={{ width: '100%',textAlign: 'center', color:'#97cadb' }}>No tasks.<br/>Add new items here.</p>}
                         {listOfTodoIssues.map((issue, index) => {
                             return (<TodoItem key={index} type='issue' data={issue} />)
                         })}
@@ -116,7 +116,7 @@ const MileStones = () => {
                         {issue.name && 
                             <>
                                 {isProcessing ? 
-                                    <button type="button" disabled style={{ width: '20%', padding: '8px 12px', border: 'none', background: 'gray', color: 'white', fontSize:'100%', borderRadius: '0 0 5px' }}>...</button>
+                                    <button type="button" disabled style={{ width: '20%', padding: '8px 12px', border: 'none', background: '#97cadb', color: 'white', fontSize:'100%', borderRadius: '0 0 5px' }}>...</button>
                                     :
                                     <button type="submit" style={{ width: '20%', padding: '8px 12px', border: 'none', background: 'blue', color: 'white', fontSize:'100%', borderRadius: '0 0 5px' }}>Create</button>
                                 }
@@ -126,13 +126,13 @@ const MileStones = () => {
                 </VerticallyFlexSpaceBetweenForm>
 
                 {/* In progress  */}
-                <VerticallyFlexSpaceBetweenForm style={{ backgroundColor: '#0c1427', borderRadius: '5px', border: "1px solid rgba(0,0,0,0.2)", width: '32%', minHeight:'70vh', height:'70vh'}}>
-                    <HorizontallyFlexGapContainer style={{ background: "#132239", color: 'white', alignItems: 'center', gap: '10px', padding: '10px 20px', borderBottom: "1px solid rgba(0,0,0,0.2)" }}>
+                <VerticallyFlexSpaceBetweenForm style={{ backgroundColor: '#02457a', borderRadius: '5px', border: "1px solid rgba(0,0,0,0.2)", width: '32%', minHeight:'70vh', height:'70vh'}}>
+                    <HorizontallyFlexGapContainer style={{ background: "#018abe", color: 'white', alignItems: 'center', gap: '10px', padding: '10px 20px', borderBottom: "1px solid rgba(0,0,0,0.2)" }}>
                         <h3 style={{ fontWeight:'400'}}>In Progress</h3>
                         <p style={{ color: 'white', background: 'black', padding: '2px 3px', fontSize:'90%', borderRadius: '5px'}}>{numberOfInProgressIssues}</p>
                     </HorizontallyFlexGapContainer>
                     <VerticallyFlexGapContainer style={{ padding: '7px', gap: '7px', minHeight: '70%', overflowY:'auto', justifyContent:'flex-start', alignItems:'flex-start' }}>
-                        {numberOfInProgressIssues === 0 && <p style={{ width: '100%', textAlign: 'center', color:'GrayText' }}>No tasks.<br/>Add new items here.</p>}
+                        {numberOfInProgressIssues === 0 && <p style={{ width: '100%', textAlign: 'center', color:'#97cadb' }}>No tasks.<br/>Add new items here.</p>}
                         {listOfInProgressIssues && listOfInProgressIssues.map((issue, index) => {
                             return (<TodoItem key={index} type='issue' data={issue} />)
                         })}
@@ -140,13 +140,13 @@ const MileStones = () => {
                 </VerticallyFlexSpaceBetweenForm>
                 
                 {/* Completed  */}
-                <VerticallyFlexSpaceBetweenForm style={{ backgroundColor: '#0c1427', borderRadius: '5px', border: "1px solid rgba(0,0,0,0.2)", width: '32%', minHeight:'70vh', height:'70vh'}}>
-                    <HorizontallyFlexGapContainer style={{ background: "#132239", color: 'white', alignItems: 'center', gap: '10px', padding: '10px 20px', borderBottom: "1px solid rgba(0,0,0,0.2)" }}>
+                <VerticallyFlexSpaceBetweenForm style={{ backgroundColor: '#02457a', borderRadius: '5px', border: "1px solid rgba(0,0,0,0.2)", width: '32%', minHeight:'70vh', height:'70vh'}}>
+                    <HorizontallyFlexGapContainer style={{ background: "#018abe", color: 'white', alignItems: 'center', gap: '10px', padding: '10px 20px', borderBottom: "1px solid rgba(0,0,0,0.2)" }}>
                         <h3 style={{ fontWeight:'400'}}>Completed</h3>
                         <p style={{ color: 'white', background: 'black', padding: '2px 3px', fontSize:'90%', borderRadius: '5px'}}>{numberOfCompletedIssues}</p>
                     </HorizontallyFlexGapContainer>
                     <VerticallyFlexGapContainer style={{ padding: '7px', gap: '7px', minHeight: '70%', overflowY:'auto', justifyContent:'flex-start', alignItems:'flex-start' }}>
-                        {numberOfCompletedIssues === 0 && <p style={{ textAlign: 'center',width: '100%', color:'GrayText' }}>No tasks.<br/>Add new items here.</p>}
+                        {numberOfCompletedIssues === 0 && <p style={{ textAlign: 'center',width: '100%', color:'#97cadb' }}>No tasks.<br/>Add new items here.</p>}
                         {listOfCompletedIssues && listOfCompletedIssues.map((issue, index) => {
                             return (<TodoItem key={index} type='issue' data={issue} />)
                         })}

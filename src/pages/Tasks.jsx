@@ -38,7 +38,7 @@ const Tasks = () => {
         <VerticallyFlexGapContainer style={{ gap: '20px'}}>
           <HorizontallyFlexGapContainer style={{ borderBottom: '1px solid #a3c2c2', paddingBottom: '10px' }}>
             <HeaderTwo style={{ width: '100%', textAlign: 'left' }}>{project.name}</HeaderTwo>
-            <p style={{ color: 'gray' }}>{project.code}</p>
+            <p style={{ color: '#97cadb' }}>{project.code}</p>
           </HorizontallyFlexGapContainer>
         </VerticallyFlexGapContainer>
       </VerticallyFlexGapContainer>

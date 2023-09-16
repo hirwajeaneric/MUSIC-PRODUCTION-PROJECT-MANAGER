@@ -62,7 +62,7 @@ const ForgotPassword = () => {
       </Helmet>
       <AuthenticationFormContainer style={{ position: 'relative', boxShadow: 'rgba(0, 0, 0, 0.05) 0 6px 24px, rgba(0, 0, 0, 0.08) 0 5px 12px 1px' }}>
 
-        <VerticallyFlexSpaceBetweenContainer className="left" style={{ position: 'absolute', left: '0', top: '0', bottom: '0', background: "#0c1427", height: '100%', gap: '50px' }}>
+        <VerticallyFlexSpaceBetweenContainer className="left" style={{ position: 'absolute', left: '0', top: '0', bottom: '0', background: "#02457a", height: '100%', gap: '50px' }}>
           <VerticallyFlexGapContainer style={{ gap: '30px', textAlign:'center', color:'white' }}>
             <h1 style={{ fontWeight: '900' }}>Soundss Pro</h1>
             <p style={{ lineHeight:'2rem', color: '#cce6ff' }}>Quality project organization,  management and tracking,  all done in one place. Achieved by the use of Soundss Pro. </p>
@@ -111,7 +111,7 @@ const ForgotPassword = () => {
               : <Button variant="contained" color="primary" size="medium" type="submit">Set password</Button>
             }
           </FormElement>
-          <Link style={{ color: 'gray', fontSize:'90%', textAlign: 'center', textDecoration: 'none' }} to={'/auth/signin'}>I can't recover my account using this page</Link>
+          <Link style={{ color: '#97cadb', fontSize:'90%', textAlign: 'center', textDecoration: 'none' }} to={'/auth/signin'}>I can't recover my account using this page</Link>
         </VerticallyFlexGapForm>
         
       </AuthenticationFormContainer>

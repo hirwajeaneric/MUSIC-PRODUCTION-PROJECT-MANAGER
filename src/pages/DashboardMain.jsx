@@ -39,14 +39,14 @@ const DashboardMain = () => {
     const { isLoading, listOfProducersProjects, listOfManagerProjects, numberOfProjects } = useSelector(state => state.project);
     
     return (
-        <VerticallyFlexSpaceBetweenContainer style={{ backgroundColor: '#070d19' }}>
+        <VerticallyFlexSpaceBetweenContainer style={{ backgroundColor: '#001b4b' }}>
             <TopNavigationBar>
                 <div className="left">
                     <MdMenu style={{ cursor: 'pointer' }} onClick={() => setFullSize(!fullSize)}/>
                     <Link to='/'>Soundss Pro</Link>
                 </div>    
                 <div className="right">
-                    <MdNotifications style={{ fontSize: '150%', color: 'gray'}} />
+                    <MdNotifications style={{ fontSize: '150%', color: '#97cadb'}} />
                     <Tooltip title="Account settings">
                         <IconButton
                             onClick={handleClick}
@@ -100,7 +100,7 @@ const DashboardMain = () => {
                         <VerticallyFlexGapContainer style={{ justifyContent:'flex-start', alignItems:'flex-start', gap: '5px' }}>
                             <p>{user.fullName}</p>
                             <p style={{ color: 'blue', fontWeight:'700', fontSize:'90%' }}>{user.role}</p>
-                            <p style={{ color: 'gray', fontSize:'90%' }}>{user.email}</p>
+                            <p style={{ color: '#97cadb', fontSize:'90%' }}>{user.email}</p>
                         </VerticallyFlexGapContainer>
                     </MenuItem>
                     {/* <MenuItem onClick={handleClose}>

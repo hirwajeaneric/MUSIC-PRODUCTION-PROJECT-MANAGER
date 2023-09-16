@@ -13,7 +13,7 @@ const CommentMessageContainer = styled.div`
         gap: 10px;
         padding: 5px;
         border-radius: 5px;
-        background: gray;
+        background: #97cadb;
         
         p {
             color: white;

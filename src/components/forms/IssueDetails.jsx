@@ -228,9 +228,9 @@ const IssueDetails = (props) => {
         <Button variant='contained' size='small' color='error' onClick={deleteIssue}>Delete &nbsp;<MdDelete /></Button>
       </HorizontallyFlexSpaceBetweenContainer>
       
-      <VerticallyFlexGapContainer style={{ gap: '20px', color: 'gray', fontSize:'90%', position: 'relative' }}>
+      <VerticallyFlexGapContainer style={{ gap: '20px', color: '#97cadb', fontSize:'90%', position: 'relative' }}>
         <HorizontallyFlexGapContainer style={{ gap: '20px' }}>
-          <Label style={{ color: '#0342a3' }}/> 
+          <Label style={{ color: '#018abe' }}/> 
           <StatusButtonGroup type='issue' data={issue} />
         </HorizontallyFlexGapContainer>
 
@@ -283,7 +283,7 @@ const IssueDetails = (props) => {
 
 
           {/* Activities / Sprints ****************************************************************************************************************************/}
-          <VerticallyFlexGapForm onSubmit={addSprint} style={{ marginTop: '20px', background: '#9aa5b7', padding: '20px', borderRadius: '5px', gap: '10px' }}>
+          <VerticallyFlexGapForm onSubmit={addSprint} style={{ marginTop: '20px', background: '#018abe', padding: '20px', borderRadius: '5px', gap: '10px' }}>
             <h3 style={{ width: '100%', textAlign: 'left', color: 'black' }}>Add activities</h3>
 
             <HorizontallyFlexGapContainer style={{ borderTop: "1px solid rgba(0,0,0,.2)" }}>
@@ -291,7 +291,7 @@ const IssueDetails = (props) => {
                 {sprint.name && 
                     <>
                         {isProcessingSprint ? 
-                            <button type="button" disabled style={{ width: '20%', padding: '8px 12px', border: 'none', background: 'gray', color: 'white', fontSize:'100%', borderRadius: '0 0 5px' }}>...</button>
+                            <button type="button" disabled style={{ width: '20%', padding: '8px 12px', border: 'none', background: '#97cadb', color: 'white', fontSize:'100%', borderRadius: '0 0 5px' }}>...</button>
                             :
                             <button type="submit" style={{ width: '20%', cursor: 'pointer', padding: '8px 12px', border: 'none', background: 'green', color: 'white', fontSize:'100%', borderRadius: '0 0 5px' }}>Add</button>
                         }
@@ -322,7 +322,7 @@ const IssueDetails = (props) => {
           {/* COMMENTS  *************************************************************************************************************************** */}
           {/* List of comment */}
           <VerticallyFlexGapContainer style={{ padding: '20px 0' }}>
-            <h4 style={{ padding: '5px', color: 'white', background:'#0c1427', borderRadius:'5px' }}>Comments</h4>
+            <h4 style={{ padding: '5px', color: 'white', background:'#02457a', borderRadius:'5px' }}>Comments</h4>
             <VerticallyFlexGapContainer style={{ gap: '10px', padding: '20px 0' }}>
               {isLoading 
               ?
@@ -340,9 +340,9 @@ const IssueDetails = (props) => {
           </VerticallyFlexGapContainer>
 
           {/* Comment form  */}
-          <HorizontallyFlexGapForm onSubmit={addComment} style={{ background:'#0c1427', padding:'10px', position: 'sticky', bottom: '0px', left: '0%', right: '0%', borderTop: '1px solid gray', borderBottom: '1px solid gray', }}>
+          <HorizontallyFlexGapForm onSubmit={addComment} style={{ background:'#02457a', padding:'10px', position: 'sticky', bottom: '0px', left: '0%', right: '0%', borderTop: '1px solid #97cadb', borderBottom: '1px solid #97cadb', }}>
             <FormElement>
-              <input style={{ border: 'none', padding: '5px', background: '#0c1427', color: 'white' }} name='message' value={comment.message || ''} placeholder='Add comment...' onChange={handleComment} />
+              <input style={{ border: 'none', padding: '5px', background: '#02457a', color: 'white' }} name='message' value={comment.message || ''} placeholder='Add comment...' onChange={handleComment} />
             </FormElement>
             {isProcessingComment 
               ? <Button disabled variant="contained" color="primary" size="medium">...</Button> 

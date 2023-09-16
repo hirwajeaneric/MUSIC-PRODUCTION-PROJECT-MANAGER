@@ -77,25 +77,25 @@ const EditProject = () => {
             <HorizontallyFlexSpaceBetweenContainer style={{ borderBottom: '1px solid #a3c2c2', paddingBottom: '10px' }}>
               <HeaderTwo style={{ width: '100%', textAlign: 'left' }}>{project.name}</HeaderTwo>
               <HorizontallyFlexGapContainer style={{ gap: '20px', justifyContent: 'flex-end' }}>
-                <p style={{ color: 'black' }}>Code: <span style={{ color: 'gray' }}>{project.code}</span></p>
+                <p style={{ color: 'black' }}>Code: <span style={{ color: '#97cadb' }}>{project.code}</span></p>
                 <Button variant='contained' size='small' color='info'>Edit/View</Button>
               </HorizontallyFlexGapContainer>
             </HorizontallyFlexSpaceBetweenContainer>
-            <p style={{ color: 'gray', textAlign:'left', lineHeight: '1.5rem', width: '100%' }}>{project.description}</p>
+            <p style={{ color: '#97cadb', textAlign:'left', lineHeight: '1.5rem', width: '100%' }}>{project.description}</p>
             <HorizontallyFlexSpaceBetweenContainer style={{ fontSize: '90%', textAlign: 'left' }}>
               <VerticallyFlexGapContainer style={{ alignItems: 'flex-start', gap: '10px' }}>
-                <p>Create on: <span style={{ color: 'gray', textAlign: 'left' }}>{new Date(project.creationDate).toLocaleString()}</span></p>
-                <p>Start Date: <span style={{ color: 'gray', textAlign: 'left' }}>{new Date(project.startDate).toLocaleString()}</span></p>
-                <p>Estimated end date: <span style={{ color: 'gray', textAlign: 'left' }}>{new Date(project.estimatedEndDate).toLocaleString()}</span></p>
-                <p>End date: <span style={{ color: 'gray', textAlign: 'left' }}>{project.endDate && new Date(project.endDate).toLocaleString()}</span></p>
-                <p>Type: <span style={{ color: 'gray', textAlign: 'left' }}>{project.projectType}</span></p>
+                <p>Create on: <span style={{ color: '#97cadb', textAlign: 'left' }}>{new Date(project.creationDate).toLocaleString()}</span></p>
+                <p>Start Date: <span style={{ color: '#97cadb', textAlign: 'left' }}>{new Date(project.startDate).toLocaleString()}</span></p>
+                <p>Estimated end date: <span style={{ color: '#97cadb', textAlign: 'left' }}>{new Date(project.estimatedEndDate).toLocaleString()}</span></p>
+                <p>End date: <span style={{ color: '#97cadb', textAlign: 'left' }}>{project.endDate && new Date(project.endDate).toLocaleString()}</span></p>
+                <p>Type: <span style={{ color: '#97cadb', textAlign: 'left' }}>{project.projectType}</span></p>
               </VerticallyFlexGapContainer>
               <VerticallyFlexGapContainer style={{ alignItems: 'flex-start', gap: '10px' }}>
-                <p>Status: <span style={{ color: 'gray', textAlign: 'left' }}>{project.status}</span></p>
-                <p>Country: <span style={{ color: 'gray', textAlign: 'left' }}>{project.country}</span></p>
-                <p>Location: <span style={{ color: 'gray', textAlign: 'left' }}>{`${project.city}, ${project.district}, ${project.sector}, ${project.address}`}</span></p>
-                <p>Manager: <span style={{ color: 'gray', textAlign: 'left' }}>{project.ownerName}</span></p>
-                <p>Progress: <span style={{ color: 'gray', textAlign: 'left' }}>{project.progress} %</span></p>
+                <p>Status: <span style={{ color: '#97cadb', textAlign: 'left' }}>{project.status}</span></p>
+                <p>Country: <span style={{ color: '#97cadb', textAlign: 'left' }}>{project.country}</span></p>
+                <p>Location: <span style={{ color: '#97cadb', textAlign: 'left' }}>{`${project.city}, ${project.district}, ${project.sector}, ${project.address}`}</span></p>
+                <p>Manager: <span style={{ color: '#97cadb', textAlign: 'left' }}>{project.ownerName}</span></p>
+                <p>Progress: <span style={{ color: '#97cadb', textAlign: 'left' }}>{project.progress} %</span></p>
               </VerticallyFlexGapContainer>
             </HorizontallyFlexSpaceBetweenContainer>
             <HorizontallyFlexGapContainer style={{ gap: '20px' }}>
@@ -112,7 +112,7 @@ const EditProject = () => {
           <VerticallyFlexGapForm onSubmit={handleSubmit(onSubmit)} style={{ gap: '20px', backgroundColor: 'white', padding: '20px', borderRadius: '5px', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)' }}>
             <HeaderTwo style={{ width: '100%', textAlign: 'left' }}>Add Manager</HeaderTwo>
             <HorizontallyFlexGapContainer style={{ gap: '20px', alignItems: 'center' }}>
-              <FormElement style={{ color: 'gray' }}>
+              <FormElement style={{ color: '#97cadb' }}>
                 <label htmlFor="ownerName">Name</label>
                 <input 
                   type="text" 
@@ -126,7 +126,7 @@ const EditProject = () => {
                   <p role="alert">Manager name is required</p>
                 )}
               </FormElement>
-              <FormElement style={{ color: 'gray' }}>
+              <FormElement style={{ color: '#97cadb' }}>
                 <label htmlFor="ownerEmail">Email</label>
                 <input 
                   type="email" 
