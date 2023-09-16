@@ -14,7 +14,7 @@ const Signup = () => {
   const navigate = useNavigate();
   const [ cookies, setCookie, removeCookie ] = useCookies(null);
   const { setOpen, setResponseMessage } = useContext(GeneralContext);
-    
+  const [ visible, setVisible ] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -121,11 +121,11 @@ const Signup = () => {
             </FormElement>
           </HorizontallyFlexGapContainer>
           <HorizontallyFlexGapContainer style={{ gap: '10px' }}>
-            <FormElement style={{ color: 'gray' }}>
+            <FormElement style={{ color: '#97cadb' }}>
               <label style={{ color: 'black' }} htmlFor="password">Password</label>
               <input 
                 style={{ color: 'black', border: '1.5px solid black' }}
-                type="password"
+                type={visible ? "text" : "password"}
                 id="password" 
                 placeholder="password" 
                 {...register("password", {required: true})} 
@@ -135,11 +135,11 @@ const Signup = () => {
                 <p role="alert">Password is required</p>
               )}
             </FormElement>
-            <FormElement style={{ color: 'gray' }}>
+            <FormElement style={{ color: '#97cadb' }}>
               <label style={{ color: 'black' }} htmlFor="confirmPassword">Confirm Password</label>
               <input 
                 style={{ color: 'black', border: '1.5px solid black' }}
-                type="password"
+                type={visible ? "text" : "password"}
                 id="confirmPassword" 
                 placeholder="confirmPassword" 
                 {...register("confirmPassword", {required: true})} 
@@ -149,6 +149,12 @@ const Signup = () => {
                 <p role="alert">Confirm your password</p>
               )}
             </FormElement>
+          </HorizontallyFlexGapContainer>
+          <HorizontallyFlexGapContainer>
+            <div style={{ display: 'flex', flexDirection: 'row', gap: '20px', alignItems: 'center' }}>
+              <p>Show password</p>
+              <input type='checkbox' name='visible' value={visible} onChange={() => setVisible(!visible)} />
+            </div>
           </HorizontallyFlexGapContainer>
           <FormElement>
             {isProcessing 

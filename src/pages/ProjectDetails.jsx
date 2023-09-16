@@ -80,23 +80,23 @@ const ProjectDetails = () => {
           <VerticallyFlexGapContainer style={{ gap: '20px'}}>
             
             <HorizontallyFlexGapContainer style={{ borderBottom: '1px solid #a3c2c2', paddingBottom: '10px' }}>
-              <HeaderTwo style={{ width: '100%', textAlign: 'left', color: '#9aa5b7' }}>{project.name}</HeaderTwo>
+              <HeaderTwo style={{ width: '100%', textAlign: 'left', color: '#d6e8ee' }}>{project.name}</HeaderTwo>
               
               <HorizontallyFlexGapContainer style={{ gap: '20px', justifyContent: 'flex-end' }}>
-                <p style={{ color: '#9aa5b7' }}>Code: <span style={{ color: 'gray' }}>{project.code}</span></p>
+                <p style={{ color: '#d6e8ee' }}>Code: <span style={{ color: 'white' }}>{project.code}</span></p>
                 <Button 
-                  variant='text' 
+                  variant='contained' 
                   size='small' 
-                  color='secondary' 
+                  color='inherit' 
                   onClick={() => { 
                     navigate(`/${params.code}/report-preview`);
                   }}>
                     Report preview
                 </Button>
                 <Button 
-                  variant='text' 
+                  variant='contained' 
                   size='small' 
-                  color='info' 
+                  color='primary' 
                   onClick={() => { 
                     handleOpenModal(); 
                     setDetailsFormType('project');
@@ -107,21 +107,21 @@ const ProjectDetails = () => {
               </HorizontallyFlexGapContainer>
             </HorizontallyFlexGapContainer>
 
-            <p style={{ color: 'gray', textAlign:'left', lineHeight: '1.5rem', width: '100%' }}>{project.description}</p>
+            <p style={{ color: 'white', textAlign:'left', lineHeight: '1.5rem', width: '100%' }}>{project.description}</p>
             <HorizontallyFlexSpaceBetweenContainer style={{ fontSize: '90%', textAlign: 'left' }}>
-              <VerticallyFlexGapContainer style={{ alignItems: 'flex-start', gap: '10px', color: '#9aa5b7' }}>
-                <p>Create on: <span style={{ color: 'gray', textAlign: 'left' }}>{new Date(project.creationDate).toLocaleString()}</span></p>
-                <p>Start Date: <span style={{ color: 'gray', textAlign: 'left' }}>{new Date(project.startDate).toLocaleString()}</span></p>
-                <p>Estimated end date: <span style={{ color: 'gray', textAlign: 'left' }}>{new Date(project.estimatedEndDate).toLocaleString()}</span></p>
-                <p>End date: <span style={{ color: 'gray', textAlign: 'left' }}>{project.endDate && new Date(project.endDate).toLocaleString()}</span></p>
-                <p>Type: <span style={{ color: 'gray', textAlign: 'left' }}>{project.projectType}</span></p>
+              <VerticallyFlexGapContainer style={{ alignItems: 'flex-start', gap: '10px', color: '#d6e8ee' }}>
+                <p>Create on: <span style={{ color: 'white', textAlign: 'left' }}>{new Date(project.creationDate).toLocaleString()}</span></p>
+                <p>Start Date: <span style={{ color: 'white', textAlign: 'left' }}>{new Date(project.startDate).toLocaleString()}</span></p>
+                <p>Estimated end date: <span style={{ color: 'white', textAlign: 'left' }}>{new Date(project.estimatedEndDate).toLocaleString()}</span></p>
+                <p>End date: <span style={{ color: 'white', textAlign: 'left' }}>{project.endDate && new Date(project.endDate).toLocaleString()}</span></p>
+                <p>Type: <span style={{ color: 'white', textAlign: 'left' }}>{project.projectType}</span></p>
               </VerticallyFlexGapContainer>
-              <VerticallyFlexGapContainer style={{ alignItems: 'flex-start', gap: '10px', color: '#9aa5b7' }}>
-                <p>Status: <span style={{ color: 'gray', textAlign: 'left' }}>{project.status}</span></p>
-                <p>Country: <span style={{ color: 'gray', textAlign: 'left' }}>{project.country}</span></p>
-                <p>Location: <span style={{ color: 'gray', textAlign: 'left' }}>{`${project.city}, ${project.district}, ${project.sector}, ${project.address}`}</span></p>
-                <p>Manager: <span style={{ color: 'gray', textAlign: 'left' }}>{project.ownerName}</span></p>
-                <p>Progress: <span style={{ color: 'gray', textAlign: 'left' }}>{`${Math.round(project.progress * 10) / 10} %`}</span></p>
+              <VerticallyFlexGapContainer style={{ alignItems: 'flex-start', gap: '10px', color: '#d6e8ee' }}>
+                <p>Status: <span style={{ color: 'white', textAlign: 'left' }}>{project.status}</span></p>
+                <p>Country: <span style={{ color: 'white', textAlign: 'left' }}>{project.country}</span></p>
+                <p>Location: <span style={{ color: 'white', textAlign: 'left' }}>{`${project.city}, ${project.district}, ${project.sector}, ${project.address}`}</span></p>
+                <p>Manager: <span style={{ color: 'white', textAlign: 'left' }}>{project.ownerName}</span></p>
+                <p>Progress: <span style={{ color: 'white', textAlign: 'left' }}>{`${Math.round(project.progress * 10) / 10} %`}</span></p>
               </VerticallyFlexGapContainer>
             </HorizontallyFlexSpaceBetweenContainer>
             <HorizontallyFlexGapContainer style={{ gap: '20px' }}>
@@ -147,7 +147,7 @@ const ProjectDetails = () => {
           <VerticallyFlexGapForm onSubmit={handleSubmit(onSubmit)} style={{ gap: '20px', background: '#02457a', color: 'white', padding: '20px', borderRadius: '5px', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)' }}>
             <HeaderTwo style={{ width: '100%', textAlign: 'left' }}>Add Users</HeaderTwo>
             <HorizontallyFlexGapContainer style={{ gap: '20px', alignItems: 'center' }}>
-              <FormElement style={{ color: 'gray' }}>
+              <FormElement style={{ color: 'white' }}>
                 <label htmlFor="ownerName">Name</label>
                 <input 
                   type="text" 
@@ -161,7 +161,7 @@ const ProjectDetails = () => {
                   <p role="alert">User name is required</p>
                 )}
               </FormElement>
-              <FormElement style={{ color: 'gray' }}>
+              <FormElement style={{ color: 'white' }}>
                 <label htmlFor="ownerEmail">Email</label>
                 <input 
                   type="email" 
@@ -175,7 +175,7 @@ const ProjectDetails = () => {
                   <p role="alert">User email is required</p>
                 )}
               </FormElement>
-              {/* <FormElement style={{ color: 'gray' }}>
+              {/* <FormElement style={{ color: 'white' }}>
                 <label htmlFor="role">Role</label>
                 <select 
                   {...register("role", { required: true })}

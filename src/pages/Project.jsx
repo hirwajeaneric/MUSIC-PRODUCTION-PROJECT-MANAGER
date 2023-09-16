@@ -14,16 +14,16 @@ const Project = () => {
         <meta name="description" content={`A list of both my projects and projects I manage.`} /> 
       </Helmet>
 
-      <HeaderTwo style={{ width: '100%', textAlign: 'left', color: '#9aa5b7' }}>My Projects</HeaderTwo>
+      <HeaderTwo style={{ width: '100%', textAlign: 'left', color: '#d6e8ee' }}>My Projects</HeaderTwo>
       
       <HorizontallyFlexGapContainer style={{ gap: '20px', alignItems: 'flex-start'}}>
         {/* List of projects  */}
         <VerticallyFlexGapContainer style={{ gap: '20px', backgroundColor: '#02457a', borderRadius: '5px', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)' }}>
           <VerticallyFlexGapContainer>
             {isLoading ? 
-            <p style={{ color: 'gray' }}>Loading...</p> :
+            <p style={{ color: '#97cadb' }}>Loading...</p> :
             <>
-              {(listOfProducersProjects.length === 0 && listOfManagerProjects.length === 0) && <p style={{ color: '#9aa5b7', }}>No available projects yet</p>}
+              {(listOfProducersProjects.length === 0 && listOfManagerProjects.length === 0) && <p style={{ color: '#d6e8ee', }}>No available projects yet</p>}
               {listOfManagerProjects && listOfManagerProjects.map((project, index) => (
                 <ProjectItem key={index} project={project} />
               ))}

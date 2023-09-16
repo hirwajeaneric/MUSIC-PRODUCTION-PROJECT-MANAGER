@@ -8,8 +8,6 @@ import { WorldCountries } from "../../utils/WorldCountries";
 import { ProjectTypes } from "../../utils/ProjectTypes";
 import { useCookies } from "react-cookie";
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import { getAllProjects } from "../../redux/features/projectSlice";
 
 export default function CreateProjectForm() {
     const [isProcessing, setIsProcessing] = useState(false);
@@ -17,7 +15,6 @@ export default function CreateProjectForm() {
     const { setOpen, setResponseMessage } = useContext(GeneralContext);
     const [ cookies, setCookie, removeCookie ] = useCookies(null);
     const user = cookies.UserData;
-    const dispatch = useDispatch();
 
     const onSubmit = data => {
         if (data.password !== data.confirmPassword) {
@@ -60,11 +57,11 @@ export default function CreateProjectForm() {
     return (
         <VerticallyFlexGapForm onSubmit={handleSubmit(onSubmit)} style={{ gap: '20px', backgroundColor: '#02457a', padding: '20px', borderRadius: '5px', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)' }}>
             <HorizontallyFlexSpaceBetweenContainer style={{ borderBottom: '1px solid #b3d9ff', paddingBottom: '15px'}}>
-                <p style={{ width: '100%', fontWeight: '600', textAlign:'left', color: '#9aa5b7' }}>Create New Project</p>
+                <p style={{ width: '100%', fontWeight: '600', textAlign:'left', color: '#d6e8ee' }}>Create New Project</p>
             </HorizontallyFlexSpaceBetweenContainer>
             <VerticallyFlexGapContainer style={{ gap: '15px' }}>
                 <HorizontallyFlexGapContainer style={{ gap: '20px' }}>
-                    <FormElement style={{ color: 'gray' }}>
+                    <FormElement style={{ color: '#97cadb' }}>
                         <label htmlFor="fullName">Name *</label>
                         <input 
                             type="text" 
@@ -78,7 +75,7 @@ export default function CreateProjectForm() {
                         <p role="alert">Project name is required</p>
                         )}
                     </FormElement>
-                    <FormElement style={{ color: 'gray' }}>
+                    <FormElement style={{ color: '#97cadb' }}>
                         <label htmlFor="startDate">Start date *</label>
                         <input 
                             type="date" 
@@ -92,7 +89,7 @@ export default function CreateProjectForm() {
                         <p role="alert">The start date of the project is required</p>
                         )}
                     </FormElement>
-                    <FormElement style={{ color: 'gray' }}>
+                    <FormElement style={{ color: '#97cadb' }}>
                         <label htmlFor="estimatedEndDate">Estimated end date *</label>
                         <input 
                             type="date" 
@@ -107,7 +104,7 @@ export default function CreateProjectForm() {
                         )}
                     </FormElement>
                 </HorizontallyFlexGapContainer>
-                <FormElement style={{ color: 'gray' }}>
+                <FormElement style={{ color: '#97cadb' }}>
                     <label htmlFor="description">Description *</label>
                     <textarea 
                         rows={4}
@@ -124,7 +121,7 @@ export default function CreateProjectForm() {
                 </FormElement>
 
                 <HorizontallyFlexGapContainer style={{ gap: '20px' }}>
-                    <FormElement style={{ color: 'gray' }}>
+                    <FormElement style={{ color: '#97cadb' }}>
                         <label htmlFor="projectType">Project type *</label>
                         <select 
                             {...register("projectType", { required: true })}
@@ -139,7 +136,7 @@ export default function CreateProjectForm() {
                         <p role="alert">The type of project is required</p>
                         )}
                     </FormElement>
-                    {/* <FormElement style={{ color: 'gray' }}>
+                    {/* <FormElement style={{ color: '#97cadb' }}>
                         <label htmlFor="startDate">Dimensions (In square meters) *</label>
                         <input 
                             type="number" 
@@ -156,7 +153,7 @@ export default function CreateProjectForm() {
                 </HorizontallyFlexGapContainer>        
 
                 <HorizontallyFlexGapContainer style={{ gap: '20px' }}>
-                    <FormElement style={{ color: 'gray' }}>
+                    <FormElement style={{ color: '#97cadb' }}>
                         <label htmlFor="country">Country *</label>
                         <select 
                             {...register("country", { required: true })}
@@ -171,7 +168,7 @@ export default function CreateProjectForm() {
                         <p role="alert">Country is required</p>
                         )}
                     </FormElement>
-                    <FormElement style={{ color: 'gray' }}>
+                    <FormElement style={{ color: '#97cadb' }}>
                         <label htmlFor="city">City *</label>
                         <input 
                             type="text" 
@@ -185,7 +182,7 @@ export default function CreateProjectForm() {
                         <p role="alert">The city is required</p>
                         )}
                     </FormElement>
-                    <FormElement style={{ color: 'gray' }}>
+                    <FormElement style={{ color: '#97cadb' }}>
                         <label htmlFor="district">District</label>
                         <input 
                             type="text" 
@@ -198,7 +195,7 @@ export default function CreateProjectForm() {
                     </FormElement>
                 </HorizontallyFlexGapContainer>
                 <HorizontallyFlexGapContainer style={{ gap: '20px' }}>
-                    <FormElement style={{ color: 'gray' }}>
+                    <FormElement style={{ color: '#97cadb' }}>
                         <label htmlFor="sector">Sector</label>
                         <input 
                             type="text" 
@@ -209,7 +206,7 @@ export default function CreateProjectForm() {
                             aria-invalid={errors.sector ? "true" : "false"}
                         />
                     </FormElement>
-                    <FormElement style={{ color: 'gray' }}>
+                    <FormElement style={{ color: '#97cadb' }}>
                         <label htmlFor="startDate">Address *</label>
                         <input 
                             type="text" 
@@ -228,7 +225,7 @@ export default function CreateProjectForm() {
                 <FormElement style={{ flexDirection: 'row', gap: '70%' }}>
                     {isProcessing 
                     ? <Button disabled variant="contained" color="primary" size="small">PROCESSING...</Button> 
-                    : <Button variant="contained" color="primary" size="medium" type="submit">SUBMIT</Button>
+                    : <Button variant="contained" color="success" size="medium" type="submit">SUBMIT</Button>
                     }
                     <Button variant="contained" color="secondary" size="medium" type="button" onClick={() => {window.location.reload()}}>Cancel</Button>
                 </FormElement>

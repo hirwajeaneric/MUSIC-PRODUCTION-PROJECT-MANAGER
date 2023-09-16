@@ -68,7 +68,7 @@ const ForgotPassword = () => {
         <VerticallyFlexGapForm className="right" style={{ position: 'absolute', right: '0', top: '0', bottom: '0' }} onSubmit={handleSubmit(onSubmit)}>
           <div>
             <HeaderOne>Forgot your password</HeaderOne>
-            <p style={{ color: 'gray', marginTop: '5px'}}>Enter your email and we will send you a reset link</p>
+            <p style={{ color: '#97cadb', marginTop: '5px'}}>Enter your email and we will send you a reset link</p>
           </div>
           <FormElement>
             <input 
@@ -90,7 +90,7 @@ const ForgotPassword = () => {
               : <Button variant="contained" color="primary" size="medium" type="submit">Send reset link</Button>
             }
           </FormElement>
-          <Link style={{ color: 'gray', fontSize:'90%', textAlign: 'center', textDecoration: 'none' }} to={'/auth/signin'}>I can't recover my account using this page</Link>
+          <Link style={{ color: '#97cadb', fontSize:'90%', textAlign: 'center', textDecoration: 'none' }} to={'/auth/signin'}>I can't recover my account using this page</Link>
         </VerticallyFlexGapForm>
         
       </AuthenticationFormContainer>

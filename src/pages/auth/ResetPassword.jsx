@@ -111,7 +111,7 @@ const ForgotPassword = () => {
               : <Button variant="contained" color="primary" size="medium" type="submit">Set password</Button>
             }
           </FormElement>
-          <Link style={{ color: 'gray', fontSize:'90%', textAlign: 'center', textDecoration: 'none' }} to={'/auth/signin'}>I can't recover my account using this page</Link>
+          <Link style={{ color: '#97cadb', fontSize:'90%', textAlign: 'center', textDecoration: 'none' }} to={'/auth/signin'}>I can't recover my account using this page</Link>
         </VerticallyFlexGapForm>
         
       </AuthenticationFormContainer>

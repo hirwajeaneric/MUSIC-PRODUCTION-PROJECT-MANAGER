@@ -20,7 +20,7 @@ const generalStyles = {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    background: '#9aa5b7',
+    background: '#d6e8ee',
     border: '1px solid white',
     borderRadius: '5px'
 }

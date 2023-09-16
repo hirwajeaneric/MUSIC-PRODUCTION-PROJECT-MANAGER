@@ -13,7 +13,7 @@ import { Helmet } from "react-helmet-async";
 const Signin = () => {
   const [ cookies, setCookie, removeCookie ] = useCookies(null);
   const { setOpen, setResponseMessage } = useContext(GeneralContext);
-    
+  const [ visible, setVisible ] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -83,7 +83,7 @@ const Signin = () => {
             <label style={{ color: 'black' }} htmlFor="password">Password</label>
             <input 
               style={{ color: 'black', border: '1.5px solid black' }}
-              type="password"
+              type={visible ? "text" : "password"}
               id="password" 
               placeholder="Password" 
               {...register("password", {required: true})} 
@@ -93,6 +93,10 @@ const Signin = () => {
               <p role="alert">Password is required</p>
             )}
           </FormElement>
+          <div style={{ display: 'flex', flexDirection: 'row', gap: '20px', alignItems: 'center' }}>
+            <p>Show password</p>
+            <input type='checkbox' name='visible' value={visible} onChange={() => setVisible(!visible)} />
+          </div>
           <Link style={{ color: 'blue' }} to={'/auth/forgot-password'}>Forgot Password?</Link>
           <FormElement>
             {isProcessing 

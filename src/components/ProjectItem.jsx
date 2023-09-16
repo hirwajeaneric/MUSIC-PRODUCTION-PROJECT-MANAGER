@@ -44,16 +44,16 @@ const ProjectItem = ({ project }) => {
             </div>
             <VerticallyFlexGapContainer style={{ width: '95%', justifyContent: 'flex-start', alignItems: 'flex-start', gap: '10px' }}>
                 <HorizontallyFlexSpaceBetweenContainer style={{ width: '100%'}}>
-                    <HeaderTwo style={{ width:'50%', color: '#9aa5b7'}}>{project.name}</HeaderTwo>
+                    <HeaderTwo style={{ width:'50%', color: '#d6e8ee'}}>{project.name}</HeaderTwo>
                     <HorizontallyFlexGapContainer style={{ width:'50%', gap: '40px', justifyContent:'flex-end' }}>
-                        <Button variant="text" color="primary" size="small" type="button" onClick={(e) => {navigate(`/${project.code}`)}}>View more</Button>
+                        <Button variant="contained" color="primary" size="small" type="button" onClick={(e) => {navigate(`/${project.code}`)}}>View more</Button>
                         {isProcessing 
                         ? <Button disabled variant="text" color="primary" size="small">PROCESSING...</Button> 
-                        : <Button variant="text" color="error" size="small" type="button" onClick={(e) => {e.preventDefault(); deleteProject(project.id);}}>Delete</Button>
+                        : <Button variant="contained" color="error" size="small" type="button" onClick={(e) => {e.preventDefault(); deleteProject(project.id);}}>Delete</Button>
                         }
                     </HorizontallyFlexGapContainer>
                 </HorizontallyFlexSpaceBetweenContainer>
-                <p style={{ fontSize: '90%', color: 'gray' }}>{project.description}</p>
+                <p style={{ fontSize: '90%', color: '#97cadb' }}>{project.description}</p>
                 <ProjectProgressBar>
                     <div style={{ width: `${project.progress.toFixed(1)}%`}}>
                         {project.progress !== 0 && <p>{`${project.progress.toFixed(1)}%`}</p>}

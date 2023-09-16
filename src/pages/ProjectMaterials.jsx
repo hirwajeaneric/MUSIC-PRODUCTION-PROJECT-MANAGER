@@ -46,7 +46,7 @@ const ProjectMaterials = () => {
           <HorizontallyFlexSpaceBetweenContainer>
             <HeaderTwo style={{ width: '100%', textAlign: 'left' }}>{project.name}</HeaderTwo>
             <HorizontallyFlexGapContainer style={{ gap: '20px', justifyContent: 'flex-end' }}>
-              <p style={{ color: 'white' }}>Code: <span style={{ color: 'gray' }}>{project.code}</span></p>
+              <p style={{ color: 'white' }}>Code: <span style={{ color: '#97cadb' }}>{project.code}</span></p>
               <Button 
                 variant='contained' 
                 size='small' 
@@ -70,7 +70,7 @@ const ProjectMaterials = () => {
           {loadingProject ? <p style={{ width: '100%', textAlign: 'left' }}>Loading...</p> :
             <>
               {listOfProjectResources.length !== 0 && <ResourcesTable data={listOfProjectResources}/>}
-              {listOfProjectResources.length === 0 && <p style={{ color: 'gray', marginTop: '20px' }}>No resources available</p>}
+              {listOfProjectResources.length === 0 && <p style={{ color: '#97cadb', marginTop: '20px' }}>No resources available</p>}
             </>
           }
         </VerticallyFlexGapContainer>
