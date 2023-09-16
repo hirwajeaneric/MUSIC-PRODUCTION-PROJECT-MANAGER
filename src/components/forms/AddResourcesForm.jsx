@@ -49,7 +49,7 @@ export default function AddResourcesForm({projectId}) {
     };
 
     return (
-        <VerticallyFlexGapForm onSubmit={handleSubmit(onSubmit)} style={{ gap: '20px', background: '#0c1427', color: 'white', padding: '20px', borderRadius: '5px', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)' }}>
+        <VerticallyFlexGapForm onSubmit={handleSubmit(onSubmit)} style={{ gap: '20px', background: '#02457a', color: 'white', padding: '20px', borderRadius: '5px', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)' }}>
             <HorizontallyFlexSpaceBetweenContainer>
                 <p style={{ width: '100%', fontWeight: '600', textAlign:'left' }}>Add</p>
             </HorizontallyFlexSpaceBetweenContainer>

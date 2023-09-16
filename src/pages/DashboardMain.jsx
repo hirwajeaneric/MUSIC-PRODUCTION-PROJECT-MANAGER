@@ -39,7 +39,7 @@ const DashboardMain = () => {
     const { isLoading, listOfProducersProjects, listOfManagerProjects, numberOfProjects } = useSelector(state => state.project);
     
     return (
-        <VerticallyFlexSpaceBetweenContainer style={{ backgroundColor: '#070d19' }}>
+        <VerticallyFlexSpaceBetweenContainer style={{ backgroundColor: '#001b4b' }}>
             <TopNavigationBar>
                 <div className="left">
                     <MdMenu style={{ cursor: 'pointer' }} onClick={() => setFullSize(!fullSize)}/>

@@ -285,7 +285,7 @@ const SprintDetails = (props) => {
   
   
   return (
-    <VerticallyFlexGapContainer style={{ gap: '10px', position: 'relative', background: '#0c1427', color: 'white' }}>
+    <VerticallyFlexGapContainer style={{ gap: '10px', position: 'relative', background: '#02457a', color: 'white' }}>
       
       <HorizontallyFlexSpaceBetweenContainer style={{ borderBottom: '1px solid #94b8b8', paddingBottom: '10px' }}>
         <p>
@@ -472,7 +472,7 @@ const SprintDetails = (props) => {
           {/* COMMENTS  *************************************************************************************************************************** */}
           {/* List of comment */}
           <VerticallyFlexGapContainer style={{ padding: '20px 0' }}>
-            <h4 style={{ padding: '5px', color: 'white', background:'#0c1427', borderRadius:'5px' }}>Comments</h4>
+            <h4 style={{ padding: '5px', color: 'white', background:'#02457a', borderRadius:'5px' }}>Comments</h4>
             <VerticallyFlexGapContainer style={{ gap: '10px', padding: '20px 0' }}>
               {isLoading 
               ?
@@ -490,9 +490,9 @@ const SprintDetails = (props) => {
           </VerticallyFlexGapContainer>
 
           {/* Comment form  */}
-          <HorizontallyFlexGapForm onSubmit={addComment} style={{ background:'#0c1427', padding:'10px', position: 'sticky', left: '0%', right: '0%', borderTop: '1px solid gray', borderBottom: '1px solid gray', }}>
+          <HorizontallyFlexGapForm onSubmit={addComment} style={{ background:'#02457a', padding:'10px', position: 'sticky', left: '0%', right: '0%', borderTop: '1px solid gray', borderBottom: '1px solid gray', }}>
             <FormElement>
-              <input style={{ border: 'none', padding: '5px', background: '#0c1427' }} name='message' value={comment.message || ''} placeholder='Add comment...' onChange={handleComment} />
+              <input style={{ border: 'none', padding: '5px', background: '#02457a' }} name='message' value={comment.message || ''} placeholder='Add comment...' onChange={handleComment} />
             </FormElement>
             {isProcessingComment 
               ? <Button disabled variant="contained" color="primary" size="medium">...</Button> 

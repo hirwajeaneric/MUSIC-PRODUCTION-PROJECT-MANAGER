@@ -58,7 +58,7 @@ const Home = () => {
       </Helmet>
 
       {/* First dashboard section  */}
-      <VerticallyFlexGapContainer style={{ gap: '40px', backgroundColor: '#0c1427', padding: '20px', borderRadius: '5px', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)' }}>
+      <VerticallyFlexGapContainer style={{ gap: '40px', backgroundColor: '#02457a', padding: '20px', borderRadius: '5px', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)' }}>
         <HorizontallyFlexSpaceBetweenContainer>
           <div className="left49width" style={{ flexDirection: 'column'}}>
             <HeaderOne style={{ color: '#9aa5b7' }}>{`Welcome ${user.fullName}`}</HeaderOne>
@@ -106,7 +106,7 @@ const Home = () => {
       </VerticallyFlexGapContainer>
 
       {/* Second dashboard section  */}
-      <VerticallyFlexGapContainer style={{ gap: '20px', backgroundColor: '#0c1427', padding: '20px', borderRadius: '5px', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)' }}>
+      <VerticallyFlexGapContainer style={{ gap: '20px', backgroundColor: '#02457a', padding: '20px', borderRadius: '5px', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)' }}>
         
         <HorizontallyFlexSpaceBetweenContainer style={{ borderBottom: '1px solid #b3d9ff', paddingBottom: '15px'}}>
           <p style={{ fontWeight: '600', color: '#9aa5b7' }}>Projects</p>

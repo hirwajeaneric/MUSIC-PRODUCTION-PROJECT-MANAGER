@@ -31,7 +31,7 @@ const style = {
   top: '0px',
   right: '0px',
   width: '40%',
-  bgcolor: '#0c1427',
+  bgcolor: '#02457a',
   boxShadow: 24,
   pt: 4,
   px: 4,

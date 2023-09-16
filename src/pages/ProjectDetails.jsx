@@ -75,7 +75,7 @@ const ProjectDetails = () => {
         <title>{`Project details - ${project.name}`}</title>
         <meta name="description" content={`A list of both my projects and projects I manage.`} /> 
       </Helmet>
-      <VerticallyFlexGapContainer style={{ gap: '20px', backgroundColor: '#0c1427', padding: '20px', borderRadius: '5px', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)' }}>
+      <VerticallyFlexGapContainer style={{ gap: '20px', backgroundColor: '#02457a', padding: '20px', borderRadius: '5px', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)' }}>
         {isLoading ? <p>Loading...</p> :
           <VerticallyFlexGapContainer style={{ gap: '20px'}}>
             
@@ -144,7 +144,7 @@ const ProjectDetails = () => {
       </VerticallyFlexGapContainer>
       <VerticallyFlexGapContainer>
         {openAddManagerForm && 
-          <VerticallyFlexGapForm onSubmit={handleSubmit(onSubmit)} style={{ gap: '20px', background: '#0c1427', color: 'white', padding: '20px', borderRadius: '5px', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)' }}>
+          <VerticallyFlexGapForm onSubmit={handleSubmit(onSubmit)} style={{ gap: '20px', background: '#02457a', color: 'white', padding: '20px', borderRadius: '5px', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)' }}>
             <HeaderTwo style={{ width: '100%', textAlign: 'left' }}>Add Users</HeaderTwo>
             <HorizontallyFlexGapContainer style={{ gap: '20px', alignItems: 'center' }}>
               <FormElement style={{ color: 'gray' }}>

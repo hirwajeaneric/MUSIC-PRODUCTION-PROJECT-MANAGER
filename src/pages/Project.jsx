@@ -18,7 +18,7 @@ const Project = () => {
       
       <HorizontallyFlexGapContainer style={{ gap: '20px', alignItems: 'flex-start'}}>
         {/* List of projects  */}
-        <VerticallyFlexGapContainer style={{ gap: '20px', backgroundColor: '#0c1427', borderRadius: '5px', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)' }}>
+        <VerticallyFlexGapContainer style={{ gap: '20px', backgroundColor: '#02457a', borderRadius: '5px', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)' }}>
           <VerticallyFlexGapContainer>
             {isLoading ? 
             <p style={{ color: 'gray' }}>Loading...</p> :

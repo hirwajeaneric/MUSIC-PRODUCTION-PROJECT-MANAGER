@@ -99,7 +99,7 @@ const MileStones = () => {
 
             <HorizontallyFlexGapContainer style={{ gap: '20px', alignItems:'flex-start'}}>
                 {/* Todos  */}
-                <VerticallyFlexSpaceBetweenForm onSubmit={addIssue} style={{ possition: 'relative', backgroundColor: '#0c1427', borderRadius: '5px', border: "1px solid rgba(0,0,0,0.2)", width: '32%', minHeight:'70vh', height:'70vh'}}>
+                <VerticallyFlexSpaceBetweenForm onSubmit={addIssue} style={{ possition: 'relative', backgroundColor: '#02457a', borderRadius: '5px', border: "1px solid rgba(0,0,0,0.2)", width: '32%', minHeight:'70vh', height:'70vh'}}>
                     <HorizontallyFlexGapContainer style={{ background: "#132239", color: 'white', alignItems: 'center', gap: '10px', padding: '10px 20px', borderBottom: "1px solid rgba(0,0,0,0.2)" }}>
                         <h3 style={{ fontWeight:'400' }}>To-Do</h3>
                         <p style={{ color: 'white', background: 'black', padding: '2px 3px', fontSize:'90%', borderRadius: '5px'}}>{numberOfTodoIssues}</p>
@@ -126,7 +126,7 @@ const MileStones = () => {
                 </VerticallyFlexSpaceBetweenForm>
 
                 {/* In progress  */}
-                <VerticallyFlexSpaceBetweenForm style={{ backgroundColor: '#0c1427', borderRadius: '5px', border: "1px solid rgba(0,0,0,0.2)", width: '32%', minHeight:'70vh', height:'70vh'}}>
+                <VerticallyFlexSpaceBetweenForm style={{ backgroundColor: '#02457a', borderRadius: '5px', border: "1px solid rgba(0,0,0,0.2)", width: '32%', minHeight:'70vh', height:'70vh'}}>
                     <HorizontallyFlexGapContainer style={{ background: "#132239", color: 'white', alignItems: 'center', gap: '10px', padding: '10px 20px', borderBottom: "1px solid rgba(0,0,0,0.2)" }}>
                         <h3 style={{ fontWeight:'400'}}>In Progress</h3>
                         <p style={{ color: 'white', background: 'black', padding: '2px 3px', fontSize:'90%', borderRadius: '5px'}}>{numberOfInProgressIssues}</p>
@@ -140,7 +140,7 @@ const MileStones = () => {
                 </VerticallyFlexSpaceBetweenForm>
                 
                 {/* Completed  */}
-                <VerticallyFlexSpaceBetweenForm style={{ backgroundColor: '#0c1427', borderRadius: '5px', border: "1px solid rgba(0,0,0,0.2)", width: '32%', minHeight:'70vh', height:'70vh'}}>
+                <VerticallyFlexSpaceBetweenForm style={{ backgroundColor: '#02457a', borderRadius: '5px', border: "1px solid rgba(0,0,0,0.2)", width: '32%', minHeight:'70vh', height:'70vh'}}>
                     <HorizontallyFlexGapContainer style={{ background: "#132239", color: 'white', alignItems: 'center', gap: '10px', padding: '10px 20px', borderBottom: "1px solid rgba(0,0,0,0.2)" }}>
                         <h3 style={{ fontWeight:'400'}}>Completed</h3>
                         <p style={{ color: 'white', background: 'black', padding: '2px 3px', fontSize:'90%', borderRadius: '5px'}}>{numberOfCompletedIssues}</p>

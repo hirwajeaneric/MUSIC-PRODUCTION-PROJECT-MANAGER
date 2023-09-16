@@ -75,7 +75,7 @@ export const SideNavigationBar = styled.div`
     bottom: 0;
     left: 0;
     padding: 0 10px 20px;
-    background-color: #070d19;
+    background-color: #001b4b;
 
     @media (max-width: 1200px) {
         width: 20%;
@@ -97,7 +97,7 @@ export const SideBarMenueContainer = styled.div`
     overflow-y: auto;
     padding: 10px;
     border-radius: 5px;
-    background: #0c1427;
+    background: #02457a;
     color: white;
     height: 90vh;
     height: 90svh;
@@ -173,7 +173,7 @@ export const DashboardMainContainer = styled.div`
     height: 90svh;
     bottom: 0;
     right: 0;
-    background-color: #070d19;
+    background-color: #001b4b;
     
     @media (max-width: 1200px) {
         width: 100%;

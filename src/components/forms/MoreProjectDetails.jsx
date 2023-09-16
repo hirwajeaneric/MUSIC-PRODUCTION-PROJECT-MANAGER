@@ -86,7 +86,7 @@ const MoreProjectDetails = ({data}) => {
   }
 
   return (
-    <VerticallyFlexGapContainer style={{ gap: '20px', background: '#0c1427' }}>
+    <VerticallyFlexGapContainer style={{ gap: '20px', background: '#02457a' }}>
       <HorizontallyFlexSpaceBetweenContainer style={{ alignItems:'flex-start', paddingBottom:'10px', borderBottom:'1px solid #a3c2c2' }}>
         <h2 style={{ width: '70%', color: 'white' }}>{project.name}</h2>
         <Button variant='contained' size='small' color='error' onClick={deleteResource}>Delete</Button>
