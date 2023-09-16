@@ -278,7 +278,7 @@ const SprintDetails = (props) => {
 
   if (loading) {
     return (
-      <p>Loading...</p>
+      <p style={{ color: 'white' }}>Loading...</p>
     );
   }
 
@@ -302,7 +302,7 @@ const SprintDetails = (props) => {
       <VerticallyFlexGapContainer style={{ gap: '20px', color: '#97cadb', fontSize:'90%', position: 'relative' }}>
         
         <HorizontallyFlexGapContainer style={{ gap: '20px' }}>
-          <Label style={{ color: '#0342a3' }}/> 
+          <Label style={{ color: '#018abe' }}/> 
           <StatusButtonGroup type='sprint' data={sprint} />
         </HorizontallyFlexGapContainer>
         

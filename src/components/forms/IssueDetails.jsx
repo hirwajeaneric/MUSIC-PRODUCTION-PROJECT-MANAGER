@@ -230,7 +230,7 @@ const IssueDetails = (props) => {
       
       <VerticallyFlexGapContainer style={{ gap: '20px', color: '#97cadb', fontSize:'90%', position: 'relative' }}>
         <HorizontallyFlexGapContainer style={{ gap: '20px' }}>
-          <Label style={{ color: '#0342a3' }}/> 
+          <Label style={{ color: '#018abe' }}/> 
           <StatusButtonGroup type='issue' data={issue} />
         </HorizontallyFlexGapContainer>
 
@@ -283,7 +283,7 @@ const IssueDetails = (props) => {
 
 
           {/* Activities / Sprints ****************************************************************************************************************************/}
-          <VerticallyFlexGapForm onSubmit={addSprint} style={{ marginTop: '20px', background: '#d6e8ee', padding: '20px', borderRadius: '5px', gap: '10px' }}>
+          <VerticallyFlexGapForm onSubmit={addSprint} style={{ marginTop: '20px', background: '#018abe', padding: '20px', borderRadius: '5px', gap: '10px' }}>
             <h3 style={{ width: '100%', textAlign: 'left', color: 'black' }}>Add activities</h3>
 
             <HorizontallyFlexGapContainer style={{ borderTop: "1px solid rgba(0,0,0,.2)" }}>

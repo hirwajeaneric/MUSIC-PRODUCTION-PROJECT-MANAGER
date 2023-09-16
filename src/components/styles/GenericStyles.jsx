@@ -329,7 +329,7 @@ export const FormElement = styled.div`
 
         svg {
             font-size: 200%;
-            color: #0342a3;
+            color: #018abe;
         }
 
         div {
