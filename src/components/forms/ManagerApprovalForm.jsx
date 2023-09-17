@@ -56,7 +56,7 @@ const ManagerApprovalForm = (props) => {
     
     return (
         <VerticallyFlexGapContainer>
-            <VerticallyFlexGapForm onSubmit={handleSubmit(onSubmit)} style={{ gap: '20px', background: '#02457a', color: 'white', padding: '20px', borderRadius: '5px', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)', marginBottom: '40px' }}>
+            <VerticallyFlexGapForm onSubmit={handleSubmit(onSubmit)} style={{ gap: '20px', background: '#02457a', color: 'white', padding: '20px', borderRadius: '5px', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)' }}>
                 <HeaderTwo style={{ width: '100%', textAlign: 'left' }}>{project.managerApproval ? "Update contract approval" : "Approve contract"}</HeaderTwo>
                 <HorizontallyFlexGapContainer style={{ gap: '20px', alignItems: 'center' }}>
                 <FormElement style={{ color: 'white' }}>
