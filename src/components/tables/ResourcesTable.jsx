@@ -52,7 +52,7 @@ export const TableStyles = {
   padding: '0px',
   width: '100%',
   height: '400px',
-  background: '#132239',
+  background: '#97cadb',
   marginTop: '20px',
   color: 'inherit'
 }

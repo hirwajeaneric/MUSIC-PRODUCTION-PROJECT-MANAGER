@@ -175,6 +175,10 @@ const MoreProjectDetails = ({data}) => {
             <label htmlFor="address">Address</label>
             <input type="text" name="address" id="address" onChange={handleChange} value={project.address} />
           </FormElement>
+          <FormElement>
+            <label htmlFor="price">Price</label>
+            <input type="number" name="price" id="price" onChange={handleChange} value={project.price} />
+          </FormElement>
         </HorizontallyFlexGapContainer>
         <FormElement style={{ flexDirection: 'row', gap: '30%' }}>
           {isProcessing 

@@ -220,6 +220,20 @@ export default function CreateProjectForm() {
                         <p role="alert">Provide street address</p>
                         )}
                     </FormElement>
+                    <FormElement style={{ color: '#97cadb' }}>
+                        <label htmlFor="price">Project price *</label>
+                        <input 
+                            type="number" 
+                            id="price"
+                            placeholder="Project price" 
+                            {...register("price", 
+                            {required: true})} 
+                            aria-invalid={errors.price ? "true" : "false"}
+                        />
+                        {errors.price?.type === "required" && (
+                        <p role="alert">Provide project price</p>
+                        )}
+                    </FormElement>
                 </HorizontallyFlexGapContainer>
 
                 <FormElement style={{ flexDirection: 'row', gap: '70%' }}>

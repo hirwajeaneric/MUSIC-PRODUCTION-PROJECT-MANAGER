@@ -266,14 +266,14 @@ const IssueDetails = (props) => {
               <div className="input-with-icon">
                 <BiCalendar/>
                 <div>
-                {user.role !== 'Producer' ?
-                  <p style={{ color: 'white', padding: '10px 0' }}>{issue.startDate && new Date(issue.startDate).toLocaleString()}</p>
-                  :
-                  <>
-                    <label htmlFor="startDate">Start Date {issue.startDate && <span style={{ color: 'black' }}>{new Date(issue.startDate).toLocaleString()}</span>}</label>
-                    <input type={'date'} id='startDate' value={issue.startDate} name='startDate' onChange={handleChange} />
-                  </>
-                }
+                  {user.role !== 'Producer' ?
+                    <p style={{ color: 'white', padding: '10px 0' }}>{issue.startDate && new Date(issue.startDate).toLocaleString()}</p>
+                    :
+                    <>
+                      <label htmlFor="startDate">Start Date {issue.startDate && <span style={{ color: 'black' }}>{new Date(issue.startDate).toLocaleString()}</span>}</label>
+                      <input type={'date'} id='startDate' value={issue.startDate} name='startDate' onChange={handleChange} />
+                    </>
+                  }
                 </div>
               </div>
             </FormElement>
@@ -281,14 +281,14 @@ const IssueDetails = (props) => {
               <div className="input-with-icon">
                 <BiCalendar/>
                 <div>
-                {user.role !== 'Producer' ?
-                  <p style={{ color: 'white', padding: '10px 0' }}>{issue.endDate && new Date(issue.endDate).toLocaleString()}</p>
-                  :
-                  <>
-                    <label htmlFor="endDate">End Date {issue.endDate && <span style={{ color: 'black' }}>{new Date(issue.endDate).toLocaleString()}</span>}</label>
-                    <input type={'date'} id='endDate' value={issue.endDate} name='endDate' onChange={handleChange} />
-                  </>
-                }
+                  {user.role !== 'Producer' ?
+                    <p style={{ color: 'white', padding: '10px 0' }}>{issue.endDate && new Date(issue.endDate).toLocaleString()}</p>
+                    :
+                    <>
+                      <label htmlFor="endDate">End Date {issue.endDate && <span style={{ color: 'black' }}>{new Date(issue.endDate).toLocaleString()}</span>}</label>
+                      <input type={'date'} id='endDate' value={issue.endDate} name='endDate' onChange={handleChange} />
+                    </>
+                  }
                 </div>
               </div>
             </FormElement>

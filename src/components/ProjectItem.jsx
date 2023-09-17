@@ -46,7 +46,7 @@ const ProjectItem = ({ project }) => {
                 <HorizontallyFlexSpaceBetweenContainer style={{ width: '100%'}}>
                     <HeaderTwo style={{ width:'50%', color: '#d6e8ee'}}>{project.name}</HeaderTwo>
                     <HorizontallyFlexGapContainer style={{ width:'50%', gap: '40px', justifyContent:'flex-end' }}>
-                        <Button variant="contained" color="primary" size="small" type="button" onClick={(e) => {navigate(`/${project.code}`)}}>View more</Button>
+                        <Button variant="contained" color="primary" size="small" type="button" onClick={(e) => {navigate(`/${project.code}`)}}>View</Button>
                         {isProcessing 
                         ? <Button disabled variant="text" color="primary" size="small">PROCESSING...</Button> 
                         : <Button variant="contained" color="error" size="small" type="button" onClick={(e) => {e.preventDefault(); deleteProject(project.id);}}>Delete</Button>
