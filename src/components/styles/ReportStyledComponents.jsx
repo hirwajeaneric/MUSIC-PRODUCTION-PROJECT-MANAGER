@@ -16,9 +16,12 @@ export const TopBar = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
-
-    img {
-        width: 35%;
+    
+    div.logo_and_studio {
+        width: 50%;
+        img {
+            width: 35%;
+        }
     }
 
     h1 {

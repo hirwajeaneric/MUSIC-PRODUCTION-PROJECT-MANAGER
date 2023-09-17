@@ -38,6 +38,7 @@ const Home = () => {
             <Button variant="contained" color='info' startIcon={<AddIcon />} onClick={() => navigate('projects')}>Create Project</Button>
           </div>}
         </HorizontallyFlexSpaceBetweenContainer>
+        
         {user.role === 'Producer' && <HorizontallyFlexSpaceBetweenContainer>
           <div className="left49width" style={{ gap: '15px', flexDirection: 'column'}}>
             <StepToGetStarted>

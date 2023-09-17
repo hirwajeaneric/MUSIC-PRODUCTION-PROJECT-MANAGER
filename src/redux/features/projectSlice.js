@@ -9,6 +9,8 @@ const initialState = {
     listOfManagerProjects: [],
     listOfProducersProjects: [],
     selectedProject: {},
+    listOfUsersInAProject: [],
+    managerOfSelectedProject: {},
     numberOfProjects: 0,
     numberOfProducerProjects: 0,
     numberOfUserProjects: 0,
@@ -115,6 +117,8 @@ const projectSlice = createSlice({
         [getSelectedProject.fulfilled] : (state, action) => {
             state.isLoading = false;
             state.selectedProject = action.payload.project;
+            state.listOfUsersInAProject = action.payload.project.users;
+            state.managerOfSelectedProject = action.payload.project.users.find(user => user.role === 'Manager');
         },
         [getSelectedProject.rejected] : (state) => {
             state.isLoading = false;
