@@ -21,10 +21,12 @@ import Modal from '@mui/material/Modal';
 import { Box } from '@mui/material';
 import ResourcesDetails from './components/forms/ResourcesDetails';
 import IssueDetails from './components/forms/IssueDetails';
-// import SprintDetails from './components/forms/SprintDetails';
 import MoreProjectDetails from './components/forms/MoreProjectDetails';
 import MileStones from './pages/MileStones';
 import Contract from './pages/Contract';
+import Payments from './pages/Payments';
+import PaymentDetails from './pages/PaymentDetails';
+import PaymentReport from './pages/PaymentReport';
 
 const style = {
   position: 'absolute',
@@ -66,7 +68,7 @@ function App() {
   };
 
   useEffect(() => {  
-    if (user !== undefined) {
+    if (user !== undefined ) {
       dispatch(getAllProjects({id: user.id, role: user.role}));
     }
   },[dispatch, user]);
@@ -106,6 +108,9 @@ function App() {
             <Route path='/:code/milestones' element={<MileStones />} />
             <Route path='/:code/report-preview' element={<Reports />} />
             <Route path='/:code/contract-preview' element={<Contract />} />
+            <Route path='payments' element={<Payments/>} />
+            <Route path='payment-report' element={<PaymentReport/>} />
+            <Route path='payments/:id' element={<PaymentDetails/>} />
             <Route path='settings' element={<Settings />} />
           </Route>
         </Routes>

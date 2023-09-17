@@ -4,6 +4,8 @@ const serverUrl = import.meta.env.VITE_REACT_APP_SERVERURL;
 
 const initialState = {
     listOfProjectPayments: [],
+    listOfAllPayments: [],
+    numberOfAllPayments: 0,
     selectedPayment: {},
     totalPaidAmountForSelectedProject: 0, 
     totalAmountOfAllPayments: 0,
@@ -11,6 +13,27 @@ const initialState = {
     searchPaymentsResults: [],
     isLoading: false,
 }
+
+export const getAllPayments = createAsyncThunk(
+    'payment/getAllPayments',
+    async (filter, thunkAPI) => {
+        const { user } = filter;
+        try {
+            const response = await axios.get(`${serverUrl}/api/v1/mppms/payment/list`);
+            response.data.payments.forEach(element => {
+                element.id = element._id;
+                delete element._id;
+                delete element.__v;
+                element.currency = element.currency.split(" ")[element.currency.split(" ").length-1];
+                element.entryDate = new Date(element.entryDate).toLocaleString();
+            });
+            response.data.payments.sort((a, b) => new Date(b.entryDate) - new Date(a.entryDate))
+            return { payments: response.data.payments, user: user};
+        } catch (error) {
+            return thunkAPI.rejectWithValue('Something went wrong!!');
+        }
+    }
+);
 
 export const getProjectPayments = createAsyncThunk(
     'payment/getProjectPayments',
@@ -68,6 +91,24 @@ const paymentSlice = createSlice({
         }
     },
     extraReducers: {
+        [getAllPayments.pending] : (state) => {
+            state.isLoading = true;
+        },
+        [getAllPayments.fulfilled] : (state, action) => {
+            state.isLoading = false;
+            let userPayments = [];
+            if (action.payload.user.role !== 'Producer') {
+                userPayments = action.payload.payments.filter(element => element.user === action.payload.user.fullName)    
+                state.listOfAllPayments = userPayments;
+                state.numberOfAllPayments= userPayments.length;    
+            } else {
+                state.listOfAllPayments = action.payload.payments;
+                state.numberOfAllPayments= action.payload.payments.length;   
+            } 
+        },
+        [getAllPayments.rejected] : (state) => {
+            state.isLoading = false;
+        },
         [getProjectPayments.pending] : (state) => {
             state.isLoading = true;
         },

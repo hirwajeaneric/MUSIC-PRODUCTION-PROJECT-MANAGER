@@ -88,7 +88,7 @@ const AddPaymentForm = (props) => {
                         )}
                     </FormElement>
                     <FormElement style={{ color: '#97cadb' }}>
-                        <label htmlFor="amount">Quantity *</label>
+                        <label htmlFor="amount">Amount *</label>
                         <input 
                             type="number" 
                             id="amount"
@@ -117,7 +117,7 @@ const AddPaymentForm = (props) => {
                         )}
                     </FormElement>
                     <FormElement style={{ color: 'gray' }}>
-                        <label htmlFor="image">Image</label>
+                        <label htmlFor="image">Attachment</label>
                         <input 
                             type="file" 
                             id="image" 
