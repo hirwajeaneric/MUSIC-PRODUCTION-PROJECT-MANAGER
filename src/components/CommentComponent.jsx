@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import styled from 'styled-components';
 
 const CommentMessageContainer = styled.div`
@@ -44,10 +45,10 @@ const CommentComponent = (props) => {
     
     return (
         <CommentMessageContainer style={{ justifyContent: data.senderId === user.id ? 'flex-end' : 'flex-start' }}>
-            <div className='comment-content'>
+            <div className='comment-content' style={{ background: data.senderId === user.id ? 'white' : '#ff99ee' }}>
                 <p>{data.message}</p>
                 <div>
-                    <p>{data.senderName}</p>
+                    <p>{data.senderId === user.id ? 'You' : data.senderName }</p>
                     <span>{new Date(data.addDate).toLocaleString()}</span>
                 </div>
             </div>

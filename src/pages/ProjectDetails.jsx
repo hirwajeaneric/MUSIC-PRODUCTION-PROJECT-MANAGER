@@ -3,7 +3,7 @@ import axios from "axios";
 import { Fragment, useContext, useState } from "react";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { FormElement, HeaderTwo, HorizontallyFlexGapContainer, HorizontallyFlexSpaceBetweenContainer, VerticallyFlexGapContainer, VerticallyFlexGapForm } from "../components/styles/GenericStyles"
 const serverUrl = import.meta.env.VITE_REACT_APP_SERVERURL;
@@ -14,6 +14,8 @@ import { useForm } from "react-hook-form";
 import { GeneralContext } from "../App";
 import { useCookies } from "react-cookie";
 import ManagerApprovalForm from "../components/forms/ManagerApprovalForm";
+import AddPaymentForm from "../components/forms/AddPaymentForm";
+import { getProjectPayments } from "../redux/features/paymentSlice";
 
 const ProjectDetails = () => {
   const navigate = useNavigate();
@@ -21,6 +23,7 @@ const ProjectDetails = () => {
   const { isLoading } = useSelector(state => state.project);
   const [ cookies ] = useCookies(null);
   const user = cookies.UserData;
+  const dispatch = useDispatch();
 
   const [ openAddManagerForm, setOpenAddManagerForm ] = useState(false);
   const { setOpen, setResponseMessage, handleOpenModal, setDetailsFormType, setDetailsData } = useContext(GeneralContext);
@@ -34,10 +37,11 @@ const ProjectDetails = () => {
     axios.get(`${serverUrl}/api/v1/mppms/project/findByCode?code=${params.code}`)
     .then((response) => {
       setProject(response.data.project);
+      dispatch(getProjectPayments(response.data.project._id));
       setProjectUsers(response.data.project.users);
     })
-    .catch(error => console.log(error))
-  },[params.code]);
+    .catch(error => console.log(error));
+  },[params.code, dispatch]);
 
   const sendEmail = (email) => {
     axios.post(`${serverUrl}/api/v1/mppms/email/`, email)
@@ -130,7 +134,7 @@ const ProjectDetails = () => {
                   onClick={() => { 
                     navigate(`/${params.code}/report-preview`);
                   }}>
-                    Report preview
+                    Report
                 </Button>
                 {user.role === 'Producer' && <Button 
                   variant='contained' 
@@ -141,7 +145,7 @@ const ProjectDetails = () => {
                     setDetailsFormType('project');
                     setDetailsData(project);
                   }}>
-                    Project Info
+                    Update
                 </Button>}
               </HorizontallyFlexGapContainer>
             </HorizontallyFlexGapContainer>
@@ -200,6 +204,11 @@ const ProjectDetails = () => {
       {/* Manager approval page  */}
       {user.role === 'Manager' && 
         <ManagerApprovalForm project={project}/>
+      }
+
+      {/* Manager approval page  */}
+      {user.role === 'Manager' && 
+        <AddPaymentForm project={project}/>
       }
 
       <VerticallyFlexGapContainer>
