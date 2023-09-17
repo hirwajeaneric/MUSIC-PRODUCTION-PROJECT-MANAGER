@@ -15,7 +15,7 @@ import { useSelector } from "react-redux";
 import { getSimpleCapitalizedChars } from "../utils/HelperFunctions";
 
 const DashboardMain = () => {
-    const [ cookies, setCookie, removeCookie ] = useCookies(null);
+    const [ cookies, removeCookie ] = useCookies(null);
     const [anchorEl, setAnchorEl] = useState(null);
     const navigate = useNavigate();
     const [fullSize, setFullSize] = useState(false);
@@ -36,7 +36,7 @@ const DashboardMain = () => {
         navigate('/auth/signin')
     }
 
-    const { isLoading, listOfProducersProjects, listOfManagerProjects, numberOfProjects } = useSelector(state => state.project);
+    const { listOfProducersProjects, numberOfProjects, listOfUserProjects } = useSelector(state => state.project);
     
     return (
         <VerticallyFlexSpaceBetweenContainer style={{ backgroundColor: '#001b4b' }}>
@@ -165,7 +165,7 @@ const DashboardMain = () => {
                             }) 
                         }   
                         {
-                            listOfManagerProjects.map((project, index) => {
+                            listOfUserProjects.map((project, index) => {
                                 return (
                                     <SideBarMenuItem key={index} onClick={()=>{window.location.replace(`/${project.code}`)}} to={`/${project.code}`} style={{ fontSize:'90%' }}>
                                         <MdHome style={{ width: fullSize ? '100%' : '20%', color: "transparent"}}/>

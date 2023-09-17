@@ -17,7 +17,7 @@ const Home = () => {
   const [ cookies ] = useCookies(null);
   const user = cookies.UserData;
 
-  const { isLoading, listOfProducersProjects, listOfManagerProjects } = useSelector(state => state.project);
+  const { isLoading, listOfProducersProjects, numberOfProjects, listOfUserProjects } = useSelector(state => state.project);
 
   return (
     <VerticallyFlexGapContainer style={{ gap: '15px' }}>
@@ -32,7 +32,7 @@ const Home = () => {
           <div className="left49width" style={{ flexDirection: 'column'}}>
             <HeaderOne style={{ color: '#d6e8ee' }}>{`Welcome ${user.fullName}`}</HeaderOne>
             {user.role === 'Producer' && <p style={{ color: '#b1cdcd'}}>Here are some quick steps to get you started</p>}
-            {user.role === 'Manager' && <p style={{ color: '#476b6b'}}>Get overview of your projects</p>}
+            {user.role === 'Manager' && <p style={{ color: 'white'}}>Get overview of your projects</p>}
           </div>
           {user.role === 'Producer' && <div className="right49width" style={{ justifyContent: "flex-end" }}>
             <Button variant="contained" color='info' startIcon={<AddIcon />} onClick={() => navigate('projects')}>Create Project</Button>
@@ -85,18 +85,20 @@ const Home = () => {
           {isLoading ? 
           <p style={{ color: '#97cadb' }}>Loading...</p> :
           <>
-            {(listOfProducersProjects.length === 0 && listOfManagerProjects.length === 0) && <p style={{ color: '#b1cdcd' }}>No available projects yet</p>}
-            {listOfManagerProjects && listOfManagerProjects.map((project, index) => (
+            {/* Common user projects  */}
+            {numberOfProjects === 0 && <p style={{ color: '#b1cdcd' }}>No available projects yet</p>}
+            
+            {listOfUserProjects && listOfUserProjects.map((project, index) => (
               <HorizontallyFlexGapContainer key={index}>
                 <div style={{ width: '5%' }}>
-                  <Avatar style={{ border: '2px solid #2c7be4', background: 'black' }}>PI</Avatar>
+                  <Avatar style={{ border: '2px solid #2c7be4', background: 'black' }}>{getSimpleCapitalizedChars(project.name)}</Avatar>
                 </div>
                 <VerticallyFlexGapContainer style={{ borderBottom: '1px solid #b3d9ff', paddingBottom: '10px', width: '95%', justifyContent: 'flex-start', alignItems: 'flex-start', gap: '5px' }}>
                   <HorizontallyFlexSpaceBetweenContainer style={{ width: '100%'}}>
-                    <HeaderTwo style={{ width:'70%', color: 'white' }}>{`Project ${project.name}`}</HeaderTwo>
+                    <HeaderTwo style={{ width:'70%', color: 'white'}}>{`Project ${project.name}`}</HeaderTwo>
                     <HorizontallyFlexGapContainer style={{ width:'30%', gap: '40px', justifyContent:'flex-end' }}>
                       <Tooltip title='View more'>
-                        <Button variant="text" color="inherit" size="small" type="button" onClick={(e) => { e.preventDefault(); navigate(`/${project.code}`)}}><MoreHorizIcon /></Button>
+                        <Button variant="text" color="inherit" size="small" type="button" onClick={() => {navigate(`/${project.code}`)}}><MoreHorizIcon /></Button>
                       </Tooltip>
                     </HorizontallyFlexGapContainer>
                   </HorizontallyFlexSpaceBetweenContainer>
@@ -106,11 +108,12 @@ const Home = () => {
                         {project.progress !== 0 && <p>{`${project.progress.toFixed(1)}%`}</p>}
                     </div>
                     {project.progress === 0 && <p>{`${project.progress.toFixed(1)}%`}</p>}
-                </ProjectProgressBar>
+                  </ProjectProgressBar>
                 </VerticallyFlexGapContainer>
               </HorizontallyFlexGapContainer>
             ))}
 
+            {/* Producer projects  */}
             {listOfProducersProjects && listOfProducersProjects.map((project, index) => (
               <HorizontallyFlexGapContainer key={index}>
                 <div style={{ width: '5%' }}>

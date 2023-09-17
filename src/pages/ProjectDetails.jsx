@@ -150,9 +150,6 @@ const ProjectDetails = () => {
                 <p>Country: <span style={{ color: 'white', textAlign: 'left' }}>{project.country}</span></p>
                 <p>Location: <span style={{ color: 'white', textAlign: 'left' }}>{`${project.city}, ${project.district}, ${project.sector}, ${project.address}`}</span></p>
                 <p>Users: 
-                  {/* <span style={{ color: 'white', textAlign: 'left' }}>
-                    {project.users[0].fullName}
-                  </span> */}
                   <span style={{ color: 'white', textAlign: 'left' }}>
                     {projectUsers.length !== 0 && projectUsers.map((element, index) => {
                       return (
