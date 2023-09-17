@@ -95,7 +95,6 @@ const projectSlice = createSlice({
             } else {
                 var userProjects = [];
                 action.payload.projects.forEach(project =>{
-                    console.log(project.users);
                     project.users.forEach(user => {
                         if (user.id === id) {
                             userProjects.push(project);

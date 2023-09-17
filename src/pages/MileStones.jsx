@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import { Button } from "@mui/material";
 import { getProjectIssues } from "../redux/features/issueSlice";
 import TodoItem from "../components/TodoItem";
+import { useCookies } from "react-cookie";
 const serverUrl = import.meta.env.VITE_REACT_APP_SERVERURL;
 
 const MileStones = () => {
@@ -17,7 +18,8 @@ const MileStones = () => {
     const [isProcessing, setIsProcessing] = useState(false);
     const [project, setProject] = useState({});
     const [issue, setIssue] = useState({});
-    
+    const [ cookies ] = useCookies(null);
+    const user = cookies.UserData;
 
     // Fetching project 
     useEffect(() => {
@@ -91,7 +93,8 @@ const MileStones = () => {
                     <HeaderTwo style={{ width: '100%', textAlign: 'left' }}>{`${project.name} major Phases`}</HeaderTwo>
                     <HorizontallyFlexGapContainer style={{ gap: '20px', justifyContent: 'flex-end' }}>
                         <p style={{ color: 'white' }}>Code: <span style={{ color: '#97cadb' }}>{project.code}</span></p>
-                        <Button variant='contained' size='small' color='info' onClick={displayProjectInfo}>Edit/View Project</Button>
+                        {user.role === 'Producer' && <Button variant='contained' size='small' color='info' onClick={displayProjectInfo}>Edit/View Project</Button>}
+                        {user.role !== 'Producer' && <Button variant='contained' size='small' color='info' onClick={() => window.location.replace(`/${params.code}`)}>View Project</Button>}
                     </HorizontallyFlexGapContainer>
                 </HorizontallyFlexSpaceBetweenContainer>
                 }
@@ -111,7 +114,7 @@ const MileStones = () => {
                         })}
                     </VerticallyFlexGapContainer>
                     {/* Add form  */}
-                    <HorizontallyFlexGapContainer style={{ background: "#132239", borderTop: "1px solid rgba(0,0,0,.2)", position: 'sticky' }}>
+                    {user.role === 'Producer' && <HorizontallyFlexGapContainer style={{ background: "#132239", borderTop: "1px solid rgba(0,0,0,.2)", position: 'sticky' }}>
                         <input id="name" name="name" value={issue.name || ''} placeholder="Add Task..." type={'text'} onChange={handleInput} style={{ width: '80%', padding: '8px 12px', border: 'none', background: "#132239", color:"white", fontSize:'100%',borderRadius: '0 0 0 5px' }} />
                         {issue.name && 
                             <>
@@ -122,7 +125,7 @@ const MileStones = () => {
                                 }
                             </>
                         }
-                    </HorizontallyFlexGapContainer>
+                    </HorizontallyFlexGapContainer>}
                 </VerticallyFlexSpaceBetweenForm>
 
                 {/* In progress  */}

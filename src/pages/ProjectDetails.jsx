@@ -105,7 +105,7 @@ const ProjectDetails = () => {
         <meta name="description" content={`A list of both my projects and projects I manage.`} /> 
       </Helmet>
       <VerticallyFlexGapContainer style={{ gap: '20px', backgroundColor: '#02457a', padding: '20px', borderRadius: '5px', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)' }}>
-        {isLoading ? <p>Loading...</p> :
+        {isLoading ? <p style={{ color: 'white' }}>Loading...</p> :
           <VerticallyFlexGapContainer style={{ gap: '20px'}}>
             
             <HorizontallyFlexGapContainer style={{ borderBottom: '1px solid #a3c2c2', paddingBottom: '10px' }}>
@@ -122,7 +122,7 @@ const ProjectDetails = () => {
                   }}>
                     Report preview
                 </Button>
-                <Button 
+                {user.role === 'Producer' && <Button 
                   variant='contained' 
                   size='small' 
                   color='primary' 
@@ -132,7 +132,7 @@ const ProjectDetails = () => {
                     setDetailsData(project);
                   }}>
                     Project Info
-                </Button>
+                </Button>}
               </HorizontallyFlexGapContainer>
             </HorizontallyFlexGapContainer>
 
@@ -149,6 +149,7 @@ const ProjectDetails = () => {
                 <p>Status: <span style={{ color: 'white', textAlign: 'left' }}>{project.status}</span></p>
                 <p>Country: <span style={{ color: 'white', textAlign: 'left' }}>{project.country}</span></p>
                 <p>Location: <span style={{ color: 'white', textAlign: 'left' }}>{`${project.city}, ${project.district}, ${project.sector}, ${project.address}`}</span></p>
+                {user.role !== 'Producer' && <p>Producer: <span style={{ color: 'white', textAlign: 'left' }}>{project.producerName}</span></p>}
                 <p>Users: 
                   <span style={{ color: 'white', textAlign: 'left' }}>
                     {projectUsers.length !== 0 && projectUsers.map((element, index) => {
@@ -169,10 +170,9 @@ const ProjectDetails = () => {
                   <Button variant="contained" color="secondary" size="small" type=" button" onClick={() => {navigate(`/${project.code}/milestones`)}}><SportsScoreIcon /> Add / View Millestones</Button>
                 </>
               }
-              {user.role === 'Manager' && 
+              {user.role !== 'Producer' && 
                 <>
-                  <Button variant="contained" color="primary" size="small" type="button" onClick={() => {navigate(`/${project.code}/resources`)}}><MusicIcon />View Resources</Button>
-                  <Button variant="contained" color="secondary" size="small" type=" button" onClick={() => {navigate(`/${project.code}/milestones`)}}><SportsScoreIcon />View Millestones</Button>
+                  <Button variant="contained" color="secondary" size="small" type=" button" onClick={() => {navigate(`/${project.code}/milestones`)}}><SportsScoreIcon />View Progress</Button>
                 </>
               }
             </HorizontallyFlexGapContainer>

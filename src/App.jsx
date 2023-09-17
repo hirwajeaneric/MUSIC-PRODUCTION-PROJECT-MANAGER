@@ -4,7 +4,6 @@ import Auth from './pages/auth/Auth';
 import DashboardMain from './pages/DashboardMain';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
-import Materials from './pages/Materials';
 import Project from './pages/Project';
 import Signin from './pages/auth/Signin';
 import Signup from './pages/auth/Signup';
@@ -99,7 +98,6 @@ function App() {
 
           <Route path='/' element={authToken ? <DashboardMain /> : <Navigate replace to={'/auth/signin'} />}>
             <Route path='' element={<Home />} />
-            <Route path='resources' element={<Materials />} />
             <Route path='projects' element={<Project />} />
             <Route path='/:code' element={<ProjectDetails />} />
             <Route path='/:code/activities' element={<Tasks />} />

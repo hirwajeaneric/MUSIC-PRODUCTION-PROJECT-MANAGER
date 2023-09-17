@@ -13,7 +13,7 @@ export default function CreateProjectForm() {
     const [isProcessing, setIsProcessing] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { setOpen, setResponseMessage } = useContext(GeneralContext);
-    const [ cookies, setCookie, removeCookie ] = useCookies(null);
+    const [ cookies ] = useCookies(null);
     const user = cookies.UserData;
 
     const onSubmit = data => {
@@ -23,7 +23,7 @@ export default function CreateProjectForm() {
           return;
         } else {
             
-          data.studio = 'Soundss Studio';
+          data.studio = 'The Soundss Studio';
           data.producerId = user.id;
           data.producerName = user.fullName;
           data.producerEmail = user.email;
