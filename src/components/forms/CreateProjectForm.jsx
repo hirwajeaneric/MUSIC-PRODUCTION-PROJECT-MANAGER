@@ -8,6 +8,7 @@ import { WorldCountries } from "../../utils/WorldCountries";
 import { ProjectTypes } from "../../utils/ProjectTypes";
 import { useCookies } from "react-cookie";
 import axios from "axios";
+import { currencies } from "../../utils/Currencies";
 
 export default function CreateProjectForm() {
     const [isProcessing, setIsProcessing] = useState(false);
@@ -136,20 +137,6 @@ export default function CreateProjectForm() {
                         <p role="alert">The type of project is required</p>
                         )}
                     </FormElement>
-                    {/* <FormElement style={{ color: '#97cadb' }}>
-                        <label htmlFor="startDate">Dimensions (In square meters) *</label>
-                        <input 
-                            type="number" 
-                            id="dimensions"
-                            placeholder="dimensions" 
-                            {...register("dimensions", 
-                            {required: true})} 
-                            aria-invalid={errors.dimensions ? "true" : "false"}
-                        />
-                        {errors.dimensions?.type === "required" && (
-                        <p role="alert">Please provide the project displacement</p>
-                        )}
-                    </FormElement> */}
                 </HorizontallyFlexGapContainer>        
 
                 <HorizontallyFlexGapContainer style={{ gap: '20px' }}>
@@ -220,6 +207,8 @@ export default function CreateProjectForm() {
                         <p role="alert">Provide street address</p>
                         )}
                     </FormElement>
+                </HorizontallyFlexGapContainer>
+                <HorizontallyFlexGapContainer style={{ gap: '20px' }}>
                     <FormElement style={{ color: '#97cadb' }}>
                         <label htmlFor="price">Project price *</label>
                         <input 
@@ -233,6 +222,33 @@ export default function CreateProjectForm() {
                         {errors.price?.type === "required" && (
                         <p role="alert">Provide project price</p>
                         )}
+                    </FormElement>
+                    <FormElement style={{ color: '#97cadb' }}>
+                        <label htmlFor="currency">Currency *</label>
+                        <select 
+                            {...register("currency", { required: true })}
+                            aria-invalid={errors.currency ? "true" : "false"}
+                        >
+                            <option value="">Choose currency</option>
+                            {currencies.map((currency, index) => (
+                                <option key={index} value={currency}>{currency}</option>
+                            ))}
+                        </select>
+                        {errors.currency?.type === "required" && (
+                        <p role="alert">Choose currency</p>
+                        )}
+                    </FormElement>
+                    <FormElement style={{ color: '#97cadb' }}>
+                        <label htmlFor="paymentStrategy">Payment Strategy *</label>
+                        <select 
+                            {...register("paymentStrategy", { required: true })}
+                            aria-invalid={errors.paymentStrategy ? "true" : "false"}
+                        >
+                            <option value="">Select strategy</option>
+                            <option value="50% Before - 50% After">50% Before - 50% After</option>
+                            <option value="100% before">100% before</option>
+                            <option value="100% after">100% after</option>
+                        </select>
                     </FormElement>
                 </HorizontallyFlexGapContainer>
 

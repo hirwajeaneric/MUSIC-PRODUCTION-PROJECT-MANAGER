@@ -144,9 +144,10 @@ const ProjectDetails = () => {
                 <p>Estimated end date: <span style={{ color: 'white', textAlign: 'left' }}>{new Date(project.estimatedEndDate).toLocaleString()}</span></p>
                 <p>End date: <span style={{ color: 'white', textAlign: 'left' }}>{project.endDate && new Date(project.endDate).toLocaleString()}</span></p>
                 <p>Type: <span style={{ color: 'white', textAlign: 'left' }}>{project.projectType}</span></p>
+                <p>Status: <span style={{ color: 'white', textAlign: 'left' }}>{project.status}</span></p>
+                <p>Progress: <span style={{ color: 'white', textAlign: 'left' }}>{`${Math.round(project.progress * 10) / 10} %`}</span></p>
               </VerticallyFlexGapContainer>
               <VerticallyFlexGapContainer style={{ alignItems: 'flex-start', gap: '10px', color: '#d6e8ee' }}>
-                <p>Status: <span style={{ color: 'white', textAlign: 'left' }}>{project.status}</span></p>
                 <p>Country: <span style={{ color: 'white', textAlign: 'left' }}>{project.country}</span></p>
                 <p>Location: <span style={{ color: 'white', textAlign: 'left' }}>{`${project.city}, ${project.district}, ${project.sector}, ${project.address}`}</span></p>
                 {user.role !== 'Producer' && <p>Producer: <span style={{ color: 'white', textAlign: 'left' }}>{project.producerName}</span></p>}
@@ -159,7 +160,10 @@ const ProjectDetails = () => {
                     })}
                   </span>
                 </p>
-                <p>Progress: <span style={{ color: 'white', textAlign: 'left' }}>{`${Math.round(project.progress * 10) / 10} %`}</span></p>
+                <p>Price: <span style={{ color: 'white', textAlign: 'left' }}>{project.price+" "+project.currency}</span></p>
+                <p>Payment strategy: <span style={{ color: 'white', textAlign: 'left' }}>{project.paymentStrategy}</span></p>
+                <p>Manager approval: <span style={{ color: 'white', textAlign: 'left' }}>{project.managerApproval}</span></p>
+                <p>Manager comments: <span style={{ color: 'white', textAlign: 'left' }}>{project.managerComment}</span></p>
               </VerticallyFlexGapContainer>
             </HorizontallyFlexSpaceBetweenContainer>
             <HorizontallyFlexGapContainer style={{ gap: '20px' }}>
