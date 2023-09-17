@@ -119,6 +119,15 @@ const ProjectDetails = () => {
                   size='small' 
                   color='inherit' 
                   onClick={() => { 
+                    navigate(`/${params.code}/contract-preview`);
+                  }}>
+                    Contract
+                </Button>
+                <Button 
+                  variant='contained' 
+                  size='small' 
+                  color='inherit' 
+                  onClick={() => { 
                     navigate(`/${params.code}/report-preview`);
                   }}>
                     Report preview

@@ -4,7 +4,7 @@ import { ReportHeader, TopBar, TableList, ReportBody, ReportFooter, InstitutionD
 import { useCookies } from 'react-cookie';
 import { useSelector } from 'react-redux';
 
-export const ComponentToPrint = React.forwardRef((props, ref) => {
+export const ComponentToPrintContract = React.forwardRef((props, ref) => {
     // FORM PROCESSING AND RESPONSE PROVISION
     const [ cookies ] = useCookies(null);
     const user = cookies.UserData;

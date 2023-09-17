@@ -24,6 +24,7 @@ import IssueDetails from './components/forms/IssueDetails';
 // import SprintDetails from './components/forms/SprintDetails';
 import MoreProjectDetails from './components/forms/MoreProjectDetails';
 import MileStones from './pages/MileStones';
+import Contract from './pages/Contract';
 
 const style = {
   position: 'absolute',
@@ -104,6 +105,7 @@ function App() {
             <Route path='/:code/resources' element={<ProjectMaterials />} />
             <Route path='/:code/milestones' element={<MileStones />} />
             <Route path='/:code/report-preview' element={<Reports />} />
+            <Route path='/:code/contract-preview' element={<Contract />} />
             <Route path='settings' element={<Settings />} />
           </Route>
         </Routes>
