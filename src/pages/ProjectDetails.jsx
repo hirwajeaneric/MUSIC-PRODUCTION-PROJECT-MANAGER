@@ -1,6 +1,6 @@
 import {  Button } from "@mui/material";
 import axios from "axios";
-import { useContext, useState } from "react";
+import { Fragment, useContext, useState } from "react";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { useSelector } from "react-redux";
@@ -26,12 +26,14 @@ const ProjectDetails = () => {
   const [ isProcessing, setIsProcessing ] = useState(false);
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [ project, setProject ] = useState({});
+  const [ projectUsers, setProjectUsers ] = useState([]);
   
   // Fetching project 
   useEffect(() => {
     axios.get(`${serverUrl}/api/v1/mppms/project/findByCode?code=${params.code}`)
     .then((response) => {
-      setProject(response.data.project)
+      setProject(response.data.project);
+      setProjectUsers(response.data.project.users);
     })
     .catch(error => console.log(error))
   },[params.code]);
@@ -40,25 +42,52 @@ const ProjectDetails = () => {
     axios.post(`${serverUrl}/api/v1/mppms/email/`, email)
   }
 
-  // Adding owner function 
-  const onSubmit = async data => {
+  // Adding user function 
+  const onSubmit = data => {
     setIsProcessing(true);
-    await axios.put(serverUrl+'/api/v1/mppms/project/update?id='+project._id, data)
+
+    console.log(data);
+
+    // 1. Adding user or creating new one 
+    axios.post(`${serverUrl}/api/v1/mppms/user/add`, data)
     .then(response => {
-      setTimeout(() => {
-        if (response.status === 200) {
-          sendEmail({
-            email: data.email, 
-            subject: 'You have been added to a Soundss ProProject', 
-            text: `Dear ${data.ownerName}, \nYou have been added to a Soundss Proproject: \n\nName: ${project.name} \nCode: ${project.code} \nby ${project.consultantName}. \n\nClick on the link bellow to view more about the project: \nhttp://localhost:5000/${project.code}`
-          })
-          
+      if (response.status === 201) {
+        var userInfo = response.data.user;
+        console.log("User info: ");
+        console.log(userInfo);
+        
+        // 2. Adding user to project 
+        const userIsAlreadyInProject = project.users.find(element => element.id === response.data.user.id);
+        if (userIsAlreadyInProject) {
           setIsProcessing(false);
-          setResponseMessage({ message: 'User added', severity: 'success' });
+          setResponseMessage({ message: 'User already in project', severity:'error'})
           setOpen(true);
-          setTimeout(() => { window.location.reload() }, 2000);
         }
-      }, 3000)
+        project.users.push(response.data.user);
+
+        axios.put(`${serverUrl}/api/v1/mppms/project/update?id=${project._id}`, project)
+        .then(response => {
+            if (response.status === 200) {
+              sendEmail({
+                email: data.email, 
+                subject: 'You have been added to a Soundss Pro Project', 
+                text: `Dear ${userInfo.fullName}, \nBellow are your account credentials: \n\nEmail: ${userInfo.email} \nPassword: ${userInfo.password || 'Your password'}. \n\nClick on the link bellow to view more about the project: \nhttp://localhost:5000/${project.code} \n\nBest regards,`
+              });
+              
+              setIsProcessing(false);
+              setResponseMessage({ message: 'User added', severity: 'success' });
+              setOpen(true);
+              setTimeout(() => { window.location.reload() }, 2000);
+            }
+        })
+        .catch(error => {
+          if (error.response && error.response.status >= 400 && error.response.status <= 500) {
+            setIsProcessing(false);
+            setResponseMessage({ message: error.response.data.msg, severity:'error'})
+            setOpen(true);
+          }
+        })
+      }
     })
     .catch(error => {
       if (error.response && error.response.status >= 400 && error.response.status <= 500) {
@@ -120,7 +149,18 @@ const ProjectDetails = () => {
                 <p>Status: <span style={{ color: 'white', textAlign: 'left' }}>{project.status}</span></p>
                 <p>Country: <span style={{ color: 'white', textAlign: 'left' }}>{project.country}</span></p>
                 <p>Location: <span style={{ color: 'white', textAlign: 'left' }}>{`${project.city}, ${project.district}, ${project.sector}, ${project.address}`}</span></p>
-                <p>Manager: <span style={{ color: 'white', textAlign: 'left' }}>{project.ownerName}</span></p>
+                <p>Users: 
+                  {/* <span style={{ color: 'white', textAlign: 'left' }}>
+                    {project.users[0].fullName}
+                  </span> */}
+                  <span style={{ color: 'white', textAlign: 'left' }}>
+                    {projectUsers.length !== 0 && projectUsers.map((element, index) => {
+                      return (
+                        <Fragment key={index}>{" "+element.fullName+" ("+element.role+"), "}</Fragment>
+                      )
+                    })}
+                  </span>
+                </p>
                 <p>Progress: <span style={{ color: 'white', textAlign: 'left' }}>{`${Math.round(project.progress * 10) / 10} %`}</span></p>
               </VerticallyFlexGapContainer>
             </HorizontallyFlexSpaceBetweenContainer>
@@ -144,57 +184,83 @@ const ProjectDetails = () => {
       </VerticallyFlexGapContainer>
       <VerticallyFlexGapContainer>
         {openAddManagerForm && 
-          <VerticallyFlexGapForm onSubmit={handleSubmit(onSubmit)} style={{ gap: '20px', background: '#02457a', color: 'white', padding: '20px', borderRadius: '5px', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)' }}>
+          <VerticallyFlexGapForm onSubmit={handleSubmit(onSubmit)} style={{ gap: '20px', background: '#02457a', color: 'white', padding: '20px', borderRadius: '5px', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)', marginBottom: '40px' }}>
             <HeaderTwo style={{ width: '100%', textAlign: 'left' }}>Add Users</HeaderTwo>
             <HorizontallyFlexGapContainer style={{ gap: '20px', alignItems: 'center' }}>
               <FormElement style={{ color: 'white' }}>
-                <label htmlFor="ownerName">Name</label>
+                <label htmlFor="fullName">Name</label>
                 <input 
                   type="text" 
-                  id="ownerName"
-                  placeholder="Manager name" 
-                  {...register("ownerName", 
+                  id="fullName"
+                  placeholder="User's name" 
+                  {...register("fullName", 
                   {required: true})} 
-                  aria-invalid={errors.ownerName ? "true" : "false"}
+                  aria-invalid={errors.fullName ? "true" : "false"}
                 />
-                {errors.ownerName?.type === "required" && (
-                  <p role="alert">User name is required</p>
+                {errors.fullName?.type === "required" && (
+                  <p role="alert">User full name is required</p>
                 )}
               </FormElement>
               <FormElement style={{ color: 'white' }}>
-                <label htmlFor="ownerEmail">Email</label>
+                <label htmlFor="email">Email</label>
                 <input 
                   type="email" 
-                  id="ownerEmail"
-                  placeholder="Manager email address" 
-                  {...register("ownerEmail", 
+                  id="email"
+                  placeholder="Email address" 
+                  {...register("email", 
                   {required: true})} 
-                  aria-invalid={errors.ownerEmail ? "true" : "false"}
+                  aria-invalid={errors.email ? "true" : "false"}
                 />
-                {errors.ownerEmail?.type === "required" && (
-                  <p role="alert">User email is required</p>
+                {errors.email?.type === "required" && (
+                  <p role="alert">Email is required</p>
                 )}
               </FormElement>
-              {/* <FormElement style={{ color: 'white' }}>
+              <FormElement style={{ color: 'white' }}>
                 <label htmlFor="role">Role</label>
                 <select 
                   {...register("role", { required: true })}
                   aria-invalid={errors.role ? "true" : "false"}
                 >
                   <option value="">Choose role</option>
-                  <option value="Stakeholder">Stakeholder</option>
+                  <option value="Artist">Artist</option>
                   <option value="Manager">Manager</option>
                 </select>
                 {errors.role?.type === "required" && (
                   <p role="alert">Role is required</p>
                 )}
-              </FormElement> */}
-              <FormElement style={{ width: '20%' }}>
-                {isProcessing 
-                  ? <Button disabled variant="contained" color="primary" size="small">PROCESSING...</Button> 
-                  : <Button variant="contained" color="primary" size="small" type="submit">Add</Button>
-                }
               </FormElement>
+            </HorizontallyFlexGapContainer>  
+            <HorizontallyFlexGapContainer style={{ gap: '20px', alignItems: 'center' }}>
+              <FormElement style={{ color: 'white' }}>
+                  <label htmlFor="group">Group name</label>
+                  <input 
+                    type="group" 
+                    id="group"
+                    placeholder="Group name" 
+                    {...register("group", 
+                    {required: false})} 
+                  />
+                </FormElement>
+                <FormElement style={{ color: 'white' }}>
+                  <label htmlFor="password">Password</label>
+                  <input 
+                    type="text" 
+                    id="password"
+                    placeholder="Password" 
+                    {...register("password", 
+                    {required: true})} 
+                    aria-invalid={errors.password ? "true" : "false"}
+                  />
+                  {errors.password?.type === "required" && (
+                    <p role="alert">Password is required</p>
+                  )}
+                </FormElement>
+                <FormElement style={{ width: '20%' }}>
+                  {isProcessing 
+                    ? <Button disabled variant="contained" color="primary" size="small">PROCESSING...</Button> 
+                    : <Button variant="contained" color="primary" size="small" type="submit">Add</Button>
+                  }
+                </FormElement>
             </HorizontallyFlexGapContainer>
           </VerticallyFlexGapForm>
         }

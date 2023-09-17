@@ -93,10 +93,10 @@ const Home = () => {
                 </div>
                 <VerticallyFlexGapContainer style={{ borderBottom: '1px solid #b3d9ff', paddingBottom: '10px', width: '95%', justifyContent: 'flex-start', alignItems: 'flex-start', gap: '5px' }}>
                   <HorizontallyFlexSpaceBetweenContainer style={{ width: '100%'}}>
-                    <HeaderTwo style={{ width:'70%', color: '#2c7be4' }}>{`Project ${project.name}`}</HeaderTwo>
+                    <HeaderTwo style={{ width:'70%', color: 'white' }}>{`Project ${project.name}`}</HeaderTwo>
                     <HorizontallyFlexGapContainer style={{ width:'30%', gap: '40px', justifyContent:'flex-end' }}>
                       <Tooltip title='View more'>
-                        <Button variant="text" color="primary" size="small" type="button" onClick={(e) => { e.preventDefault(); navigate(`/${project.code}`)}}><MoreHorizIcon /></Button>
+                        <Button variant="text" color="inherit" size="small" type="button" onClick={(e) => { e.preventDefault(); navigate(`/${project.code}`)}}><MoreHorizIcon /></Button>
                       </Tooltip>
                     </HorizontallyFlexGapContainer>
                   </HorizontallyFlexSpaceBetweenContainer>
@@ -118,10 +118,10 @@ const Home = () => {
                 </div>
                 <VerticallyFlexGapContainer style={{ borderBottom: '1px solid #b3d9ff', paddingBottom: '10px', width: '95%', justifyContent: 'flex-start', alignItems: 'flex-start', gap: '5px' }}>
                   <HorizontallyFlexSpaceBetweenContainer style={{ width: '100%'}}>
-                    <HeaderTwo style={{ width:'70%', color: '#2c7be4'}}>{`Project ${project.name}`}</HeaderTwo>
+                    <HeaderTwo style={{ width:'70%', color: 'white'}}>{`Project ${project.name}`}</HeaderTwo>
                     <HorizontallyFlexGapContainer style={{ width:'30%', gap: '40px', justifyContent:'flex-end' }}>
                       <Tooltip title='View more'>
-                        <Button variant="text" color="primary" size="small" type="button" onClick={() => {navigate(`/${project.code}`)}}><MoreHorizIcon /></Button>
+                        <Button variant="text" color="inherit" size="small" type="button" onClick={() => {navigate(`/${project.code}`)}}><MoreHorizIcon /></Button>
                       </Tooltip>
                     </HorizontallyFlexGapContainer>
                   </HorizontallyFlexSpaceBetweenContainer>
