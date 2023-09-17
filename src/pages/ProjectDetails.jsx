@@ -13,6 +13,7 @@ import SportsScoreIcon from '@mui/icons-material/SportsScore';
 import { useForm } from "react-hook-form";
 import { GeneralContext } from "../App";
 import { useCookies } from "react-cookie";
+import ManagerApprovalForm from "../components/forms/ManagerApprovalForm";
 
 const ProjectDetails = () => {
   const navigate = useNavigate();
@@ -163,9 +164,12 @@ const ProjectDetails = () => {
                 <p>Price: <span style={{ color: 'white', textAlign: 'left' }}>{project.price+" "+project.currency}</span></p>
                 <p>Payment strategy: <span style={{ color: 'white', textAlign: 'left' }}>{project.paymentStrategy}</span></p>
                 <p>Manager approval: <span style={{ color: 'white', textAlign: 'left' }}>{project.managerApproval}</span></p>
-                <p>Manager comments: <span style={{ color: 'white', textAlign: 'left' }}>{project.managerComment}</span></p>
+                {project.managerComment && <p>Manager comments: <span style={{ color: 'white', textAlign: 'left' }}>{project.managerComment}</span></p>}
               </VerticallyFlexGapContainer>
             </HorizontallyFlexSpaceBetweenContainer>
+
+
+
             <HorizontallyFlexGapContainer style={{ gap: '20px' }}>
               {user.role === 'Producer' && <Button variant="contained" color="success" size="small" type="button" onClick={() => { setOpenAddManagerForm(!openAddManagerForm) }}><PersonIcon /> Add Users</Button>}
               {user.role === 'Producer' && 
@@ -183,6 +187,12 @@ const ProjectDetails = () => {
           </VerticallyFlexGapContainer>
         }
       </VerticallyFlexGapContainer>
+
+      {/* Manager approval page  */}
+      {user.role === 'Manager' && 
+        <ManagerApprovalForm project={project}/>
+      }
+
       <VerticallyFlexGapContainer>
         {openAddManagerForm && 
           <VerticallyFlexGapForm onSubmit={handleSubmit(onSubmit)} style={{ gap: '20px', background: '#02457a', color: 'white', padding: '20px', borderRadius: '5px', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)', marginBottom: '40px' }}>

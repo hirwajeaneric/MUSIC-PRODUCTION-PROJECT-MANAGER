@@ -1,7 +1,7 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { DashboardInnerContainer, DashboardMainContainer, SideBarMenuItem, SideBarMenueContainer, SideNavigationBar, TopNavigationBar } from "../components/styles/DashboardStructureStyles"
 import { HorizontallyFlexGapContainer, VerticallyFlexGapContainer, VerticallyFlexSpaceBetweenContainer } from "../components/styles/GenericStyles"
-import { MdHome, MdMenu, MdNotifications } from 'react-icons/md';
+import { MdHome, MdMenu } from 'react-icons/md';
 import { AiFillBuild } from 'react-icons/ai';
 import { TiUser } from 'react-icons/ti';
 import Avatar from "@mui/material/Avatar"; 
@@ -46,7 +46,7 @@ const DashboardMain = () => {
                     <Link to='/'>Soundss Pro</Link>
                 </div>    
                 <div className="right">
-                    <MdNotifications style={{ fontSize: '150%', color: '#97cadb'}} />
+                    {/* <MdNotifications style={{ fontSize: '150%', color: '#97cadb'}} /> */}
                     <Tooltip title="Account settings">
                         <IconButton
                             onClick={handleClick}
