@@ -1,6 +1,5 @@
 import { Helmet } from "react-helmet-async";
 import { useDispatch, useSelector } from "react-redux";
-import CreateProjectForm from "../components/forms/CreateProjectForm";
 import { HeaderTwo, HorizontallyFlexGapContainer, HorizontallyFlexSpaceBetweenContainer, VerticallyFlexGapContainer } from "../components/styles/GenericStyles"
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
@@ -11,6 +10,7 @@ import AddResourcesForm from "../components/forms/AddResourcesForm";
 import ResourcesTable from "../components/tables/ResourcesTable";
 import { getProjectResources } from "../redux/features/materialSlice";
 import { Button } from "@mui/material";
+import { useCookies } from "react-cookie";
 const serverUrl = import.meta.env.VITE_REACT_APP_SERVERURL;
 
 const ProjectMaterials = () => {
@@ -20,7 +20,9 @@ const ProjectMaterials = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const { register, handleSubmit, formState: { errors } } = useForm();  
   const [project, setProject] = useState({});
-  
+  const [ cookies ] = useCookies(null);
+  const user = cookies.UserData;
+
   // Fetching project 
   useEffect(() => {
     axios.get(`${serverUrl}/api/v1/mppms/project/findByCode?code=${params.code}`)
@@ -31,8 +33,8 @@ const ProjectMaterials = () => {
     .catch(error => console.log(error))
   },[]);
 
-  const { isLoading: loadingProject, listOfProducersProjects, listOfManagerProjects } = useSelector(state => state.project);
-  const { isLoading : loadingResources, listOfProjectResources, numberOfProjectResources } = useSelector(state => state.material);
+  const { isLoading: loadingProject, } = useSelector(state => state.project);
+  const { listOfProjectResources } = useSelector(state => state.material);
 
   return (
     <VerticallyFlexGapContainer style={{ gap: '20px'}}>
@@ -76,7 +78,7 @@ const ProjectMaterials = () => {
         </VerticallyFlexGapContainer>
         
         {/* Add resource form  */}
-        <AddResourcesForm projectId={project._id}/>
+        {user.role === 'Producer' && <AddResourcesForm projectId={project._id}/>}
       </HorizontallyFlexGapContainer>
 
     </VerticallyFlexGapContainer>

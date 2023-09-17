@@ -4,11 +4,16 @@ const serverUrl = import.meta.env.VITE_REACT_APP_SERVERURL;
 
 const initialState = {
     listOfProjects: [],
+    listOfUserProjects: [],
     listOfArtistProjects: [],
     listOfManagerProjects: [],
     listOfProducersProjects: [],
     selectedProject: {},
+    listOfUsersInAProject: [],
+    managerOfSelectedProject: {},
     numberOfProjects: 0,
+    numberOfProducerProjects: 0,
+    numberOfUserProjects: 0,
     responseMessage: '',
     searchedQuery: '',
     searchProjectsResults: [],
@@ -83,12 +88,25 @@ const projectSlice = createSlice({
         },
         [getAllProjects.fulfilled] : (state, action) => {
             state.isLoading = false;
-            const { id, email } = action.payload.filter;
-            let listOfProjects = action.payload.projects.sort((a,b) => new Date(a.creationDate) - new Date(b.creationDate));
-            state.listOfProjects = listOfProjects;
-            state.listOfProducersProjects = action.payload.projects.filter(project => project.producerId === id);
-            // state.listOfManagerProjects = action.payload.projects.filter(project => project.ownerEmail === email);
-            // state.numberOfProjects = state.listOfProducersProjects.length + state.listOfManagerProjects.length;
+            const { id, role } = action.payload.filter;
+            
+            if (role === 'Producer') {
+                var producerProjects = action.payload.projects.filter(project => project.producerId === id);
+                state.listOfProducersProjects = producerProjects;
+                state.numberOfProjects = producerProjects.length;
+            } else {
+                var userProjects = [];
+                action.payload.projects.forEach(project =>{
+                    project.users.forEach(user => {
+                        if (user.id === id) {
+                            userProjects.push(project);
+                        }
+                    });
+                });
+
+                state.listOfUserProjects = userProjects;
+                state.numberOfProjects = userProjects.length;
+            }
         },
         [getAllProjects.rejected] : (state) => {
             state.isLoading = false;
@@ -99,6 +117,8 @@ const projectSlice = createSlice({
         [getSelectedProject.fulfilled] : (state, action) => {
             state.isLoading = false;
             state.selectedProject = action.payload.project;
+            state.listOfUsersInAProject = action.payload.project.users;
+            state.managerOfSelectedProject = action.payload.project.users.find(user => user.role === 'Manager');
         },
         [getSelectedProject.rejected] : (state) => {
             state.isLoading = false;

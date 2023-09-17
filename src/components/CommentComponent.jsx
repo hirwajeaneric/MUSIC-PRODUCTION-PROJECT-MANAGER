@@ -1,5 +1,4 @@
-import React from 'react'
-import { useEffect } from 'react';
+/* eslint-disable react/prop-types */
 import styled from 'styled-components';
 
 const CommentMessageContainer = styled.div`
@@ -9,18 +8,34 @@ const CommentMessageContainer = styled.div`
 
     .comment-content {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         gap: 10px;
         padding: 5px;
         border-radius: 5px;
-        background: #97cadb;
-        
+        background: #ff99ee;
+        width: 70%;
+
         p {
-            color: white;
+            color: black;
+            width: 100%;
         }
-    
-        span {
-            color: white;
+        
+        div {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 90%;
+
+            span {
+                color: purple;
+                width: 100%;
+            }
+
+            p {
+                color: black;      
+            }
         }
     }
 `;
@@ -30,9 +45,12 @@ const CommentComponent = (props) => {
     
     return (
         <CommentMessageContainer style={{ justifyContent: data.senderId === user.id ? 'flex-end' : 'flex-start' }}>
-            <div className='comment-content'>
+            <div className='comment-content' style={{ background: data.senderId === user.id ? 'white' : '#ff99ee' }}>
                 <p>{data.message}</p>
-                <span>{new Date(data.addDate).toLocaleString()}</span>
+                <div>
+                    <p>{data.senderId === user.id ? 'You' : data.senderName }</p>
+                    <span>{new Date(data.addDate).toLocaleString()}</span>
+                </div>
             </div>
         </CommentMessageContainer>
   )

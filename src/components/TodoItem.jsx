@@ -96,7 +96,7 @@ export default function TodoItem(props) {
 
     return (
         <HorizontallyFlexGapContainer style={generalStyles}>
-            <button type='button' onClick={updateIssueProgress} style={checkButtonStyles}>{(data.progress=== 'Todo' || data.progress=== 'In Progress') ? <MdOutlineCircle /> : <AiFillCheckCircle />}</button>
+            <button type='button' disabled={user.role !== 'Producer' && true} onClick={updateIssueProgress} style={checkButtonStyles}>{(data.progress=== 'Todo' || data.progress=== 'In Progress') ? <MdOutlineCircle /> : <AiFillCheckCircle />}</button>
             {type === 'issue' && <button type='button' onClick={viewIssueDetails} style={nameStyles}>{data.name}</button>}
             {type === 'sprint' && <p style={sprintNameStyles}>{data.name}</p>}
             {type === 'sprint' && <ChildModal sprint={data} />}

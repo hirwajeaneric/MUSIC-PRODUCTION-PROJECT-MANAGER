@@ -4,6 +4,7 @@ import issueReducer from './features/issueSlice';
 import materialReducer from './features/materialSlice';
 import commentReducer from './features/commentSlice';
 import sprintReducer from './features/sprintSlice';
+import paymentReducer from './features/paymentSlice';
 
 export const store = configureStore({
     reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
         material: materialReducer,
         comment: commentReducer,
         sprint: sprintReducer,
+        payment: paymentReducer,
     }
 })

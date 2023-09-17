@@ -3,9 +3,12 @@ import { useSelector } from "react-redux";
 import CreateProjectForm from "../components/forms/CreateProjectForm";
 import { HeaderTwo, HorizontallyFlexGapContainer, VerticallyFlexGapContainer } from "../components/styles/GenericStyles"
 import ProjectItem from "../components/ProjectItem";
+import { useCookies } from "react-cookie";
 
 const Project = () => {
-  const { isLoading, listOfProducersProjects, listOfManagerProjects } = useSelector(state => state.project);
+  const { isLoading, listOfProducersProjects, listOfUserProjects, numberOfProjects } = useSelector(state => state.project);
+  const [ cookies ] = useCookies(null);
+  const user = cookies.UserData;
 
   return (
     <VerticallyFlexGapContainer style={{ gap: '20px'}}>
@@ -23,20 +26,24 @@ const Project = () => {
             {isLoading ? 
             <p style={{ color: '#97cadb' }}>Loading...</p> :
             <>
-              {(listOfProducersProjects.length === 0 && listOfManagerProjects.length === 0) && <p style={{ color: '#d6e8ee', }}>No available projects yet</p>}
-              {listOfManagerProjects && listOfManagerProjects.map((project, index) => (
+              {/* Common user projects  */}
+              {numberOfProjects === 0 && <p style={{ color: '#b1cdcd' }}>No available projects yet</p>}
+              
+              {listOfUserProjects && listOfUserProjects.map((project, index) => (
                 <ProjectItem key={index} project={project} />
               ))}
 
+              {/* Producer projects  */}
               {listOfProducersProjects && listOfProducersProjects.map((project, index) => (
-                <ProjectItem key={index} project={project}/>
+                <ProjectItem key={index} project={project} />
               ))}
+              
             </>}
           </VerticallyFlexGapContainer>
         </VerticallyFlexGapContainer>
 
         {/* Create project form  */}
-        <CreateProjectForm />
+        {user.role === 'Producer' && <CreateProjectForm />}
       </HorizontallyFlexGapContainer>
 
     </VerticallyFlexGapContainer>

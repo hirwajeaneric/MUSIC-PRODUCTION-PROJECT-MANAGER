@@ -1,7 +1,7 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { DashboardInnerContainer, DashboardMainContainer, SideBarMenuItem, SideBarMenueContainer, SideNavigationBar, TopNavigationBar } from "../components/styles/DashboardStructureStyles"
 import { HorizontallyFlexGapContainer, VerticallyFlexGapContainer, VerticallyFlexSpaceBetweenContainer } from "../components/styles/GenericStyles"
-import { MdHome, MdMenu, MdNotifications } from 'react-icons/md';
+import { MdHome, MdMenu } from 'react-icons/md';
 import { AiFillBuild } from 'react-icons/ai';
 import { TiUser } from 'react-icons/ti';
 import Avatar from "@mui/material/Avatar"; 
@@ -9,13 +9,13 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { Divider, IconButton, ListItemIcon, Tooltip } from "@mui/material";
 import { useState } from "react";
-import { Logout, Settings } from "@mui/icons-material";
+import { Logout, Payment, Settings } from "@mui/icons-material";
 import { useCookies } from "react-cookie";
 import { useSelector } from "react-redux";
 import { getSimpleCapitalizedChars } from "../utils/HelperFunctions";
 
 const DashboardMain = () => {
-    const [ cookies, setCookie, removeCookie ] = useCookies(null);
+    const [ cookies, removeCookie ] = useCookies(null);
     const [anchorEl, setAnchorEl] = useState(null);
     const navigate = useNavigate();
     const [fullSize, setFullSize] = useState(false);
@@ -36,7 +36,7 @@ const DashboardMain = () => {
         navigate('/auth/signin')
     }
 
-    const { isLoading, listOfProducersProjects, listOfManagerProjects, numberOfProjects } = useSelector(state => state.project);
+    const { listOfProducersProjects, numberOfProjects, listOfUserProjects } = useSelector(state => state.project);
     
     return (
         <VerticallyFlexSpaceBetweenContainer style={{ backgroundColor: '#001b4b' }}>
@@ -46,12 +46,12 @@ const DashboardMain = () => {
                     <Link to='/'>Soundss Pro</Link>
                 </div>    
                 <div className="right">
-                    <MdNotifications style={{ fontSize: '150%', color: '#97cadb'}} />
+                    {/* <MdNotifications style={{ fontSize: '150%', color: '#97cadb'}} /> */}
                     <Tooltip title="Account settings">
                         <IconButton
                             onClick={handleClick}
                             size="small"
-                            sx={{ ml: 2, background: 'white' }}
+                            sx={{ ml: 2, background: 'green' }}
                             aria-controls={open ? 'account-menu' : undefined}
                             aria-haspopup="true"
                             aria-expanded={open ? 'true' : undefined}
@@ -96,11 +96,11 @@ const DashboardMain = () => {
                     anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                 >
                     <MenuItem onClick={handleClose} style={{ display:'flex', flexDirection:'row', alignItems:'flex-start' }}>
-                    <Avatar sx={{ width: 32, height: 32 }}>{getSimpleCapitalizedChars(user.fullName)}</Avatar>
+                        <Avatar sx={{ width: 32, height: 32 }}>{getSimpleCapitalizedChars(user.fullName)}</Avatar>
                         <VerticallyFlexGapContainer style={{ justifyContent:'flex-start', alignItems:'flex-start', gap: '5px' }}>
                             <p>{user.fullName}</p>
                             <p style={{ color: 'blue', fontWeight:'700', fontSize:'90%' }}>{user.role}</p>
-                            <p style={{ color: '#97cadb', fontSize:'90%' }}>{user.email}</p>
+                            <p style={{ color: 'black', fontSize:'90%' }}>{user.email}</p>
                         </VerticallyFlexGapContainer>
                     </MenuItem>
                     {/* <MenuItem onClick={handleClose}>
@@ -165,7 +165,7 @@ const DashboardMain = () => {
                             }) 
                         }   
                         {
-                            listOfManagerProjects.map((project, index) => {
+                            listOfUserProjects.map((project, index) => {
                                 return (
                                     <SideBarMenuItem key={index} onClick={()=>{window.location.replace(`/${project.code}`)}} to={`/${project.code}`} style={{ fontSize:'90%' }}>
                                         <MdHome style={{ width: fullSize ? '100%' : '20%', color: "transparent"}}/>
@@ -193,6 +193,12 @@ const DashboardMain = () => {
                                 <span className="text">Reports</span>
                             </div>
                         </SideBarMenuItem> */}
+                        <SideBarMenuItem to={'payments'}>
+                            <Payment style={{ width: fullSize ? '100%' : '20%'}}/>
+                            <div style={{ width: fullSize ? '0%' : '80%'}} className="nav-data">
+                            {!fullSize && <span className="text">Payments</span>}
+                            </div>
+                        </SideBarMenuItem>                    
                         <SideBarMenuItem to={'settings'}>
                             <TiUser style={{ width: fullSize ? '100%' : '20%'}}/>
                             <div style={{ width: fullSize ? '0%' : '80%'}} className="nav-data">

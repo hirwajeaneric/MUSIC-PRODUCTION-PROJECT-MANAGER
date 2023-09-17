@@ -1,20 +1,21 @@
+/* eslint-disable react/prop-types */
 import { Avatar, Button } from '@mui/material';
-import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { HeaderTwo, HorizontallyFlexGapContainer, HorizontallyFlexSpaceBetweenContainer, ProjectItemContainer, VerticallyFlexGapContainer } from './styles/GenericStyles';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import DeleteIcon from '@mui/icons-material/Delete';
 import { getSimpleCapitalizedChars } from '../utils/HelperFunctions';
 import { ProjectProgressBar } from './styles/DashboardStructureStyles';
 import axios from "axios";
 import { useContext, useState } from "react";
 import { GeneralContext } from "../App";
+import { useCookies } from 'react-cookie';
 const serverUrl = import.meta.env.VITE_REACT_APP_SERVERURL;
 
 const ProjectItem = ({ project }) => {
     const navigate = useNavigate();
     const [isProcessing, setIsProcessing] = useState(false);
     const { setOpen, setResponseMessage } = useContext(GeneralContext);
+    const [ cookies ] = useCookies(null);
+    const user = cookies.UserData;
 
     const deleteProject = (projectId) => {
         setIsProcessing(true);
@@ -46,10 +47,14 @@ const ProjectItem = ({ project }) => {
                 <HorizontallyFlexSpaceBetweenContainer style={{ width: '100%'}}>
                     <HeaderTwo style={{ width:'50%', color: '#d6e8ee'}}>{project.name}</HeaderTwo>
                     <HorizontallyFlexGapContainer style={{ width:'50%', gap: '40px', justifyContent:'flex-end' }}>
-                        <Button variant="contained" color="primary" size="small" type="button" onClick={(e) => {navigate(`/${project.code}`)}}>View more</Button>
-                        {isProcessing 
-                        ? <Button disabled variant="text" color="primary" size="small">PROCESSING...</Button> 
-                        : <Button variant="contained" color="error" size="small" type="button" onClick={(e) => {e.preventDefault(); deleteProject(project.id);}}>Delete</Button>
+                        <Button variant="contained" color="primary" size="small" type="button" onClick={() => {navigate(`/${project.code}`)}}>View</Button>
+                        {user.role === 'Producer' && 
+                            <>
+                                {isProcessing 
+                                    ? <Button disabled variant="text" color="primary" size="small">PROCESSING...</Button> 
+                                    : <Button variant="contained" color="error" size="small" type="button" onClick={(e) => {e.preventDefault(); deleteProject(project.id);}}>Delete</Button>
+                                }
+                            </>
                         }
                     </HorizontallyFlexGapContainer>
                 </HorizontallyFlexSpaceBetweenContainer>

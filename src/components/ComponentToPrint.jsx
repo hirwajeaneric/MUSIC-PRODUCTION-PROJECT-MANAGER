@@ -73,34 +73,37 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
                     </tbody>
                 </TableList>
 
-                <strong>Resource/Material usage</strong>
-
-                <TableList>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            {/* <th>Entry date</th> */}
-                            <th>Quantity</th>
-                            <th>Unit price</th>
-                            {/* <th>Used</th>
-                            <th>Remaining</th> */}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {listOfProjectResources && listOfProjectResources.map((resource, index) => {
-                            return (
-                                <tr key={index}>
-                                    <td>{resource.name}</td>
-                                    {/* <td>{new Date(resource.entryDate).toDateString()}</td> */}
-                                    <td>{resource.quantity}</td>
-                                    <td>{resource.unitPrice}</td>
-                                    {/* <td>{resource.used}</td>
-                                    <td>{resource.quantity - resource.used}</td> */}
+                {user.role === 'Producer' && 
+                    <>
+                        <strong>Resource/Material usage</strong>
+                        <TableList>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    {/* <th>Entry date</th> */}
+                                    <th>Quantity</th>
+                                    <th>Unit price</th>
+                                    {/* <th>Used</th>
+                                    <th>Remaining</th> */}
                                 </tr>
-                            )
-                        })}
-                    </tbody>
-                </TableList>
+                            </thead>
+                            <tbody>
+                                {listOfProjectResources && listOfProjectResources.map((resource, index) => {
+                                    return (
+                                        <tr key={index}>
+                                            <td>{resource.name}</td>
+                                            {/* <td>{new Date(resource.entryDate).toDateString()}</td> */}
+                                            <td>{resource.quantity}</td>
+                                            <td>{resource.unitPrice}</td>
+                                            {/* <td>{resource.used}</td>
+                                            <td>{resource.quantity - resource.used}</td> */}
+                                        </tr>
+                                    )
+                                })}
+                            </tbody>
+                        </TableList>
+                    </>
+                }
             </ReportBody>
 
             <ReportFooter>

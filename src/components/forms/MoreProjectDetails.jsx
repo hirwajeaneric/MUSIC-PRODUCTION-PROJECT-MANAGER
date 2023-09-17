@@ -1,5 +1,4 @@
 import { Button } from '@mui/material'
-import React from 'react'
 import { FormElement, HorizontallyFlexGapContainer, HorizontallyFlexSpaceBetweenContainer, VerticallyFlexGapContainer, VerticallyFlexGapForm } from '../styles/GenericStyles'
 import { useContext, useState } from "react";
 import { GeneralContext } from "../../App";
@@ -10,6 +9,7 @@ import { getProjectResources } from "../../redux/features/materialSlice";
 import { useEffect } from 'react';
 import { ProjectTypes } from '../../utils/ProjectTypes';
 import { WorldCountries } from '../../utils/WorldCountries';
+import { currencies } from '../../utils/Currencies';
 
 const MoreProjectDetails = ({data}) => {
   const [isProcessing, setIsProcessing] = useState(false);
@@ -123,33 +123,23 @@ const MoreProjectDetails = ({data}) => {
           <textarea rows={5} type="text" name="description" id="description" onChange={handleChange} value={project.description}></textarea>
         </FormElement>
         <HorizontallyFlexGapContainer style={{ gap: '20px' }}>
-          <FormElement>
-            <label htmlFor="projectType">Project type</label>
-            <input type="text" disabled name="projectType" id="projectType" onChange={handleChange} value={project.projectType} />
+          <FormElement style={{ color: 'white' }}>
+            <label htmlFor="projectType">Change project type</label>
+            <select name='projectType' id='projectType' value={project.projectType} onChange={handleChange}>
+              <option value="">Select type</option>
+              {ProjectTypes.map((type, index) => (
+              <option key={index} value={type}>{type}</option>
+              ))}
+            </select>
           </FormElement>
           <FormElement style={{ color: 'white' }}>
-              <label htmlFor="projectType">Change project type</label>
-              <select name='projectType' id='projectType'>
-                  <option value="">Select type</option>
-                  {ProjectTypes.map((type, index) => (
-                      <option key={index} value={type}>{type}</option>
-                  ))}
-              </select>
-          </FormElement>
-        </HorizontallyFlexGapContainer>
-        <HorizontallyFlexGapContainer style={{ gap: '20px' }}>
-          <FormElement>
-            <label htmlFor="country">Country</label>
-            <input type="text" name="country" id="country" onChange={handleChange} value={project.country} />
-          </FormElement>
-          <FormElement style={{ color: 'white' }}>
-              <label htmlFor="country">Country *</label>
-              <select name='country' id='country'>
-                  <option value="">Choose country</option>
-                  {WorldCountries.map((country, index) => (
-                      <option key={index} value={country}>{country}</option>
-                  ))}
-              </select>
+            <label htmlFor="country">Country *</label>
+            <select name='country' id='country' value={project.country} onChange={handleChange}>
+              <option value="">Choose country</option>
+              {WorldCountries.map((country, index) => (
+                <option key={index} value={country}>{country}</option>
+              ))}
+            </select>
           </FormElement>
         </HorizontallyFlexGapContainer>
         <HorizontallyFlexGapContainer style={{ gap: '20px' }}>
@@ -174,6 +164,30 @@ const MoreProjectDetails = ({data}) => {
           <FormElement>
             <label htmlFor="address">Address</label>
             <input type="text" name="address" id="address" onChange={handleChange} value={project.address} />
+          </FormElement>
+        </HorizontallyFlexGapContainer>
+        <HorizontallyFlexGapContainer style={{ gap: '20px' }}>
+          <FormElement>
+            <label htmlFor="price">Price</label>
+            <input type="number" name="price" id="price" onChange={handleChange} value={project.price} />
+          </FormElement>
+          <FormElement style={{ color: 'white' }}>
+            <label htmlFor="currency">Currency *</label>
+            <select name='currency' value={project.currency} onChange={handleChange}>
+                <option value="">Choose currency</option>
+                {currencies.map((currency, index) => (
+                    <option key={index} value={currency}>{currency}</option>
+                ))}
+            </select>
+          </FormElement>
+          <FormElement style={{ color: 'white' }}>
+              <label htmlFor="paymentStrategy">Payment strategy *</label>
+              <select name='paymentStrategy' id='paymentStrategy' value={project.paymentStrategy} onChange={handleChange}>
+                <option value="">Change strategy</option>
+                <option value="50% Before - 50% After">50% Before - 50% After</option>
+                <option value="100% before">100% before</option>
+                <option value="100% after">100% after</option>
+              </select>
           </FormElement>
         </HorizontallyFlexGapContainer>
         <FormElement style={{ flexDirection: 'row', gap: '30%' }}>

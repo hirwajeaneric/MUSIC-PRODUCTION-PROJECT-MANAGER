@@ -16,9 +16,8 @@ import { getSprintComments } from '../../redux/features/commentSlice';
 import CommentComponent from '../CommentComponent';
 import { useCookies } from 'react-cookie';
 import { getIssueSprints } from '../../redux/features/sprintSlice';
-import { useForm } from 'react-hook-form';
+// import { useForm } from 'react-hook-form';
 import { getProjectResources } from '../../redux/features/materialSlice';
-import SprintResourcesTable from '../tables/SprintResourcesTable';
 
 const SprintDetails = (props) => {
   const { data } = props;
@@ -28,8 +27,8 @@ const SprintDetails = (props) => {
   const [project, setProject] = useState({});
   const [isProcessing, setIsProcessing] = useState(false);
   const [isProcessingComment, setIsProcessingComment] = useState(false);
-  const [isProcessingMaterials, setIsProcessingMaterials] = useState(false);
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  // const [isProcessingMaterials, setIsProcessingMaterials] = useState(false);
+  // const { register, handleSubmit, formState: { errors } } = useForm();
   const { setOpen, setResponseMessage, handleOpenModal, selectedMaterial, setSelectedMaterial } = useContext(GeneralContext);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
@@ -46,9 +45,9 @@ const SprintDetails = (props) => {
     setComment({...comment, [input.name]: input.value });
   }
 
-  const handleMaterialUpdates = ({ currentTarget: input }) => {
-    setSelectedMaterial({...selectedMaterial, [input.name]: input.value });
-  }
+  // const handleMaterialUpdates = ({ currentTarget: input }) => {
+  //   setSelectedMaterial({...selectedMaterial, [input.name]: input.value });
+  // }
 
 
   // FETCHING INFORMATION ON COMPONENT LOADING
@@ -121,91 +120,91 @@ const SprintDetails = (props) => {
 
 
   // Assign material to sprint 
-  const onSubmit = async(data) => {
-    var materialId = data.name.split(" - ")[0];
+  // const onSubmit = async(data) => {
+  //   var materialId = data.name.split(" - ")[0];
     
-    var newMaterial = {
-      id: data.name.split(" - ")[0],
-      name: data.name.split(" - ")[1],
-      quantity: Number(data.quantity),
-      used: 0,
-      date: new Date().toUTCString()
-    }
+  //   var newMaterial = {
+  //     id: data.name.split(" - ")[0],
+  //     name: data.name.split(" - ")[1],
+  //     quantity: Number(data.quantity),
+  //     used: 0,
+  //     date: new Date().toUTCString()
+  //   }
 
-    sprint.material = newMaterial;
+  //   sprint.material = newMaterial;
 
-    setIsProcessingMaterials(true);
+  //   setIsProcessingMaterials(true);
 
-    try {
-      const response = await axios.put(serverUrl+'/api/v1/mppms/sprint/update?id='+sprint._id, sprint)
-      if (response.status === 200) {
-        const resp = await axios.put(serverUrl+'/api/v1/mppms/material/update?id='+materialId, { assigned: Number(data.quantity) });
+  //   try {
+  //     const response = await axios.put(serverUrl+'/api/v1/mppms/sprint/update?id='+sprint._id, sprint)
+  //     if (response.status === 200) {
+  //       const resp = await axios.put(serverUrl+'/api/v1/mppms/material/update?id='+materialId, { assigned: Number(data.quantity) });
         
-        if (resp.status === 200) {
-          setIsProcessingMaterials(false);
-          setResponseMessage({ message: response.data.message, severity: 'success' });
-          setOpen(true);
-          handleOpenModal();
-          setSelectedMaterial({});
-        }
-      }  
-    } catch (error) {
-      if (error.response && error.response.status >= 400 && error.response.status <= 500) {
-        setIsProcessingMaterials(false);
-        setResponseMessage({ message: error.response.data.msg, severity:'error'})
-        setOpen(true);
-      }
-    }
-  };
+  //       if (resp.status === 200) {
+  //         setIsProcessingMaterials(false);
+  //         setResponseMessage({ message: response.data.message, severity: 'success' });
+  //         setOpen(true);
+  //         handleOpenModal();
+  //         setSelectedMaterial({});
+  //       }
+  //     }  
+  //   } catch (error) {
+  //     if (error.response && error.response.status >= 400 && error.response.status <= 500) {
+  //       setIsProcessingMaterials(false);
+  //       setResponseMessage({ message: error.response.data.msg, severity:'error'})
+  //       setOpen(true);
+  //     }
+  //   }
+  // };
 
 
 
   // Update material status
-  const updateMaterialStatus = async (e) => {
-    e.preventDefault();
+  // const updateMaterialStatus = async (e) => {
+  //   e.preventDefault();
 
-    var material = {};
-    material.id = selectedMaterial.id;
-    material.used = Number(selectedMaterial.used);
-    material.quantity = Number(selectedMaterial.quantity);
+  //   var material = {};
+  //   material.id = selectedMaterial.id;
+  //   material.used = Number(selectedMaterial.used);
+  //   material.quantity = Number(selectedMaterial.quantity);
 
-    let sprintId = sprint._id;
+  //   let sprintId = sprint._id;
 
-    delete sprint._id;
-    delete sprint.__v;
-    sprint.material = material;
+  //   delete sprint._id;
+  //   delete sprint.__v;
+  //   sprint.material = material;
 
-    setIsProcessingMaterials(true);
-    try {
-      console.log(sprint.material);
-      const sprintResponse = await axios.put(serverUrl+'/api/v1/mppms/sprint/update?id='+sprintId, sprint);
+  //   setIsProcessingMaterials(true);
+  //   try {
+  //     console.log(sprint.material);
+  //     const sprintResponse = await axios.put(serverUrl+'/api/v1/mppms/sprint/update?id='+sprintId, sprint);
 
-      if (sprintResponse.status === 200 && material.used > 0) {
-        const materialResponse = await axios.put(serverUrl+'/api/v1/mppms/material/update?id='+selectedMaterial.id, { used: Number(selectedMaterial.used)});
+  //     if (sprintResponse.status === 200 && material.used > 0) {
+  //       const materialResponse = await axios.put(serverUrl+'/api/v1/mppms/material/update?id='+selectedMaterial.id, { used: Number(selectedMaterial.used)});
       
-        if (materialResponse.status === 200) {
-          setIsProcessingMaterials(false);
-          setResponseMessage({ message: materialResponse.data.message, severity: 'success' });
-          setOpen(true);
-          handleOpenModal();
-          setSelectedMaterial({});
-        }        
-      }
-    } catch (error) {
-      if (error.response && error.response.status >= 400 && error.response.status <= 500) {
-        setIsProcessingMaterials(false);
-        setResponseMessage({ message: error.response.data.msg, severity:'error'})
-        setOpen(true);
-      }
-    }
-  };
+  //       if (materialResponse.status === 200) {
+  //         setIsProcessingMaterials(false);
+  //         setResponseMessage({ message: materialResponse.data.message, severity: 'success' });
+  //         setOpen(true);
+  //         handleOpenModal();
+  //         setSelectedMaterial({});
+  //       }        
+  //     }
+  //   } catch (error) {
+  //     if (error.response && error.response.status >= 400 && error.response.status <= 500) {
+  //       setIsProcessingMaterials(false);
+  //       setResponseMessage({ message: error.response.data.msg, severity:'error'})
+  //       setOpen(true);
+  //     }
+  //   }
+  // };
 
 
   // Cancel material update
-  const cancelMaterialUpdate = () => {
-    // handleOpenModal();
-    setSelectedMaterial({});
-  }
+  // const cancelMaterialUpdate = () => {
+  //   handleOpenModal();
+  //   setSelectedMaterial({});
+  // }
 
 
   // Add comment 
@@ -273,7 +272,7 @@ const SprintDetails = (props) => {
 
   // Calling store data
   const { isLoading, numberOfSprintComments, listOfSprintComments } = useSelector(state => state.comment);
-  const { listOfProjectResources } = useSelector(state => state.material);
+  // const { listOfProjectResources } = useSelector(state => state.material);
 
 
   if (loading) {
@@ -290,12 +289,13 @@ const SprintDetails = (props) => {
       <HorizontallyFlexSpaceBetweenContainer style={{ borderBottom: '1px solid #94b8b8', paddingBottom: '10px' }}>
         <p>
           <strong>{project.name}</strong>
-          <span> / {issue.name}</span> / activity</p>
+          <span> / {issue.name}</span> / activity
+        </p>
       </HorizontallyFlexSpaceBetweenContainer>
       
       <HorizontallyFlexSpaceBetweenContainer style={{ flexWrap:'wrap', borderBottom: '1px solid #94b8b8', paddingBottom: '10px' }}>
         <h2>{sprint.name}</h2>
-        <Button variant='contained' size='small' color='error' onClick={deleteSprint}>Delete &nbsp;<MdDelete /></Button>
+        {user.role === 'Producer' && <Button variant='contained' size='small' color='error' onClick={deleteSprint}>Delete &nbsp;<MdDelete /></Button>}
       </HorizontallyFlexSpaceBetweenContainer>
       
 
@@ -303,7 +303,8 @@ const SprintDetails = (props) => {
         
         <HorizontallyFlexGapContainer style={{ gap: '20px' }}>
           <Label style={{ color: '#018abe' }}/> 
-          <StatusButtonGroup type='sprint' data={sprint} />
+          {user.role === 'Producer' && <StatusButtonGroup type='sprint' data={sprint} />}
+          {user.role !== 'Producer' && <h3 style={{ color: 'white' }}>Progress status: {sprint.progress}</h3>}
         </HorizontallyFlexGapContainer>
         
         <VerticallyFlexGapContainer>
@@ -312,7 +313,11 @@ const SprintDetails = (props) => {
               <div className="input-with-icon">
                 <MdOutlineDriveFileRenameOutline />
                 <div>
-                  <input type={'text'} placeholder='Change name' value={sprint.name} name='name' onChange={handleChange} />
+                {user.role !== 'Producer' ? 
+                    <p style={{ color: 'white', padding: '10px 0' }}>{sprint.name}</p>
+                    :
+                    <input type={'text'} placeholder='Name' value={sprint.name} name='name' onChange={handleChange} />
+                  }
                 </div>
               </div>
             </FormElement>
@@ -320,7 +325,11 @@ const SprintDetails = (props) => {
               <div className="input-with-icon">
                 <MdNotes />
                 <div>
-                  <input type={'text'} placeholder='Notes' value={sprint.description} name='description' onChange={handleChange} />
+                  {user.role !== 'Producer' ? 
+                    <p style={{ color: 'white', padding: '10px 0' }}>{sprint.description}</p>
+                    :
+                    <input type={'text'} placeholder='Notes' value={sprint.description} name='description' onChange={handleChange} />
+                  }
                 </div>
               </div>
             </FormElement>
@@ -328,8 +337,14 @@ const SprintDetails = (props) => {
               <div className="input-with-icon">
                 <BiCalendar/>
                 <div>
-                  <label htmlFor="startDate">Start Date {sprint.startDate && <span style={{ color: 'black' }}>{new Date(sprint.startDate).toLocaleString()}</span>}</label>
-                  <input type={'date'} id='startDate' value={sprint.startDate} name='startDate' onChange={handleChange} />
+                  {user.role !== 'Producer' ?
+                    <p style={{ color: 'white', padding: '10px 0' }}>{sprint.startDate && new Date(sprint.startDate).toLocaleString()}</p>
+                    :
+                    <>
+                      <label htmlFor="startDate">Start Date {sprint.startDate && <span style={{ color: 'white' }}>{new Date(sprint.startDate).toLocaleString()}</span>}</label>
+                      <input type={'date'} id='startDate' value={sprint.startDate} name='startDate' onChange={handleChange} />
+                    </>
+                  }
                 </div>
               </div>
             </FormElement>
@@ -337,17 +352,23 @@ const SprintDetails = (props) => {
               <div className="input-with-icon">
                 <BiCalendar/>
                 <div>
-                  <label htmlFor="endDate">Due Date {sprint.endDate && <span style={{ color: 'black' }}>{new Date(sprint.endDate).toLocaleString()}</span>}</label>
-                  <input type={'date'} id='endDate' value={sprint.endDate || ''} name='endDate' onChange={handleChange} />
+                  {user.role !== 'Producer' ?
+                    <p style={{ color: 'white', padding: '10px 0' }}>{sprint.endDate && new Date(sprint.endDate).toLocaleString()}</p>
+                    :
+                    <>
+                      <label htmlFor="endDate">End Date {sprint.endDate && <span style={{ color: 'white' }}>{new Date(sprint.endDate).toLocaleString()}</span>}</label>
+                      <input type={'date'} id='endDate' value={sprint.endDate} name='endDate' onChange={handleChange} />
+                    </>
+                  }
                 </div>
               </div>
             </FormElement>
-            <HorizontallyFlexGapContainer style={{ marginTop: '20px' }}>
+            {user.role === 'Producer' && <HorizontallyFlexGapContainer style={{ marginTop: '20px' }}>
               {isProcessing 
                 ? <Button disabled variant="contained" color="primary" size="small">PROCESSING...</Button> 
                 : <Button variant="contained" color="primary" size="small" type="submit">Save changes</Button>
               }
-            </HorizontallyFlexGapContainer>
+            </HorizontallyFlexGapContainer>}
           </VerticallyFlexGapForm>
 
 

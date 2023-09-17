@@ -220,18 +220,19 @@ const IssueDetails = (props) => {
     <VerticallyFlexGapContainer style={{ gap: '10px', position: 'relative', color: 'white' }}>
       
       <HorizontallyFlexSpaceBetweenContainer style={{ borderBottom: '1px solid #94b8b8', paddingBottom: '10px' }}>
-        <p><strong>{project.name}</strong> / Milestones</p>
+        <p><strong>{project.name}</strong> / Phases</p>
       </HorizontallyFlexSpaceBetweenContainer>
       
       <HorizontallyFlexSpaceBetweenContainer style={{ flexWrap:'wrap', borderBottom: '1px solid #94b8b8', paddingBottom: '10px' }}>
         <h2>{issue.name}</h2>
-        <Button variant='contained' size='small' color='error' onClick={deleteIssue}>Delete &nbsp;<MdDelete /></Button>
+        {user.role === 'Producer' && <Button variant='contained' size='small' color='error' onClick={deleteIssue}>Delete &nbsp;<MdDelete /></Button>}
       </HorizontallyFlexSpaceBetweenContainer>
       
       <VerticallyFlexGapContainer style={{ gap: '20px', color: '#97cadb', fontSize:'90%', position: 'relative' }}>
         <HorizontallyFlexGapContainer style={{ gap: '20px' }}>
           <Label style={{ color: '#018abe' }}/> 
-          <StatusButtonGroup type='issue' data={issue} />
+          {user.role === 'Producer' && <StatusButtonGroup type='issue' data={issue} />}
+          {user.role !== 'Producer' && <h3 style={{ color: 'white' }}>Progress status: {issue.progress}</h3>}
         </HorizontallyFlexGapContainer>
 
 
@@ -241,7 +242,11 @@ const IssueDetails = (props) => {
               <div className="input-with-icon">
                 <MdOutlineDriveFileRenameOutline />
                 <div>
-                  <input type={'text'} placeholder='Change name' value={issue.name} name='name' onChange={handleChange} />
+                  {user.role !== 'Producer' ? 
+                    <p style={{ color: 'white', padding: '10px 0' }}>{issue.name}</p>
+                    :
+                    <input type={'text'} placeholder='Name' value={issue.name} name='name' onChange={handleChange} />
+                  }
                 </div>
               </div>
             </FormElement>
@@ -249,7 +254,11 @@ const IssueDetails = (props) => {
               <div className="input-with-icon">
                 <MdNotes />
                 <div>
-                  <input type={'text'} placeholder='Notes' value={issue.description} name='description' onChange={handleChange} />
+                  {user.role !== 'Producer' ? 
+                    <p style={{ color: 'white', padding: '10px 0' }}>{issue.description}</p>
+                    :
+                    <input type={'text'} placeholder='Notes' value={issue.description} name='description' onChange={handleChange} />
+                  }
                 </div>
               </div>
             </FormElement>
@@ -257,8 +266,14 @@ const IssueDetails = (props) => {
               <div className="input-with-icon">
                 <BiCalendar/>
                 <div>
-                  <label htmlFor="startDate">Start Date {issue.startDate && <span style={{ color: 'black' }}>{new Date(issue.startDate).toLocaleString()}</span>}</label>
-                  <input type={'date'} id='startDate' value={issue.startDate} name='startDate' onChange={handleChange} />
+                  {user.role !== 'Producer' ?
+                    <p style={{ color: 'white', padding: '10px 0' }}>{issue.startDate && new Date(issue.startDate).toLocaleString()}</p>
+                    :
+                    <>
+                      <label htmlFor="startDate">Start Date {issue.startDate && <span style={{ color: 'white' }}>{new Date(issue.startDate).toLocaleString()}</span>}</label>
+                      <input type={'date'} id='startDate' value={issue.startDate} name='startDate' onChange={handleChange} />
+                    </>
+                  }
                 </div>
               </div>
             </FormElement>
@@ -266,17 +281,23 @@ const IssueDetails = (props) => {
               <div className="input-with-icon">
                 <BiCalendar/>
                 <div>
-                  <label htmlFor="endDate">Due Date {issue.endDate && <span style={{ color: 'black' }}>{new Date(issue.endDate).toLocaleString()}</span>}</label>
-                  <input type={'date'} id='endDate' value={issue.endDate || ''} name='endDate' onChange={handleChange} />
+                  {user.role !== 'Producer' ?
+                    <p style={{ color: 'white', padding: '10px 0' }}>{issue.endDate && new Date(issue.endDate).toLocaleString()}</p>
+                    :
+                    <>
+                      <label htmlFor="endDate">End Date {issue.endDate && <span style={{ color: 'white' }}>{new Date(issue.endDate).toLocaleString()}</span>}</label>
+                      <input type={'date'} id='endDate' value={issue.endDate} name='endDate' onChange={handleChange} />
+                    </>
+                  }
                 </div>
               </div>
             </FormElement>
-            <HorizontallyFlexGapContainer style={{ marginTop: '20px' }}>
+            {user.role === 'Producer' && <HorizontallyFlexGapContainer style={{ marginTop: '20px' }}>
               {isProcessing 
                 ? <Button disabled variant="contained" color="primary" size="small">PROCESSING...</Button> 
                 : <Button variant="contained" color="primary" size="small" type="submit">Save changes</Button>
               }
-            </HorizontallyFlexGapContainer>
+            </HorizontallyFlexGapContainer>}
           </VerticallyFlexGapForm>
 
 
@@ -284,10 +305,10 @@ const IssueDetails = (props) => {
 
           {/* Activities / Sprints ****************************************************************************************************************************/}
           <VerticallyFlexGapForm onSubmit={addSprint} style={{ marginTop: '20px', background: '#018abe', padding: '20px', borderRadius: '5px', gap: '10px' }}>
-            <h3 style={{ width: '100%', textAlign: 'left', color: 'black' }}>Add activities</h3>
+            <h3 style={{ width: '100%', textAlign: 'left', color: 'black' }}>{user.role === 'Producer' ? "Add activities" : "Activities"}</h3>
 
             <HorizontallyFlexGapContainer style={{ borderTop: "1px solid rgba(0,0,0,.2)" }}>
-                <input id="name" name="name" value={sprint.name || ''} placeholder="Add activity..." type={'text'} onChange={handleActivityInput} style={{ width: '80%', padding: '8px 12px', border: 'none', color:"black", background: 'transparent', fontSize:'100%',borderRadius: '0 0 0 5px' }} />
+                {user.role === 'Producer' && <input id="name" name="name" value={sprint.name || ''} placeholder="Add activity..." type={'text'} onChange={handleActivityInput} style={{ width: '80%', padding: '8px 12px', border: 'none', color:"black", background: 'transparent', fontSize:'100%',borderRadius: '0 0 0 5px' }} />}
                 {sprint.name && 
                     <>
                         {isProcessingSprint ? 
