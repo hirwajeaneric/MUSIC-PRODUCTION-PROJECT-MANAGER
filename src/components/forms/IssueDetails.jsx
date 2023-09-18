@@ -305,7 +305,7 @@ const IssueDetails = (props) => {
 
           {/* Activities / Sprints ****************************************************************************************************************************/}
           <VerticallyFlexGapForm onSubmit={addSprint} style={{ marginTop: '20px', background: '#018abe', padding: '20px', borderRadius: '5px', gap: '10px' }}>
-            <h3 style={{ width: '100%', textAlign: 'left', color: 'black' }}>{user.role === 'Producer' ? "Add activities" : "Activities"}</h3>
+            <h3 style={{ width: '100%', textAlign: 'left', color: 'white' }}>{user.role === 'Producer' ? "Add activities" : "Activities"}</h3>
 
             <HorizontallyFlexGapContainer style={{ borderTop: "1px solid rgba(0,0,0,.2)" }}>
                 {user.role === 'Producer' && <input id="name" name="name" value={sprint.name || ''} placeholder="Add activity..." type={'text'} onChange={handleActivityInput} style={{ width: '80%', padding: '8px 12px', border: 'none', color:"black", background: 'transparent', fontSize:'100%',borderRadius: '0 0 0 5px' }} />}

@@ -82,12 +82,12 @@ const ResourcesDetails = ({data}) => {
 
   if (loading) {
     return (
-      <p>Loading...</p>
+      <p style={{ color: 'white' }}>Loading...</p>
     );
   }
 
   return (
-    <VerticallyFlexGapContainer style={{ gap: '20px' }}>
+    <VerticallyFlexGapContainer style={{ gap: '20px', color: 'white' }}>
       <HorizontallyFlexSpaceBetweenContainer style={{ alignItems: 'flex-start' }}>
         <div className='left' style={{ flexDirection: 'column', gap: '10px' }}>
           <h2>Resource Info</h2>
@@ -96,12 +96,10 @@ const ResourcesDetails = ({data}) => {
         <Button variant='contained' size='small' color='error' onClick={deleteResource}>Delete</Button>
       </HorizontallyFlexSpaceBetweenContainer>
       <VerticallyFlexGapForm onSubmit={updateResouce} style={{ gap: '20px', color: '#97cadb', fontSize:'90%' }}>
-        <HorizontallyFlexSpaceBetweenContainer style={{ color: 'black', alignItems: 'flex-start' }}>
+        <HorizontallyFlexSpaceBetweenContainer style={{ color: 'white', alignItems: 'flex-start' }}>
           <div className='left' style={{ flexDirection: 'column', gap: '10px' }}>
             <p>Quantity: <strong>{resource.quantity}</strong></p>
-            <p>Assigned: <strong>{resource.assigned}</strong></p>
-            <p>Used: <strong>{resource.used}</strong></p>
-            <p>Remaining: <strong>{resource.remaining}</strong></p>
+            <p>Price per unit: <strong>{resource.unitPrice}</strong></p>
           </div>
           <div className='right' style={{ flexDirection: 'column', gap: '10px' }}>
             <p>Measurement unit: <strong>{resource.measurementUnit}</strong></p>

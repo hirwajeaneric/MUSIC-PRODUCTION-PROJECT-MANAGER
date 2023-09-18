@@ -24,6 +24,7 @@ export const getProjectResources = createAsyncThunk(
                 element.id = element._id;
                 delete element._id;
                 delete element.__v;
+                // element.totalPrice = element.quantity*element.unitPrice;
                 element.entryDate = new Date(element.entryDate).toLocaleString();
             });
             response.data.materials.sort((a, b) => new Date(b.entryDate) - new Date(a.entryDate))

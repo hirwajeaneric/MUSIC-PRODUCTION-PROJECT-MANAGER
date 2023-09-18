@@ -97,14 +97,22 @@ const paymentSlice = createSlice({
         [getAllPayments.fulfilled] : (state, action) => {
             state.isLoading = false;
             let userPayments = [];
+            var total = 0;
             if (action.payload.user.role !== 'Producer') {
                 userPayments = action.payload.payments.filter(element => element.user === action.payload.user.fullName)    
                 state.listOfAllPayments = userPayments;
                 state.numberOfAllPayments= userPayments.length;    
             } else {
                 state.listOfAllPayments = action.payload.payments;
-                state.numberOfAllPayments= action.payload.payments.length;   
+                state.numberOfAllPayments= action.payload.payments.length;
+                
+                action.payload.payments.forEach(element => {
+                    if (element.approved) {
+                        total = total + element.amount;
+                    }
+                });
             } 
+            state.totalAmountOfAllPayments = total;   
         },
         [getAllPayments.rejected] : (state) => {
             state.isLoading = false;

@@ -3,7 +3,7 @@ import { DashboardInnerContainer, DashboardMainContainer, SideBarMenuItem, SideB
 import { HorizontallyFlexGapContainer, VerticallyFlexGapContainer, VerticallyFlexSpaceBetweenContainer } from "../components/styles/GenericStyles"
 import { MdHome, MdMenu } from 'react-icons/md';
 import { AiFillBuild } from 'react-icons/ai';
-import { TiUser } from 'react-icons/ti';
+// import { TiUser } from 'react-icons/ti';
 import Avatar from "@mui/material/Avatar"; 
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -199,12 +199,12 @@ const DashboardMain = () => {
                             {!fullSize && <span className="text">Payments</span>}
                             </div>
                         </SideBarMenuItem>                    
-                        <SideBarMenuItem to={'settings'}>
+                        {/* <SideBarMenuItem to={'settings'}>
                             <TiUser style={{ width: fullSize ? '100%' : '20%'}}/>
                             <div style={{ width: fullSize ? '0%' : '80%'}} className="nav-data">
                             {!fullSize && <span className="text">My account</span>}
                             </div>
-                        </SideBarMenuItem>                    
+                        </SideBarMenuItem>                     */}
                     </SideBarMenueContainer>
                 </SideNavigationBar>
                 
