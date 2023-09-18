@@ -44,7 +44,7 @@ const ProjectMaterials = () => {
       </Helmet>
 
       <VerticallyFlexGapContainer style={{ gap: '20px', background: '#02457a', color: 'white', padding: '20px', borderRadius: '5px', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)' }}>
-        {loadingProject ? <p style={{ width: '100%', textAlign: 'left' }}>Loading...</p> :
+        {loadingProject ? <p style={{ width: '100%', textAlign: 'left', color: 'white' }}>Loading...</p> :
           <HorizontallyFlexSpaceBetweenContainer>
             <HeaderTwo style={{ width: '100%', textAlign: 'left' }}>{project.name}</HeaderTwo>
             <HorizontallyFlexGapContainer style={{ gap: '20px', justifyContent: 'flex-end' }}>

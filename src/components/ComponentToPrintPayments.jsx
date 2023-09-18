@@ -15,7 +15,7 @@ export const ComponentToPrintPayments = React.forwardRef((props, ref) => {
       dispatch(getAllPayments({ user: user }));
     },[dispatch, user])
 
-    const { listOfAllPayments } = useSelector(state => state.payment);
+    const { listOfAllPayments, totalAmountOfAllPayments } = useSelector(state => state.payment);
 
     return (
         <ReportPaperContainer ref={ref}>
@@ -26,7 +26,7 @@ export const ComponentToPrintPayments = React.forwardRef((props, ref) => {
                 </InstitutionDetails>
             </TopBar>
             <ReportHeader>
-                <h2>Income Report</h2>
+                <h1>Income Report</h1>
                 
                 <div className='report-period'>
                     <div className='right' style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '100%' }}>
@@ -37,7 +37,8 @@ export const ComponentToPrintPayments = React.forwardRef((props, ref) => {
             </ReportHeader>
 
             <ReportBody style={{ gap: '20px' }}>
-                <strong>List of payments</strong>
+                <h2>List of payments</h2>
+                <p><strong>Period: </strong>Sun Sep 17 2023 - Mon Sep 18 2023 </p>
                 <p>This is an income report for all payments we have recieved.</p>
                 <TableList>
                     <thead>
@@ -59,6 +60,12 @@ export const ComponentToPrintPayments = React.forwardRef((props, ref) => {
                                 </tr>
                             )
                         })}
+                        <tr>
+                            <td>Total</td>
+                            <td>{totalAmountOfAllPayments}</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
                     </tbody>
                 </TableList>
 

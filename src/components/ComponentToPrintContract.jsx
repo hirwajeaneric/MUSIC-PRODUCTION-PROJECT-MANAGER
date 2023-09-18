@@ -36,7 +36,7 @@ export const ComponentToPrintContract = React.forwardRef((props, ref) => {
             </TopBar>
             <ReportHeader>
                 {/* <h2>{selectedProject.name}</h2> */}
-                <h2 style={{ width: '100%', textAlign: 'center' }}>Contract of work agreements</h2>
+                <h2 style={{ width: '100%', textAlign: 'center' }}>Contract on Project Agreements</h2>
                 
                 <div className='report-period'>
                     <div className='left'>

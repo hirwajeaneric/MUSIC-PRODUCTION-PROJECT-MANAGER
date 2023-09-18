@@ -36,7 +36,7 @@ const Payments = () => {
             onClick={() => { 
               navigate(`/payment-report`);
             }}>
-              <Download style={{ fontSize: '120%' }}/> Print
+              <Download style={{ fontSize: '120%' }}/> Report
           </button>
         </div>
         {isLoading ? 

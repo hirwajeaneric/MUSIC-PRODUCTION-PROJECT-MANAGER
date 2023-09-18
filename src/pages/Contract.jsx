@@ -42,11 +42,11 @@ export default function Contract() {
   return (
     <VerticallyFlexGapContainer style={{ gap: '20px'}}>
       <Helmet>
-        <title>{`Report preview - ${selectedProject.name}`}</title>
+        <title>{`Contract - ${selectedProject.name}`}</title>
         <meta name="description" content={`Report preview for project ${selectedProject.name}.`} /> 
       </Helmet>
       <HorizontallyFlexSpaceBetweenContainer>
-        <HeaderTwo style={{ width: '100%', textAlign: 'left', color: 'white' }}><strong>Report preview </strong></HeaderTwo>
+        <HeaderTwo style={{ width: '100%', textAlign: 'left', color: 'white' }}><strong>Contract preview </strong></HeaderTwo>
         <Button variant='contained' size='small' color='secondary' onClick={handlePrint}>Print</Button>
       </HorizontallyFlexSpaceBetweenContainer>
 

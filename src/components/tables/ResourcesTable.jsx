@@ -19,13 +19,13 @@ const columns = [
   {
     field: 'unitPrice',
     headerName: 'Price per item',
-    width: 150,
+    width: 120,
   },
-  // {
-  //   field: 'used',
-  //   headerName: 'Used',
-  //   width: 80,
-  // },
+  {
+    field: 'totalPrice',
+    headerName: 'Total Price',
+    width: 120,
+  },
   // {
   //   field: 'remaining',
   //   headerName: 'Remaining',
@@ -52,7 +52,7 @@ export const TableStyles = {
   padding: '0px',
   width: '100%',
   height: '400px',
-  background: '#132239',
+  background: '#97cadb',
   marginTop: '20px',
   color: 'inherit'
 }
