@@ -1,5 +1,5 @@
 /* eslint-disable react/display-name */
-import React from 'react'
+import React, { Fragment } from 'react'
 import { ReportHeader, TopBar, ReportBody, ReportFooter, InstitutionDetails, ReportPaperContainer } from './styles/ReportStyledComponents';
 import { useCookies } from 'react-cookie';
 import { useSelector } from 'react-redux';
@@ -50,12 +50,13 @@ export const ComponentToPrintContract = React.forwardRef((props, ref) => {
             </ReportHeader>
 
             <ReportBody style={{ gap: '10px' }}>
-                <p style={{ lineHeight:'25px' }}>This contract summarizes the agreement for creating a song named: <em>"{selectedProject.name}"</em>.
+                <p style={{ lineHeight:'25px' }}>This contract summarizes the agreement for creating a song named: <em>&quot;{selectedProject.name}&quot;</em>.
                     <br/>
-                    The contract joins the studio producer: <em>"{selectedProject.producerName}"</em> and artist(s): 
+                    The contract joins the studio producer <em>{selectedProject.producerName}</em> and his clients:
                     {listOfUsersInAProject.map((artist, index) => {
                         return (
-                            <em key={index}> {artist.fullName}, </em>
+                            <em key={index}> {artist.fullName} - {artist.role}
+                            {index+1 !== listOfUsersInAProject.length ? <Fragment>, and </Fragment> : <Fragment>. </Fragment>} </em>
                         )
                     })}
                     <br/>
@@ -70,10 +71,11 @@ export const ComponentToPrintContract = React.forwardRef((props, ref) => {
                 <span style={style1}><p>Creation Date:</p> <em>{new Date(selectedProject.creationDate).toDateString()}</em></span>
                 <span style={style1}><p>Estimated end date:</p> <em>{new Date(selectedProject.estimatedEndDate).toDateString()}</em></span>
                 <span style={style1}>
-                    <p>Phases:</p> <em>{listOfProjectIssues.length}</em>
+                    <p>Phases:</p><em>{listOfProjectIssues.length}</em>
                     ({listOfProjectIssues.map((phase, index) => {
                         return (
-                            <em key={index}>{phase.name},</em>
+                            <em key={index}>{phase.name}
+                            {index+1 !== listOfProjectIssues.length ? <Fragment>,</Fragment> : <Fragment></Fragment>}</em>
                         )
                     })})
                 </span>
