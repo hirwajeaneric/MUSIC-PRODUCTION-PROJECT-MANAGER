@@ -29,7 +29,7 @@ const SprintDetails = (props) => {
   const [isProcessingComment, setIsProcessingComment] = useState(false);
   // const [isProcessingMaterials, setIsProcessingMaterials] = useState(false);
   // const { register, handleSubmit, formState: { errors } } = useForm();
-  const { setOpen, setResponseMessage, handleOpenModal, selectedMaterial, setSelectedMaterial } = useContext(GeneralContext);
+  const { setOpen, setResponseMessage, handleOpenModal, setSelectedMaterial } = useContext(GeneralContext);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [comment, setComment] = useState({});
@@ -288,8 +288,8 @@ const SprintDetails = (props) => {
       
       <HorizontallyFlexSpaceBetweenContainer style={{ borderBottom: '1px solid #94b8b8', paddingBottom: '10px' }}>
         <p>
-          <strong>{project.name}</strong>
-          <span> / {issue.name}</span> / activity
+          <strong>Project: </strong>
+          <span>{project.name} / {issue.name}</span> / activity
         </p>
       </HorizontallyFlexSpaceBetweenContainer>
       

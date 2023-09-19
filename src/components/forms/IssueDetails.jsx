@@ -201,12 +201,9 @@ const IssueDetails = (props) => {
     })
   }
 
-
   // Calling store data
   const { isLoading, listOfIssueComments } = useSelector(state => state.comment);
   const { isLoading: loadingIssueSprints, listOfIssueSprints, numberOfIssueSprints } = useSelector(state => state.sprint);
-
-
 
   if (loading) {
     return (
@@ -214,13 +211,12 @@ const IssueDetails = (props) => {
     );
   }
 
-  
-  
   return (
     <VerticallyFlexGapContainer style={{ gap: '10px', position: 'relative', color: 'white' }}>
       
-      <HorizontallyFlexSpaceBetweenContainer style={{ borderBottom: '1px solid #94b8b8', paddingBottom: '10px' }}>
-        <p><strong>{project.name}</strong> / Phases</p>
+      <HorizontallyFlexSpaceBetweenContainer style={{ borderBottom: '1px solid #94b8b8', paddingBottom: '10px', justifyContent: 'flex-start', alignItem: 'flex-start' }}>
+        <strong>Project:&nbsp;</strong>
+        <p>{project.name} / Phases</p>
       </HorizontallyFlexSpaceBetweenContainer>
       
       <HorizontallyFlexSpaceBetweenContainer style={{ flexWrap:'wrap', borderBottom: '1px solid #94b8b8', paddingBottom: '10px' }}>

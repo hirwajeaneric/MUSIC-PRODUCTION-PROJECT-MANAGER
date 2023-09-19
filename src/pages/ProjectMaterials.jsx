@@ -16,8 +16,7 @@ const serverUrl = import.meta.env.VITE_REACT_APP_SERVERURL;
 const ProjectMaterials = () => {
   const params = useParams();
   const dispatch = useDispatch();
-  const { setOpen, setResponseMessage, handleOpenModal, setDetailsFormType, setDetailsData } = useContext(GeneralContext);
-  const [isProcessing, setIsProcessing] = useState(false);
+  const { handleOpenModal, setDetailsFormType, setDetailsData } = useContext(GeneralContext);
   const { register, handleSubmit, formState: { errors } } = useForm();  
   const [project, setProject] = useState({});
   const [ cookies ] = useCookies(null);
