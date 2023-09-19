@@ -1,5 +1,5 @@
 import { Button } from '@mui/material'
-import { FormElement, HorizontallyFlexGapContainer, HorizontallyFlexSpaceBetweenContainer, VerticallyFlexGapContainer, VerticallyFlexGapForm } from '../styles/GenericStyles'
+import { FormElement, HeaderTwo, HorizontallyFlexGapContainer, HorizontallyFlexSpaceBetweenContainer, VerticallyFlexGapContainer, VerticallyFlexGapForm } from '../styles/GenericStyles'
 import { useContext, useState } from "react";
 import { GeneralContext } from "../../App";
 const serverUrl = import.meta.env.VITE_REACT_APP_SERVERURL;
@@ -88,7 +88,10 @@ const MoreProjectDetails = ({data}) => {
   return (
     <VerticallyFlexGapContainer style={{ gap: '20px', background: '#02457a' }}>
       <HorizontallyFlexSpaceBetweenContainer style={{ alignItems:'flex-start', paddingBottom:'10px', borderBottom:'1px solid #a3c2c2' }}>
-        <h2 style={{ width: '70%', color: 'white' }}>{project.name}</h2>
+        <div style={{ width: '50%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'flex-start', gap: '10px' }}>
+          <strong style={{ color: 'white' }}>Project</strong>
+          <HeaderTwo style={{ width: '100%', textAlign: 'left', color: '#d6e8ee' }}>{project.name}</HeaderTwo>
+        </div>
         <Button variant='contained' size='small' color='error' onClick={deleteResource}>Delete</Button>
       </HorizontallyFlexSpaceBetweenContainer>
       <VerticallyFlexGapForm onSubmit={updateResouce} style={{ gap: '20px', color: 'white', fontSize:'90%' }}>
