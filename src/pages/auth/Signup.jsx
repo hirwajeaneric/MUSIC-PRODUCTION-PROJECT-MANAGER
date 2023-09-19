@@ -1,5 +1,5 @@
-import { Link, useNavigate } from "react-router-dom"
-import { FormElement, HeaderOne, HorizontallyFlexGapContainer, HorizontallyFlexSpaceBetweenContainer, VerticallyFlexGapContainer, VerticallyFlexGapForm, VerticallyFlexSpaceBetweenContainer } from "../../components/styles/GenericStyles"
+import { Link } from "react-router-dom"
+import { FormElement, HeaderTwo, HorizontallyFlexGapContainer, HorizontallyFlexSpaceBetweenContainer, VerticallyFlexGapContainer, VerticallyFlexGapForm } from "../../components/styles/GenericStyles"
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 const serverUrl = import.meta.env.VITE_REACT_APP_SERVERURL;
@@ -11,7 +11,6 @@ import { AuthenticationFormContainer } from "../../components/styles/Authenticat
 import { Helmet } from "react-helmet-async";
 
 const Signup = () => {
-  const navigate = useNavigate();
   const [ cookies, setCookie, removeCookie ] = useCookies(null);
   const { setOpen, setResponseMessage } = useContext(GeneralContext);
   const [ visible, setVisible ] = useState(false);
@@ -55,23 +54,13 @@ const Signup = () => {
         <meta name="description" content={`Create an account.`} /> 
       </Helmet>
       <AuthenticationFormContainer style={{ position: 'relative', boxShadow: 'rgba(0, 0, 0, 0.05) 0 6px 24px, rgba(0, 0, 0, 0.08) 0 5px 12px 1px' }}>
-
-        <VerticallyFlexSpaceBetweenContainer className="left" style={{ position: 'absolute', left: '0', top: '0', bottom: '0', background: "#02457a", height: '100%', gap: '50px' }}>
-          <VerticallyFlexGapContainer style={{ gap: '30px', textAlign:'center', color:'white' }}>
-            <h1 style={{ fontWeight: '900' }}>Soundss Pro</h1>
-            <p style={{ lineHeight:'2rem', color: '#cce6ff' }}>Quality project organization,  management and tracking,  all done in one place. Achieved by the use of Soundss Pro. </p>
-          </VerticallyFlexGapContainer>
-          <VerticallyFlexGapContainer style={{ gap: '30px',color:'white' }}>
-            <div style={{ textAlign:'center' }}>
-              <p style={{ lineHeight:'2rem' }}>Don you already have an account?</p>
-              <Button variant='outlined' size='small' color='inherit' onClick={() => navigate('/auth/signin')}>Login</Button>
-            </div>
-            <p>&copy; All rights reserved. Soundss Pro2023</p>
-          </VerticallyFlexGapContainer>
-        </VerticallyFlexSpaceBetweenContainer>
-
+    
         <VerticallyFlexGapForm className="right" style={{ position: 'absolute', right: '0', top: '0', bottom: '0' }} onSubmit={handleSubmit(onSubmit)}>
-          <HeaderOne>Register</HeaderOne>
+          <VerticallyFlexGapContainer style={{ gap: '20px', textAlign:'left', color:'black', width: '100%' }}>
+            <h1 style={{ fontWeight: '900', width: '100%', color: '#001b4b' }}>Soundss Pro</h1>
+          </VerticallyFlexGapContainer>
+
+          <HeaderTwo style={{ fontSize: '1.5rem' }}>Register</HeaderTwo>
           <FormElement>
             <label style={{ color: 'black' }} htmlFor="fullName">Full name</label>
             <input 
@@ -162,7 +151,15 @@ const Signup = () => {
               : <Button variant="contained" color="primary" size="medium" type="submit">Register</Button>
             }
           </FormElement>
+          <VerticallyFlexGapContainer style={{ gap: '30px', width: '100%', color:'black' }}>
+            <div style={{ textAlign:'left', width: '100%', }}>
+              <p style={{ lineHeight:'2rem' }}>Do you already have an account?</p>
+              <Link style={{ color: 'blue', textAlign: 'center' }} to={'/auth/signin'}>Login</Link>
+            </div>
+            <p>&copy; All rights reserved. Soundss Pro2023</p>
+          </VerticallyFlexGapContainer>
         </VerticallyFlexGapForm>
+
         
       </AuthenticationFormContainer>
     </HorizontallyFlexSpaceBetweenContainer>

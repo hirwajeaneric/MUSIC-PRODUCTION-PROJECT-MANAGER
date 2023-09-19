@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { FormElement, HeaderOne, HorizontallyFlexSpaceBetweenContainer, VerticallyFlexGapContainer, VerticallyFlexGapForm, VerticallyFlexSpaceBetweenContainer } from "../../components/styles/GenericStyles"
+import { FormElement, HeaderTwo, HorizontallyFlexSpaceBetweenContainer, VerticallyFlexGapContainer, VerticallyFlexGapForm } from "../../components/styles/GenericStyles"
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 const serverUrl = import.meta.env.VITE_REACT_APP_SERVERURL;
@@ -24,6 +24,9 @@ const Signin = () => {
     .then(response => {
       setTimeout(() => {
         if (response.status === 200) {
+          console.log(response.status === 200);
+          console.log(response.data.user);
+
           setIsProcessing(false);
           setCookie('AuthToken', response.data.user.token);
           setCookie('UserData', JSON.stringify(response.data.user));
@@ -41,29 +44,20 @@ const Signin = () => {
   };
 
   return (
-    <HorizontallyFlexSpaceBetweenContainer style={{ justifyContent: 'center', alignItems: 'center' }}>
+    <HorizontallyFlexSpaceBetweenContainer style={{ justifyContent: 'space-between', alignItems: 'center' }}>
       <Helmet>
         <title>Login</title>
         <meta name="description" content={`Login to your account.`} /> 
       </Helmet>
       <AuthenticationFormContainer style={{ position: 'relative', boxShadow: 'rgba(0, 0, 0, 0.05) 0 6px 24px, rgba(0, 0, 0, 0.08) 0 5px 12px 1px' }}>
 
-        <VerticallyFlexSpaceBetweenContainer className="left" style={{ position: 'absolute', left: '0', top: '0', bottom: '0', background: "#02457a", height: '100%', gap: '50px' }}>
-          <VerticallyFlexGapContainer style={{ gap: '30px', textAlign:'center', color:'white' }}>
-            <h1 style={{ fontWeight: '900' }}>Soundss Pro</h1>
-            <p style={{ lineHeight:'2rem', color: '#cce6ff' }}>Quality project organization,  management and tracking,  all done in one place. Achieved by the use of Soundss Pro. </p>
-          </VerticallyFlexGapContainer>
-          <VerticallyFlexGapContainer style={{ gap: '30px',color:'white' }}>
-            <div style={{ textAlign:'center' }}>
-              <p style={{ lineHeight:'2rem' }}>Don't have an account?</p>
-              <Link style={{ color: 'white', textAlign: 'center' }} to={'/auth/signup'}>Get started</Link>
-            </div>
-            <p>&copy; All rights reserved. Soundss Pro2023</p>
-          </VerticallyFlexGapContainer>
-        </VerticallyFlexSpaceBetweenContainer>
-
         <VerticallyFlexGapForm className="right" style={{ position: 'absolute', right: '0', top: '0', bottom: '0' }} onSubmit={handleSubmit(onSubmit)}>
-          <HeaderOne>Account Login</HeaderOne>
+          <VerticallyFlexGapContainer style={{ gap: '20px', textAlign:'left', color:'black', width: '100%' }}>
+            <h1 style={{ fontWeight: '900', width: '100%', color: '#001b4b' }}>Soundss Pro</h1>
+            <p style={{ lineHeight:'1.5rem', color: 'black' }}>Quality project organization,  management and tracking,  all done in one place. Achieved by the use of Soundss Pro. </p>
+          </VerticallyFlexGapContainer>
+          
+          <HeaderTwo style={{ fontSize: '1.5rem' }}>Account Login</HeaderTwo>
           <FormElement>
             <label style={{ color: 'black' }} htmlFor="email">Email address</label>
             <input 
@@ -104,6 +98,13 @@ const Signin = () => {
               : <Button variant="contained" color="primary" size="small" type="submit">Log in</Button>
             }
           </FormElement>
+          <VerticallyFlexGapContainer style={{ gap: '30px', width: '100%', color:'black' }}>
+            <div style={{ textAlign:'left', width: '100%', }}>
+              <p style={{ lineHeight:'2rem' }}>Don&lsquo;t have an account?</p>
+              <Link style={{ color: 'blue', textAlign: 'center' }} to={'/auth/signup'}>Get started</Link>
+            </div>
+            <p>&copy; All rights reserved. Soundss Pro2023</p>
+          </VerticallyFlexGapContainer>
         </VerticallyFlexGapForm>
         
       </AuthenticationFormContainer>
