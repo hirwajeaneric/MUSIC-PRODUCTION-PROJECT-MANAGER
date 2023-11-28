@@ -114,7 +114,7 @@ const ProjectDetails = () => {
           <VerticallyFlexGapContainer style={{ gap: '20px'}}>
             
             <HorizontallyFlexGapContainer style={{ borderBottom: '1px solid #a3c2c2', paddingBottom: '10px' }}>
-              <HeaderTwo style={{ width: '100%', textAlign: 'left', color: '#d6e8ee' }}>{project.name}</HeaderTwo>
+              <HeaderTwo style={{ width: '100%', textAlign: 'left', color: '#d6e8ee' }}><strong>Project:</strong> {project.name}</HeaderTwo>
               
               <HorizontallyFlexGapContainer style={{ gap: '20px', justifyContent: 'flex-end' }}>
                 <p style={{ color: '#d6e8ee' }}>Code: <span style={{ color: 'white' }}>{project.code}</span></p>

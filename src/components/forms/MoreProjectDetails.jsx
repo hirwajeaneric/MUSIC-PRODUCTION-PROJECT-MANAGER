@@ -1,5 +1,6 @@
+/* eslint-disable react/prop-types */
 import { Button } from '@mui/material'
-import { FormElement, HorizontallyFlexGapContainer, HorizontallyFlexSpaceBetweenContainer, VerticallyFlexGapContainer, VerticallyFlexGapForm } from '../styles/GenericStyles'
+import { FormElement, HeaderTwo, HorizontallyFlexGapContainer, HorizontallyFlexSpaceBetweenContainer, VerticallyFlexGapContainer, VerticallyFlexGapForm } from '../styles/GenericStyles'
 import { useContext, useState } from "react";
 import { GeneralContext } from "../../App";
 const serverUrl = import.meta.env.VITE_REACT_APP_SERVERURL;
@@ -14,7 +15,7 @@ import { currencies } from '../../utils/Currencies';
 const MoreProjectDetails = ({data}) => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [project, setProject] = useState({});
-  const { setOpen, setResponseMessage, handleOpenModal } = useContext(GeneralContext);
+  const { setOpen, setResponseMessage } = useContext(GeneralContext);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
 
@@ -34,7 +35,7 @@ const MoreProjectDetails = ({data}) => {
       setProject(response.data.project);
     })
     .catch(error => console.log(error));
-  },[]);
+  },[data._id]);
 
   // Update project
   const updateResouce = (e) => {
@@ -62,13 +63,17 @@ const MoreProjectDetails = ({data}) => {
   };
 
   // Delete project
-  const deleteResource = (e) => {
+  const deleteProject = (e) => {
     e.preventDefault();
     axios.delete(serverUrl+'/api/v1/mppms/project/delete?id='+project._id)
     .then(response => {
       if (response.status === 200) {
-        dispatch(getProjectResources(project.project));
-        handleOpenModal();
+        setResponseMessage({ message: 'Project deleted', severity:'success'})
+        setOpen(true);
+
+        setTimeout(() => {
+          window.location.replace('/projects');
+        }, 1500)
       }
     })
     .catch(error => {
@@ -88,8 +93,11 @@ const MoreProjectDetails = ({data}) => {
   return (
     <VerticallyFlexGapContainer style={{ gap: '20px', background: '#02457a' }}>
       <HorizontallyFlexSpaceBetweenContainer style={{ alignItems:'flex-start', paddingBottom:'10px', borderBottom:'1px solid #a3c2c2' }}>
-        <h2 style={{ width: '70%', color: 'white' }}>{project.name}</h2>
-        <Button variant='contained' size='small' color='error' onClick={deleteResource}>Delete</Button>
+        <div style={{ width: '50%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'flex-start', gap: '10px' }}>
+          <strong style={{ color: 'white' }}>Project</strong>
+          <HeaderTwo style={{ width: '100%', textAlign: 'left', color: '#d6e8ee' }}>{project.name}</HeaderTwo>
+        </div>
+        <Button variant='contained' size='small' color='error' onClick={deleteProject}>Delete</Button>
       </HorizontallyFlexSpaceBetweenContainer>
       <VerticallyFlexGapForm onSubmit={updateResouce} style={{ gap: '20px', color: 'white', fontSize:'90%' }}>
         <HorizontallyFlexSpaceBetweenContainer style={{ fontSize: '100%', color: 'white', textAlign: 'left', alignItems: 'flex-start' }}>

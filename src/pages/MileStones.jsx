@@ -89,8 +89,11 @@ const MileStones = () => {
 
             <VerticallyFlexGapContainer style={{ gap: '20px', backgroundColor: '#02457a', color: 'white', padding: '20px', borderRadius: '5px', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)' }}>
                 {loadingProject ? <p style={{ width: '100%', textAlign: 'left' }}>Loading...</p> :
-                <HorizontallyFlexSpaceBetweenContainer>
-                    <HeaderTwo style={{ width: '100%', textAlign: 'left' }}>{`${project.name} major Phases`}</HeaderTwo>
+                <HorizontallyFlexSpaceBetweenContainer style={{ alignItems: 'flex-start' }}>
+                    <div style={{ width: '50%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'flex-start', gap: '10px' }}>
+                        <HeaderTwo style={{ width: '100%', textAlign: 'left', color: '#d6e8ee' }}><strong>Project:</strong> {project.name}</HeaderTwo>
+                        <strong>Major Phases</strong>
+                    </div>
                     <HorizontallyFlexGapContainer style={{ gap: '20px', justifyContent: 'flex-end' }}>
                         <p style={{ color: 'white' }}>Code: <span style={{ color: '#97cadb' }}>{project.code}</span></p>
                         {user.role === 'Producer' && <Button variant='contained' size='small' color='info' onClick={displayProjectInfo}>Edit/View Project</Button>}

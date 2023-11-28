@@ -147,7 +147,7 @@ const DashboardMain = () => {
                             }
                             </div>
                         </SideBarMenuItem>
-                        { 
+                        {/* { 
                             listOfProducersProjects.map((project, index) => {
                                 return (
                                     <SideBarMenuItem key={index} onClick={()=>{window.location.replace(`/${project.code}`)}} to={`/${project.code}`} style={{ fontSize:'90%' }}>
@@ -180,7 +180,7 @@ const DashboardMain = () => {
                                     </SideBarMenuItem>
                                 )
                             }) 
-                        }
+                        } */}
                         {/* <SideBarMenuItem to={'resources'}>
                             <PiToolboxFill style={{ width: fullSize ? '100%' : '20%'}}/>
                             <div style={{ width: fullSize ? '0%' : '80%'}} className="nav-data">
